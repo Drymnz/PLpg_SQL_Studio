@@ -10,4 +10,55 @@
         <maven.compiler.release>24</maven.compiler.release>
         <exec.mainClass>com.cunoc.drymnz.plpgsql_studio.PLpgSQL_Studio</exec.mainClass>
     </properties>
+    
+    <dependencies>
+        <dependency>
+            <groupId>com.github.vbmacher</groupId>
+            <artifactId>java-cup</artifactId>
+            <version>11b</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fifesoft</groupId>
+            <artifactId>rsyntaxtextarea</artifactId>
+            <version>3.4.0</version>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        <plugins>
+            <!-- Plugin para compilación con Java 24 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <release>24</release>
+                </configuration>
+            </plugin>
+            
+            <!-- Plugin para crear JAR con todas las dependencias -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.cunoc.drymnz.plpgsql_studio.PLpgSQL_Studio</mainClass>
+                                </transformer>
+                            </transformers>
+                            <!-- Opcional: crear JAR con nombre sin versión -->
+                            <finalName>PLpgSQL_Studio</finalName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
