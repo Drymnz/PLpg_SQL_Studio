@@ -4,12 +4,20 @@
  */
 package com.cunoc.drymnz.plpgsql_studio;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.io.IOException;
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
+import org.fife.ui.rsyntaxtextarea.Theme;
+import org.fife.ui.rtextarea.RTextScrollPane;
+
 /**
  *
  * @author drymnz
  */
 public class InicioJFrame extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(InicioJFrame.class.getName());
 
     /**
@@ -17,6 +25,26 @@ public class InicioJFrame extends javax.swing.JFrame {
      */
     public InicioJFrame() {
         initComponents();
+
+        RSyntaxTextArea textArea = new RSyntaxTextArea();
+        textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_C);
+        textArea.setCodeFoldingEnabled(true);
+        RTextScrollPane sp = new RTextScrollPane(textArea);
+
+        // Establecer un layout manager
+        this.JText.setLayout(new BorderLayout());
+        this.JText.add(sp, BorderLayout.CENTER);
+
+        try {
+            Theme theme = Theme.load(getClass().getResourceAsStream(
+                    "/org/fife/ui/rsyntaxtextarea/themes/monokai.xml"));
+            theme.apply(textArea);
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+        setTitle("Text Editor Demo");
+        this.pack(); // O setSize() si prefieres tamaño fijo
     }
 
     /**
@@ -28,22 +56,44 @@ public class InicioJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        JText = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        JText.setBackground(new java.awt.Color(204, 102, 0));
+
+        javax.swing.GroupLayout JTextLayout = new javax.swing.GroupLayout(JText);
+        JText.setLayout(JTextLayout);
+        JTextLayout.setHorizontalGroup(
+            JTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 388, Short.MAX_VALUE)
+        );
+        JTextLayout.setVerticalGroup(
+            JTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 288, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(JText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(JText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel JText;
     // End of variables declaration//GEN-END:variables
 }
