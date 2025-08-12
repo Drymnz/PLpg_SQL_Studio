@@ -4,6 +4,8 @@
 
 package com.cunoc.drymnz.plpgsql_studio;
 
+import com.cunoc.drymnz.plpgsql_studio.d_drivers.InicioJFrameView;
+
 /**
  *
  * @author drymnz
@@ -12,7 +14,7 @@ public class PLpgSQL_Studio {
 
     public static void main(String[] args) {
          /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new InicioJFrame().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new InicioJFrameView().setVisible(true));
     }
     
 }
