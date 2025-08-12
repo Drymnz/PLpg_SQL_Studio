@@ -7,6 +7,11 @@ package com.cunoc.drymnz.plpgsql_studio;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.io.IOException;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rsyntaxtextarea.Theme;
@@ -31,9 +36,31 @@ public class InicioJFrame extends javax.swing.JFrame {
         textArea.setCodeFoldingEnabled(true);
         RTextScrollPane sp = new RTextScrollPane(textArea);
 
-        // Establecer un layout manager
+// Crear la barra de estado
+        JLabel statusLabel = new JLabel("Línea: 1, Columna: 1");
+        statusLabel.setBorder(BorderFactory.createLoweredBevelBorder());
+        statusLabel.setHorizontalAlignment(SwingConstants.LEFT);
+
+// Listener para actualizar la posición del cursor
+        textArea.addCaretListener(new CaretListener() {
+            @Override
+            public void caretUpdate(CaretEvent e) {
+                try {
+                    int caretPos = textArea.getCaretPosition();
+                    int line = textArea.getLineOfOffset(caretPos);
+                    int column = caretPos - textArea.getLineStartOffset(line);
+
+                    statusLabel.setText("Línea: " + (line + 1) + ", Columna: " + (column + 1));
+                } catch (Exception ex) {
+                    statusLabel.setText("Línea: -, Columna: -");
+                }
+            }
+        });
+
+// Establecer un layout manager
         this.JText.setLayout(new BorderLayout());
         this.JText.add(sp, BorderLayout.CENTER);
+        this.JText.add(statusLabel, BorderLayout.SOUTH); // Agregar barra de estado
 
         try {
             Theme theme = Theme.load(getClass().getResourceAsStream(
@@ -57,8 +84,11 @@ public class InicioJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         JText = new javax.swing.JPanel();
+        JBGuardar = new javax.swing.JButton();
+        JBAbrier = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 102, 102));
 
         JText.setBackground(new java.awt.Color(204, 102, 0));
 
@@ -66,12 +96,21 @@ public class InicioJFrame extends javax.swing.JFrame {
         JText.setLayout(JTextLayout);
         JTextLayout.setHorizontalGroup(
             JTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 388, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         JTextLayout.setVerticalGroup(
             JTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 288, Short.MAX_VALUE)
+            .addGap(0, 546, Short.MAX_VALUE)
         );
+
+        JBGuardar.setText("Guardar");
+        JBGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBGuardarActionPerformed(evt);
+            }
+        });
+
+        JBAbrier.setText("Abrier");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,13 +118,23 @@ public class InicioJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(JText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(JBGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JBAbrier)
+                        .addGap(0, 625, Short.MAX_VALUE))
+                    .addComponent(JText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JBGuardar)
+                    .addComponent(JBAbrier))
+                .addGap(18, 18, 18)
                 .addComponent(JText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -93,7 +142,13 @@ public class InicioJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void JBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBGuardarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBAbrier;
+    private javax.swing.JButton JBGuardar;
     private javax.swing.JPanel JText;
     // End of variables declaration//GEN-END:variables
 }
