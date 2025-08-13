@@ -5,7 +5,10 @@
 package com.cunoc.drymnz.plpgsql_studio.d_drivers;
 
 import com.cunoc.drymnz.plpgsql_studio.a_entidades.StartJFrame;
+import com.cunoc.drymnz.plpgsql_studio.c_interfaces.ManageableRenderableViewStartJFrame;
+import com.cunoc.drymnz.plpgsql_studio.d_adaptadores.ExternalFileManager;
 import javax.swing.JPanel;
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 
 /**
  *
@@ -15,18 +18,29 @@ public class InicioJFrameView extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(InicioJFrameView.class.getName());
     private StartJFrame JFrame;
+    private ExternalFileManager eFileManager;
 
-    
     /**
      * Creates new form StartJFrame
      */
     public InicioJFrameView() {
         initComponents();
         this.JFrame = new StartJFrame(this);
-        this.JFrame.startResources();
+        this.eFileManager = new ExternalFileManager();
+        (new ManageableRenderableViewStartJFrame()).renderTextEditor(this.JFrame);
     }
-    
-    public JPanel getTextArea(){return this.TextArea;}
+
+    public StartJFrame getJFrame() {
+        return this.JFrame;
+    }
+
+    public JPanel getJPanelTextArea() {
+        return this.TextArea;
+    }
+
+    public RSyntaxTextArea getTextArea() {
+        return this.JFrame.getTextArea();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,6 +54,7 @@ public class InicioJFrameView extends javax.swing.JFrame {
         TextArea = new javax.swing.JPanel();
         JBGuardar = new javax.swing.JButton();
         JBAbrier = new javax.swing.JButton();
+        JPanelConsole = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 102, 102));
@@ -54,7 +69,7 @@ public class InicioJFrameView extends javax.swing.JFrame {
         );
         TextAreaLayout.setVerticalGroup(
             TextAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 546, Short.MAX_VALUE)
+            .addGap(0, 428, Short.MAX_VALUE)
         );
 
         JBGuardar.setText("Guardar");
@@ -65,6 +80,24 @@ public class InicioJFrameView extends javax.swing.JFrame {
         });
 
         JBAbrier.setText("Abrier");
+        JBAbrier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBAbrierActionPerformed(evt);
+            }
+        });
+
+        JPanelConsole.setBackground(new java.awt.Color(102, 102, 102));
+
+        javax.swing.GroupLayout JPanelConsoleLayout = new javax.swing.GroupLayout(JPanelConsole);
+        JPanelConsole.setLayout(JPanelConsoleLayout);
+        JPanelConsoleLayout.setHorizontalGroup(
+            JPanelConsoleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        JPanelConsoleLayout.setVerticalGroup(
+            JPanelConsoleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,12 +106,13 @@ public class InicioJFrameView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TextArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(JBGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JBAbrier)
                         .addGap(0, 625, Short.MAX_VALUE))
-                    .addComponent(TextArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(JPanelConsole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -90,6 +124,8 @@ public class InicioJFrameView extends javax.swing.JFrame {
                     .addComponent(JBAbrier))
                 .addGap(18, 18, 18)
                 .addComponent(TextArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(JPanelConsole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -97,12 +133,17 @@ public class InicioJFrameView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGuardarActionPerformed
-        // TODO add your handling code here:
+        this.eFileManager.storingFileOfText(this.JFrame.getUseFile(), this.JFrame.getTextArea().getText(), this);
     }//GEN-LAST:event_JBGuardarActionPerformed
+
+    private void JBAbrierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAbrierActionPerformed
+        this.eFileManager.openFileOfText(this.JFrame.getUseFile(), this.JFrame.getTextArea().getText(), this);
+    }//GEN-LAST:event_JBAbrierActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBAbrier;
     private javax.swing.JButton JBGuardar;
+    private javax.swing.JPanel JPanelConsole;
     private javax.swing.JPanel TextArea;
     // End of variables declaration//GEN-END:variables
 }
