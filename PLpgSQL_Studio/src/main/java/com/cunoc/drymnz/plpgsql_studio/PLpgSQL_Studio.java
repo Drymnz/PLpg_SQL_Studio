@@ -4,7 +4,7 @@
 
 package com.cunoc.drymnz.plpgsql_studio;
 
-import com.cunoc.drymnz.plpgsql_studio.d_drivers.InicioJFrameView;
+import com.cunoc.drymnz.plpgsql_studio.e_drivers.InicioJFrameView;
 
 /**
  *

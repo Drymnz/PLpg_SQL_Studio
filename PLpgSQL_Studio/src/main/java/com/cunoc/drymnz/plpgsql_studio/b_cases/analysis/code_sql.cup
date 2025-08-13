@@ -1,13 +1,12 @@
-package usac.cunoc.interpretefiguras.logic.analysis;
+package com.cunoc.drymnz.plpgsql_studio.b_cases.analysis.sql;
 
 import java_cup.runtime.*;
 import java.util.ArrayList;
-import usac.cunoc.interpretefiguras.logic.objectAnalysis.Token;
-import usac.cunoc.interpretefiguras.logic.reports.*;
-import usac.cunoc.interpretefiguras.logic.animition.*;
-import usac.cunoc.interpretefiguras.logic.geometry.*;
 
-//////////////////////////
+import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.ErrorTypeInTheInterpreter;
+import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.ReportErrorInterpreter;
+import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.Token;
+
 
 /**
      * ***STAR CODE*******
@@ -15,398 +14,104 @@ import usac.cunoc.interpretefiguras.logic.geometry.*;
     parser code {:
 
 private ArrayList<ReportErrorInterpreter> listError = new ArrayList();
-private ArrayList<MathOperation> listMathOperation = new ArrayList();
-private ArrayList<BasicGeometricObject>  listGeometricObject = new ArrayList();
-private ArrayList<Animation>  listAnimation = new ArrayList();
-private ReportUserObjectGeometry reportUser = new ReportUserObjectGeometry();
-private int scale = 1;
+private LexemaSQL lexema;
+private String STRING_ID = "";
+private String STRING_HTML = "";
+private String STRING_SCRIPTING = "";
 
 
-	public parser(Lexema lexer) {
-        super(lexer);
+	  public ParserSQL(LexemaSQL Lexema) {
+        super(Lexema);
+        this.lexema = Lexema;
     }
-    // modificar scala
-    public void setScale(int scale){
-      this.scale = (scale>0)? scale : 1;
-    }
+
     //erorr
     public void syntax_error(Symbol cur_token) {
         String nameTerminal = symbl_name_from_id(this.cur_token.sym);
         int numberTerminal = this.cur_token.sym;
-        String lexema = this.cur_token.value.toString();
+        ///codigo para el objeto
+        ErrorTypeInTheInterpreter type = ErrorTypeInTheInterpreter.SYNTACTIC;
         int line = cur_token.left+1;
         int columna = cur_token.right +1;
-        //System.err.println("Numero del teminal->"+this.cur_token.sym);
-        ///codigo para el objeto
-        TypeIntreprete type = TypeIntreprete.SYNTACTIC;
-        String description = ListErrorAnalyzer.LEXEMA_ONE.getDescription();
-        this.listError.add(new ReportErrorInterpreter(type, new Token(line, columna, lexema), (new InterpretSyntaticError(stack, nameTerminal, numberTerminal, lexema, line, columna)).description() ));
+        String lexema = (this.cur_token.value!=null)? this.cur_token.value.toString() : "Token no existe";
+        Token token =  new Token(line, columna, lexema);
+        //this.listError.add(new ReportErrorInterpreter(type, token, (new InterpretSyntaticError(this.stack)).descriptionParser(this)));
     }
-    // mostrar la infomacion actual que posee el analisador
-    private void getInfoPrint(){
-        System.out.println("\n"+" - Clase<"+"> en simbolo<" + sym.terminalNames[cur_token.sym]+String.format(">posicion: <%d>, <%d>", (cur_token.left+1), (cur_token.right+1)));
-    }
-    //
-    public ReportUserObjectGeometry getReportUserObjectGeometry(){
-        return this.reportUser;
-    }
-    // returnar el token actual
-    private Token getTokePresent(){
-        return new Token((cur_token.left+1), (cur_token.right+1), sym.terminalNames[cur_token.sym]);
-    }
-    //modificacion de sym.terminalNames[cur_token.sym]
-    private void setTextToken(String modification){
-        sym.terminalNames[cur_token.sym] = modification;
-    }
-    
-    //Returnar el listado de Animation
-    public ArrayList<Animation> getListAnimation() {
-        return this.listAnimation;
-    }
+
     //Returnar el listado de errores
     public ArrayList<ReportErrorInterpreter> getListError() {
         return this.listError;
     }
-    //Returnar el listado de errores
-    public ArrayList<MathOperation> getListMathOperation() {
-        return this.listMathOperation;
+
+    private void addCaptcha(){
+        STRING_ID="";
+        STRING_HTML = "";
+        STRING_SCRIPTING = "";
     }
-    //Returnar el listado de ArrayList<BasicGeometricObject>  listGeometricObject
-    public ArrayList<BasicGeometricObject> getLisGeometricObject() {
-        return this.listGeometricObject;
-    }
-    //agregar reprote de mathoperation
-    private void addReportMathOperation(ListMathOperation type){
-        this.listMathOperation.add(new MathOperation(this.getTokePresent(), type));
-    }
-    //agregar circulo
-    private void addCircle(String id, String px, String py, String r){
-      if (reportUser.getTypeColor()!=null) {
-        this.listGeometricObject.add(new CircleGeometric( this.stringToIntCrew(px), this.stringToIntCrew(py),id, reportUser.getTypeColor(), this.stringToIntCrew(r)));
-      }
-    }
-    //agregar cuadrado
-    private void addSquare(String id, String px, String py, String l){
-      if (reportUser.getTypeColor()!=null) {
-        this.listGeometricObject.add(new SquareGeometric( this.stringToIntCrew(px), this.stringToIntCrew(py),id, reportUser.getTypeColor(), this.stringToIntCrew(l)));
-      }
-    }
-    //agregar rectangulo
-    private void addRectangle(String id, String px, String py, String w, String h){
-      if (reportUser.getTypeColor()!=null) {
-        this.listGeometricObject.add(new RectangleGeometric( this.stringToIntCrew(px), this.stringToIntCrew(py),id, reportUser.getTypeColor(), this.stringToIntCrew(w), this.stringToIntCrew(h)));
-      }
-    }
-    //agregar linea
-    private void addLine(String id, String px, String py, String px2, String py2){
-      if (reportUser.getTypeColor()!=null) {
-        this.listGeometricObject.add(new LineGeometric( this.stringToIntCrew(px), this.stringToIntCrew(py),id, reportUser.getTypeColor(), this.stringToIntCrew(px2),this.stringToIntCrew(py2)));
-      }
-    }
-    //agregar poligono
-    private void addPolygon(String id, String px, String py, String l, String w, String h){
-      if (reportUser.getTypeColor()!=null) {
-        this.listGeometricObject.add(new PolygonGeometric( this.stringToIntCrew(px), this.stringToIntCrew(py),id, reportUser.getTypeColor(),this.stringToIntCrew(l),this.stringToIntCrew(w),this.stringToIntCrew(h)));
-      }
-    }
-    //Agregapar la animacion
-    private void addAnimation(String dx,String dy, String o ){
-        if (this.listGeometricObject.size() > 0) {
-          this.listAnimation.add(new Animation(reportUser.getTypeAnimation(), this.stringToIntCrew(dx), this.stringToIntCrew(dy), this.stringToIntCrew(o), this.listGeometricObject.get(this.listGeometricObject.size()-1)));
-        }
-    }
-    // converitir el string en un int
-    private int stringToIntCrew(String tx){
-        double numero = Double.parseDouble(tx);
-        int resultado2 = (int) Math.round(numero);
-        return resultado2;
-    }
+
     /**
      * ***END CODE*******
      */
 :}
-/*************************************TERMINALES******************************************************/
 
-/*SIMBOLOS DE OPERACION*/
-terminal SUMAR,RESTAR,DIVIDIR,MULTIPLICAR,COMA;
-terminal String ID,REAL_NUMEBERS;
-/*AGRUPACION*/
-terminal PARENTESIS_A,PARENTESIS_C;
-/*COLOR*/
-terminal BLUE,RED,YELLOW,GREEN,BLACK;
-terminal CYAN,FUCHSIA,LAVENDER,MAROON;
-
-/*TIPO DE GRAFICO*/
-terminal CIRCLE,LINE,POLYGON,RECTANGLE,SQUARE;
-
-/*OTRAS*/
-terminal GRAFICAR,ANIMATION,PREVIOUS,OBJECT,CURVE;
-
-/*************************************NO TERMINALES******************************************************/
-nonterminal inicio;
-nonterminal operacion;
-/*para el uso de operaciones aritmeticas*/
-nonterminal inico_opereacion;
-nonterminal acciones,animtion;
-nonterminal grafica,tipo_grafica,tipo_color,tipo_animation,parente,numero_operar;
-/*************************************PRECEDENCIA******************************************************/
-precedence left SUMAR, RESTAR;
-precedence left MULTIPLICAR, DIVIDIR;
-precedence left PARENTESIS_A, PARENTESIS_C;
-/*************************************GRAMATICA******************************************************/
+/* Terminales */
+terminal CapTcha,FinCapTcha;
+//tomar
+terminal EQUAL,ID,HTML,SCRIPTING;
+terminal OUT_HARVESTING,START_HARVESTING;
+/* No terminales */
+//inicio
+non terminal inicio;
+non terminal varias_etiquetas_usar;
+non terminal etiqueta_inicial;
+non terminal etiqueta_html,etiqueta_id,etiqueta_scripting;
+non terminal bucle_etiquetas,listado_etiquetas;
+/* Gramática */
 start with inicio;
-/******operaciones matematicas*****/
-inicio ::= acciones 
-    | error 
+/**********************************************INICIO DE LA GRAMATICA******************************/
+inicio ::= varias_etiquetas_usar
+    |error varias_etiquetas_usar
+    |
     ;
+/**********************************************GRAMATICA DE ESTRUCTURA DE CC******************************/
 
-acciones
-    ::= acciones grafica
-    |grafica
-
-    ;
-
-grafica
-    ::=GRAFICAR tipo_grafica
-    |ANIMATION OBJECT animtion
-    ;
-
-tipo_grafica
-    //  circulo (        <nombre>, <posx>,                  <posy>,              <radio>,                   <color>           )
-    ::= CIRCLE  PARENTESIS_A ID:id  COMA inico_opereacion:px  COMA inico_opereacion:py  COMA inico_opereacion:r  COMA tipo_color PARENTESIS_C
-    {:
-    reportUser.incrementObjectCounter(ListObjectGeometric.CIRCLE);
-    addCircle(id.toString(),px.toString(),py.toString(),r.toString());
-    :}
-    //cuadrado (        <nombre>,           <posx>,               <posy>,              <tamaño lado>,    <color>      )
-    |SQUARE PARENTESIS_A ID:id COMA inico_opereacion:px COMA inico_opereacion:py COMA inico_opereacion:l COMA tipo_color PARENTESIS_C
-    {:
-    reportUser.incrementObjectCounter(ListObjectGeometric.SQUARE);
-    addSquare(id.toString(),px.toString(),py.toString(),l.toString());
-    :}
-    //rectangulo (        <nombre>,              <posx>,                <posy>,             <ancho>,          <alto>,                   <color>      )
-    |RECTANGLE PARENTESIS_A ID:id COMA inico_opereacion:px COMA inico_opereacion:py COMA inico_opereacion:w COMA inico_opereacion:h COMA tipo_color PARENTESIS_C
-    {:
-    reportUser.incrementObjectCounter(ListObjectGeometric.RECTANGLE);
-    addRectangle(id.toString(),px.toString(),py.toString(),w.toString(),h.toString());
-    :}
-    //linea (         <nombre>,            <posx1>,               <posy1>,                 <posx2>,                 <posy2>,    <color>      )
-    |LINE PARENTESIS_A ID:id COMA inico_opereacion:px COMA inico_opereacion:py COMA inico_opereacion:px2 COMA inico_opereacion:py2 COMA tipo_color PARENTESIS_C
-    {:
-    reportUser.incrementObjectCounter(ListObjectGeometric.LINE);
-    addLine(id.toString(),px.toString(),py.toString(),px2.toString(),py2.toString());
-    :}
-    // poligono (        <nombre>,             <posx>,                 <posy>,        <cantidad lados>,              <ancho>,             <alto>,          <color>      )
-    |POLYGON PARENTESIS_A ID:id COMA inico_opereacion:px COMA inico_opereacion:py COMA inico_opereacion:l COMA inico_opereacion:w COMA inico_opereacion:h COMA tipo_color PARENTESIS_C
-    {:
-    reportUser.incrementObjectCounter(ListObjectGeometric.POLYGON);
-    addPolygon(id.toString(),px.toString(),py.toString(),l.toString(),w.toString(),h.toString());
-    :}
-    | error  
-    ;
-
-
-animtion
-    //  animar objeto anterior (        <tipoanimacion>,           <destinox>,              <destinoy>,             <orden>              )
-    ::=  PREVIOUS PARENTESIS_A tipo_animation COMA inico_opereacion:dx COMA inico_opereacion:dy COMA inico_opereacion:o  PARENTESIS_C
-    {:
-        addAnimation(dx.toString(),dy.toString(),o.toString());
-    :}
-    |error
-    ;
-
-tipo_animation
-    ::= LINE {:reportUser.incrementAnimationCounter(ListAnimation.LINE);:}
-    |CURVE {:reportUser.incrementAnimationCounter(ListAnimation.CURVE);:}
-    |error
-    ;
-
-tipo_color
-    ::=
-    BLUE {:reportUser.incrementColorCounter(ListColor.BLUE);:}
-    |RED {:reportUser.incrementColorCounter(ListColor.RED);:}
-    |YELLOW {:reportUser.incrementColorCounter(ListColor.YELLOW);:}
-    |GREEN {:reportUser.incrementColorCounter(ListColor.GREEN);:}
-    |BLACK {:reportUser.incrementColorCounter(ListColor.BLACK);:}
-    |CYAN {:reportUser.incrementColorCounter(ListColor.CYAN);:}
-    |FUCHSIA {:reportUser.incrementColorCounter(ListColor.FUCHSIA);:}
-    |LAVENDER {:reportUser.incrementColorCounter(ListColor.LAVENDER);:}
-    |MAROON {:reportUser.incrementColorCounter(ListColor.MAROON);:}
-    |error
-    ;
-    
-/******operaciones matematicas*****/
-/*A QUI ESTA EL TOTAL DE LA OPERACION*/
-inico_opereacion ::= operacion:a 
-    {:
-    //////////////////////////////////////////
-		Double aDouble = 0.0;
-    if (a!=null) {
-      aDouble =   Double.valueOf(a.toString());
-      double result = aDouble * scale;
-       RESULT = result;
-    }else{
-      RESULT = aDouble;
-    }
-    //////////////////////////////////////////
-    :} 
-    ;
-/******operaciones matematicas*****/
-operacion 
-/**SUMA**/
-::= operacion:a SUMAR operacion:b 
-    {:
-    /////////////////////////////////////////////
-    Double aDouble = 0.0;		
-    Double bDouble = 0.0;
-    if(a != null){
-      aDouble =   Double.valueOf(a.toString());
-    }
-    if (b!=null) {
-      bDouble =   Double.valueOf(b.toString());
-    }
-    if (b!=null & a != null ) {
-      setTextToken(a +" + "+ b);
-      addReportMathOperation(ListMathOperation.ADDITION);
-      Double resultDouble = aDouble + bDouble;
-      RESULT = resultDouble;
-    }else{
-      //System.out.println(getTokePresent().toString());
-      RESULT = aDouble;
-    }
-    /////////////////////////////////////////////
-    :}
-
-/**RESTA**/
-|  operacion:a RESTAR operacion:b 
-    {:
-    /////////////////////////////////////////////
-    Double aDouble = 0.0;		
-    Double bDouble = 0.0;
-    if(a != null){
-      aDouble =   Double.valueOf(a.toString());
-    }
-    if (b!=null) {
-      bDouble =   Double.valueOf(b.toString());
-    }
-    if (b!=null & a != null ) {
-      setTextToken(a +" - "+ b);
-      addReportMathOperation(ListMathOperation.SUBTRACTION);
-      Double resultDouble = aDouble - bDouble;
-      RESULT = resultDouble;
-    }else{
-      //System.out.println(getTokePresent().toString());
-      RESULT = aDouble;
-    }
-    /////////////////////////////////////////////
-
-    :}
-/**DIVISION**/
-|  operacion:a DIVIDIR operacion:b 
-    {:
-    /////////////////////////////////////////////
-    Double aDouble = 0.0;		
-    Double bDouble = 0.0;
-    if(a != null){
-      aDouble =   Double.valueOf(a.toString());
-    }
-    if (b!=null) {
-      bDouble =   Double.valueOf(b.toString());
-    }
-    if (b!=null & a != null ) {
-      if (bDouble>0) {
-        setTextToken(a +" / "+ b);
-        addReportMathOperation(ListMathOperation.DIVISION);
-        Double result = ( bDouble/ bDouble);
-        RESULT = result;
-      }else{
-        /// manejar un error de sintasis
-        RESULT = aDouble;// si es 15/0
-      }
-    }else{
-      //System.out.println(getTokePresent().toString());
-      RESULT = aDouble;
-    }
-    /////////////////////////////////////////////
-
-    :}
-
-/**MULTIPLICACION**/
-|  operacion:a MULTIPLICAR operacion:b 
-    {:
-    /////////////////////////////////////////////
-    Double aDouble = 0.0;		
-    Double bDouble = 0.0;
-    if(a != null){
-      aDouble =   Double.valueOf(a.toString());
-    }
-    if (b!=null) {
-      bDouble =   Double.valueOf(b.toString());
-    }
-    if (b!=null & a != null ) {
-      setTextToken(a +" * "+ b);
-      addReportMathOperation(ListMathOperation.MULTIPLICATION);
-      Double result = aDouble * bDouble;
-      RESULT = result;
-    }else{
-      //System.out.println(getTokePresent().toString());
-      RESULT = aDouble;
-    }
-    /////////////////////////////////////////////
-
-    :}
-/****solo retornar*****/
-| PARENTESIS_A operacion:a  parente:b
-    {:
-    /////////////////////////////////////////////
-    Double aDouble = 0.0;		
-    Double bDouble = 0.0;
-    if(a != null){
-      aDouble =   Double.valueOf(a.toString());
-    }
-    if (b!=null) {
-      bDouble =   Double.valueOf(b.toString());
-    }
-    if (b!=null & a != null ) {
-      setTextToken(a +" ) "+ b);
-      addReportMathOperation(ListMathOperation.MULTIPLICATION);
-      Double result = aDouble * bDouble;
-      RESULT = result;
-    }else{
-      //System.out.println(getTokePresent().toString());
-      RESULT = a;
-    }
-    /////////////////////////////////////////////
-    :}
-| REAL_NUMEBERS:a {:RESULT = a;:}
-| REAL_NUMEBERS:a PARENTESIS_A  operacion:b  PARENTESIS_C
-    {:
-    /////////////////////////////////////////////
-    Double aDouble = 0.0;		
-    Double bDouble = 0.0;
-    if(a != null){
-      aDouble =   Double.valueOf(a.toString());
-    }
-    if (b!=null) {
-      bDouble =   Double.valueOf(b.toString());
-    }
-    if (b!=null & a != null ) {
-      setTextToken(a +" ( "+ b);
-      addReportMathOperation(ListMathOperation.MULTIPLICATION);
-      Double result = aDouble * bDouble;
-      RESULT = result;
-    }else{
-      //System.out.println(getTokePresent().toString());
-      RESULT = a;
-    }
-    /////////////////////////////////////////////
-    :}
-/***manejar el error***/
-| error
+varias_etiquetas_usar::=
+varias_etiquetas_usar etiqueta_inicial
+| etiqueta_inicial
 ;
 
-parente
-  ::= PARENTESIS_C
-  | PARENTESIS_C operacion:a {:RESULT = a;:}
-  | error
-  ;
+etiqueta_inicial ::= CapTcha bucle_etiquetas FinCapTcha
+{:
+addCaptcha();
+:}
+; 
+
+bucle_etiquetas::= bucle_etiquetas listado_etiquetas
+|listado_etiquetas
+;
+
+
+listado_etiquetas::= etiqueta_id
+|etiqueta_html
+|etiqueta_scripting
+;
+
+etiqueta_id::= ID EQUAL START_HARVESTING OUT_HARVESTING
+{:
+STRING_ID = lexema.getDataCollected().replaceAll("\\s+", "");
+lexema.setDataCollected("");
+:}
+;
+etiqueta_html::= HTML EQUAL START_HARVESTING OUT_HARVESTING
+{:
+STRING_HTML = lexema.getDataCollected();
+lexema.setDataCollected("");
+:}
+;
+
+etiqueta_scripting::= SCRIPTING EQUAL START_HARVESTING OUT_HARVESTING
+{:
+STRING_SCRIPTING = lexema.getDataCollected();
+lexema.setDataCollected("");
+:}
+;

@@ -4,7 +4,7 @@
  */
 package com.cunoc.drymnz.plpgsql_studio.a_entidades;
 
-import com.cunoc.drymnz.plpgsql_studio.d_drivers.InicioJFrameView;
+import com.cunoc.drymnz.plpgsql_studio.e_drivers.InicioJFrameView;
 import java.io.File;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rtextarea.RTextScrollPane;
