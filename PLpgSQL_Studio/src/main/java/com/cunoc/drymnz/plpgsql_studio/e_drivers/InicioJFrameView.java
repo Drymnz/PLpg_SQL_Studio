@@ -27,7 +27,7 @@ public class InicioJFrameView extends javax.swing.JFrame {
         initComponents();
         this.JFrame = new StartJFrame(this);
         this.eFileManager = new ExternalFileManager();
-        (new ManageableRenderableViewStartJFrame()).renderTextEditor(this.JFrame);
+        (new ManageableRenderableViewStartJFrame()).renderViewCueston(this.JFrame);
     }
 
     public StartJFrame getJFrame() {
@@ -40,6 +40,10 @@ public class InicioJFrameView extends javax.swing.JFrame {
 
     public RSyntaxTextArea getTextArea() {
         return this.JFrame.getTextArea();
+    }
+
+    public JPanel JPanelConsole() {
+        return this.JPanelConsole;
     }
 
     /**

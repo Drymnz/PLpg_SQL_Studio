@@ -20,7 +20,29 @@ import org.fife.ui.rsyntaxtextarea.Theme;
  * @author drymnz
  */
 public class ManageableRenderableViewStartJFrame {
-    public void renderTextEditor(StartJFrame use){
+
+    public void renderViewCueston(StartJFrame use) {
+        this.renderTextEditor(use);
+        this.renderConsole(use);
+    }
+
+    private void renderConsole(StartJFrame use) {
+        use.getConsoleArea().setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_VISUAL_BASIC);
+        use.getConsoleArea().setCodeFoldingEnabled(true);
+        try {
+            Theme theme = Theme.load(getClass().getResourceAsStream(
+                    "/org/fife/ui/rsyntaxtextarea/themes/monokai.xml"));
+            theme.apply(use.getConsoleArea());
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        use.getConsoleArea().setEditable(false);
+        use.getConsoleArea().setText("Console:");
+        use.getView().JPanelConsole().setLayout(new BorderLayout());
+        use.getView().JPanelConsole().add(use.getConsoleArea(), BorderLayout.CENTER);
+    }
+
+    private void renderTextEditor(StartJFrame use) {
         use.getTextArea().setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_C);
         use.getTextArea().setCodeFoldingEnabled(true);
 
@@ -46,7 +68,7 @@ public class ManageableRenderableViewStartJFrame {
         // Establecer un layout manager
         use.getView().getJPanelTextArea().setLayout(new BorderLayout());
         use.getView().getJPanelTextArea().add(use.getSp(), BorderLayout.CENTER);
-        use.getView().getJPanelTextArea().add(statusLabel, BorderLayout.SOUTH); 
+        use.getView().getJPanelTextArea().add(statusLabel, BorderLayout.SOUTH);
 
         try {
             Theme theme = Theme.load(getClass().getResourceAsStream(
@@ -57,6 +79,6 @@ public class ManageableRenderableViewStartJFrame {
         }
 
         use.getView().setTitle("Text Editor Demo");
-        use.getView().pack(); 
+        use.getView().pack();
     }
 }

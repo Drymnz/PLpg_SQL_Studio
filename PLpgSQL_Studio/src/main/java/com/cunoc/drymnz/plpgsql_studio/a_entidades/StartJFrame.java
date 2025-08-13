@@ -16,6 +16,7 @@ import org.fife.ui.rtextarea.RTextScrollPane;
 public class StartJFrame {
 
     private RSyntaxTextArea textArea;
+    private RSyntaxTextArea consoleArea;
     private RTextScrollPane sp;
     private InicioJFrameView view;
     private File userFile;
@@ -24,6 +25,7 @@ public class StartJFrame {
         this.view = view;
         this.textArea = new RSyntaxTextArea();
         this.sp = new RTextScrollPane(textArea);
+        this.consoleArea = new RSyntaxTextArea();
     }
 
     public File getUseFile() {
@@ -36,6 +38,10 @@ public class StartJFrame {
 
     public RSyntaxTextArea getTextArea() {
         return this.textArea;
+    }
+    
+    public RSyntaxTextArea getConsoleArea() {
+        return this.consoleArea;
     }
 
     public RTextScrollPane getSp() {
