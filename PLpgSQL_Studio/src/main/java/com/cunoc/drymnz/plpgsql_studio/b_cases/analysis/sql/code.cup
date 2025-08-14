@@ -1,0 +1,110 @@
+package com.cunoc.drymnz.plpgsql_studio.b_cases.analysis.sql;
+
+import java_cup.runtime.*;
+import java.util.ArrayList;
+
+import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.ErrorTypeInTheInterpreter;
+import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.ReportErrorInterpreter;
+import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.Token;
+
+
+/**
+     * ***STAR CODE*******
+     */
+    parser code {:
+
+private ArrayList<ReportErrorInterpreter> listError = new ArrayList();
+private LexemaSQL lexema;
+private String STRING_ID = "";
+private String STRING_HTML = "";
+private String STRING_SCRIPTING = "";
+
+
+	  public ParserSQL(LexemaSQL Lexema) {
+        super(Lexema);
+        this.lexema = Lexema;
+    }
+
+    //erorr
+    public void syntax_error(Symbol cur_token) {
+        String nameTerminal = symbl_name_from_id(this.cur_token.sym);
+        int numberTerminal = this.cur_token.sym;
+        ///codigo para el objeto
+        ErrorTypeInTheInterpreter type = ErrorTypeInTheInterpreter.SYNTACTIC;
+        int line = cur_token.left+1;
+        int columna = cur_token.right +1;
+        String lexema = (this.cur_token.value!=null)? this.cur_token.value.toString() : "Token no existe";
+        Token token =  new Token(line, columna, lexema);
+        //this.listError.add(new ReportErrorInterpreter(type, token, (new InterpretSyntaticError(this.stack)).descriptionParser(this)));
+    }
+
+    //Returnar el listado de errores
+    public ArrayList<ReportErrorInterpreter> getListError() {
+        return this.listError;
+    }
+
+    private void addCaptcha(){
+        STRING_ID="";
+        STRING_HTML = "";
+        STRING_SCRIPTING = "";
+    }
+
+    /**
+     * ***END CODE*******
+     */
+:}
+
+/* Terminales */
+terminal CapTcha;
+
+// DDL (Data Definition Language) - Definición de Datos
+terminal CONSTRAINT, REFERENCES, FOREIGN, PRIMARY;
+terminal CREATE, SCHEMA, TABLE, ALTER, COLUMN;
+terminal DROP, KEY, ADD, USE;
+
+// Tipos de datos
+terminal VARCHAR, INTEGER, BOOLEAN, INT;
+
+// DML (Data Manipulation Language) - Manipulación de Datos
+terminal LEFT, JOIN, SELECT, INSERT, UPDATE;
+terminal DELETE, VALUES, WHERE, FROM, INTO, SET;
+
+// DCL (Data Control Language) - Control de Datos
+terminal CREATE, REVOKE, GRANT, USER;
+terminal FROM, TO, ON;
+
+// Restricciones y modificadores
+terminal NOT, NULL;
+
+// PL/pgSQL - Declaraciones y Control
+terminal DECLARE;
+
+// Operadores lógicos
+terminal AND, OR;
+//tomar
+terminal OUT_HARVESTING,START_HARVESTING;
+/* No terminales */
+//inicio
+non terminal inicio;
+non terminal varias_etiquetas_usar,etiqueta_inicial;
+non terminal bucle_etiquetas;
+/* Gramática */
+start with inicio;
+/**********************************************INICIO DE LA GRAMATICA******************************/
+inicio ::= varias_etiquetas_usar
+    |error varias_etiquetas_usar
+    |
+    ;
+/**********************************************GRAMATICA DE ESTRUCTURA DE CC******************************/
+
+varias_etiquetas_usar::=
+varias_etiquetas_usar etiqueta_inicial
+| etiqueta_inicial
+;
+
+etiqueta_inicial ::= CapTcha bucle_etiquetas 
+{:
+addCaptcha();
+:}
+; 
+

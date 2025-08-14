@@ -1,4 +1,4 @@
-package com.cunoc.drymnz.plpgsql_studio.b_cases.analysis.sql;
+package com.cunoc.drymnz.plpgsql_studio.b_cases.analysis.ejemplo;
 
 import java_cup.runtime.Symbol;
 import java.util.ArrayList;
@@ -14,23 +14,23 @@ import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.Token;
 %line
 %column
 %public
-%class LexemaSQL
+%class LexemaEjemplo
 %unicode
 %cup
 %char
 %state DATA_COLLECTION
 %eofval{
-  return new java_cup.runtime.Symbol(SymSQL.EOF);
+  return new java_cup.runtime.Symbol(SymEjemplo.EOF);
 %eofval}
 
 %{
     /*START-CODE*/
 
+/*segunda seccion: configuracion*/
     private ArrayList<ReportErrorInterpreter> listError = new ArrayList();
-    private ArrayList<String> listScripting = new ArrayList();
     private String dataCollected = "";
 
-    public LexemaSQL(String in) {
+    public LexemaEjemplo(String in) {
         this.zzReader = new StringReader(in);
     }
       
@@ -48,7 +48,7 @@ import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.Token;
     public ArrayList<ReportErrorInterpreter> getListError() {
         return this.listError;
     }
-
+    
     public String getDataCollected(){
         return this.dataCollected;
     }
@@ -67,16 +67,11 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 %%
 <YYINITIAL> {
 {espacio}       {}
-"CapTcha"       {print("C@pTch@"   ); return new Symbol(SymSQL.CapTcha ,yyline,yycolumn,yytext());}
-"FinCapTcha"    {print("FinC@pTch@"); return new Symbol(SymSQL.FinCapTcha ,yyline,yycolumn,yytext());}
-"ID"            {print("ID"); return new Symbol(SymSQL.ID ,yyline,yycolumn,yytext());}
-"HTML"          {print("HTML"); return new Symbol(SymSQL.HTML ,yyline,yycolumn,yytext());}
-"SCRIPTING"     {print("SCRIPTING"); return new Symbol(SymSQL.SCRIPTING ,yyline,yycolumn,yytext());}
-"="             {print("="); return new Symbol(SymSQL.EQUAL ,yyline,yycolumn,yytext());}
+"CapTcha"       {print("C@pTch@"   ); return new Symbol(SymEjemplo.CapTcha ,yyline,yycolumn,yytext());}
 "{_-=>"         {
                     yybegin(DATA_COLLECTION);
                     print("{_-=>"); 
-                    return new Symbol(SymSQL.START_HARVESTING ,yyline,yycolumn,yytext());
+                    return new Symbol(SymEjemplo.START_HARVESTING ,yyline,yycolumn,yytext());
                 }
 /*ERROR LEXICO*/
 [^]                     {
@@ -90,7 +85,7 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 "<=-_}"         {
                     yybegin(YYINITIAL);
                     print("<=-_}"); 
-                    return new Symbol(SymSQL.OUT_HARVESTING ,yyline,yycolumn,yytext());
+                    return new Symbol(SymEjemplo.OUT_HARVESTING ,yyline,yycolumn,yytext());
                 }
 [^]     { dataCollected += yytext();}
 .       { dataCollected += yytext();}

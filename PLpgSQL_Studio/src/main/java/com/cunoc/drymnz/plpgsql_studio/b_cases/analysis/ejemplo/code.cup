@@ -1,4 +1,4 @@
-package com.cunoc.drymnz.plpgsql_studio.b_cases.analysis.sql;
+package com.cunoc.drymnz.plpgsql_studio.b_cases.analysis.ejemplo;
 
 import java_cup.runtime.*;
 import java.util.ArrayList;
@@ -14,13 +14,13 @@ import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.Token;
     parser code {:
 
 private ArrayList<ReportErrorInterpreter> listError = new ArrayList();
-private LexemaSQL lexema;
+private LexemaEjemplo lexema;
 private String STRING_ID = "";
 private String STRING_HTML = "";
 private String STRING_SCRIPTING = "";
 
 
-	  public ParserSQL(LexemaSQL Lexema) {
+	  public ParserEjemplo(LexemaEjemplo Lexema) {
         super(Lexema);
         this.lexema = Lexema;
     }
@@ -55,17 +55,14 @@ private String STRING_SCRIPTING = "";
 :}
 
 /* Terminales */
-terminal CapTcha,FinCapTcha;
+terminal CapTcha;
 //tomar
-terminal EQUAL,ID,HTML,SCRIPTING;
 terminal OUT_HARVESTING,START_HARVESTING;
 /* No terminales */
 //inicio
 non terminal inicio;
-non terminal varias_etiquetas_usar;
-non terminal etiqueta_inicial;
-non terminal etiqueta_html,etiqueta_id,etiqueta_scripting;
-non terminal bucle_etiquetas,listado_etiquetas;
+non terminal varias_etiquetas_usar,etiqueta_inicial;
+non terminal bucle_etiquetas;
 /* Gramática */
 start with inicio;
 /**********************************************INICIO DE LA GRAMATICA******************************/
@@ -80,38 +77,9 @@ varias_etiquetas_usar etiqueta_inicial
 | etiqueta_inicial
 ;
 
-etiqueta_inicial ::= CapTcha bucle_etiquetas FinCapTcha
+etiqueta_inicial ::= CapTcha bucle_etiquetas 
 {:
 addCaptcha();
 :}
 ; 
 
-bucle_etiquetas::= bucle_etiquetas listado_etiquetas
-|listado_etiquetas
-;
-
-
-listado_etiquetas::= etiqueta_id
-|etiqueta_html
-|etiqueta_scripting
-;
-
-etiqueta_id::= ID EQUAL START_HARVESTING OUT_HARVESTING
-{:
-STRING_ID = lexema.getDataCollected().replaceAll("\\s+", "");
-lexema.setDataCollected("");
-:}
-;
-etiqueta_html::= HTML EQUAL START_HARVESTING OUT_HARVESTING
-{:
-STRING_HTML = lexema.getDataCollected();
-lexema.setDataCollected("");
-:}
-;
-
-etiqueta_scripting::= SCRIPTING EQUAL START_HARVESTING OUT_HARVESTING
-{:
-STRING_SCRIPTING = lexema.getDataCollected();
-lexema.setDataCollected("");
-:}
-;
