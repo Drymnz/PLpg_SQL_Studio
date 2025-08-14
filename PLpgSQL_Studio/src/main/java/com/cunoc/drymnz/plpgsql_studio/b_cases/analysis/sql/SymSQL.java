@@ -16,6 +16,7 @@ public class SymSQL {
   public static final int WHERE = 27;
   public static final int AND = 39;
   public static final int NOT = 36;
+  public static final int IDENTIFICADOR = 2;
   public static final int ALTER = 10;
   public static final int USE = 15;
   public static final int COLUMN = 11;
@@ -27,6 +28,7 @@ public class SymSQL {
   public static final int REVOKE = 31;
   public static final int VARCHAR = 16;
   public static final int SELECT = 22;
+  public static final int PERIOD_AND_AS = 41;
   public static final int LEFT = 20;
   public static final int EOF = 0;
   public static final int BOOLEAN = 18;
@@ -37,24 +39,23 @@ public class SymSQL {
   public static final int NULL = 37;
   public static final int JOIN = 21;
   public static final int DECLARE = 38;
-  public static final int CapTcha = 2;
   public static final int FROM = 28;
   public static final int INTO = 29;
   public static final int CONSTRAINT = 3;
   public static final int TO = 34;
-  public static final int START_HARVESTING = 42;
+  public static final int START_HARVESTING = 43;
   public static final int INSERT = 23;
   public static final int CREATE = 7;
   public static final int DROP = 12;
   public static final int KEY = 13;
   public static final int USER = 33;
   public static final int PRIMARY = 6;
-  public static final int OUT_HARVESTING = 41;
+  public static final int OUT_HARVESTING = 42;
   public static final int SET = 30;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
-  "CapTcha",
+  "IDENTIFICADOR",
   "CONSTRAINT",
   "REFERENCES",
   "FOREIGN",
@@ -93,6 +94,7 @@ public class SymSQL {
   "DECLARE",
   "AND",
   "OR",
+  "PERIOD_AND_AS",
   "OUT_HARVESTING",
   "START_HARVESTING"
   };

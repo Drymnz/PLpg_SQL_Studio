@@ -35,9 +35,10 @@ public class ParserSQL extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\007\000\002\002\004\000\002\002\003\000\002\002" +
-    "\004\000\002\002\002\000\002\003\004\000\002\003\003" +
-    "\000\002\004\004" });
+    "\000\012\000\002\002\004\000\002\002\003\000\002\002" +
+    "\004\000\002\002\002\000\002\004\004\000\002\004\003" +
+    "\000\002\005\004\000\002\003\003\000\002\003\003\000" +
+    "\002\006\005" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -45,12 +46,15 @@ public class ParserSQL extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\012\000\010\002\ufffe\003\004\004\006\001\002\000" +
-    "\004\004\006\001\002\000\006\002\000\004\006\001\002" +
-    "\000\002\001\002\000\006\002\ufffc\004\ufffc\001\002\000" +
-    "\004\002\011\001\002\000\004\002\001\001\002\000\006" +
-    "\002\ufffb\004\ufffb\001\002\000\006\002\ufffd\004\ufffd\001" +
-    "\002\000\006\002\uffff\004\006\001\002" });
+    "\000\017\000\010\002\ufffe\003\005\011\004\001\002\000" +
+    "\004\012\020\001\002\000\004\011\004\001\002\000\006" +
+    "\002\000\011\004\001\002\000\006\003\013\053\015\001" +
+    "\002\000\006\002\ufffc\011\ufffc\001\002\000\004\002\012" +
+    "\001\002\000\004\002\001\001\002\000\006\002\ufff9\011" +
+    "\ufff9\001\002\000\006\002\ufffb\011\ufffb\001\002\000\006" +
+    "\002\ufffa\011\ufffa\001\002\000\006\002\ufffd\011\ufffd\001" +
+    "\002\000\006\002\uffff\011\004\001\002\000\004\004\021" +
+    "\001\002\000\006\003\ufff8\053\ufff8\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -58,11 +62,13 @@ public class ParserSQL extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\012\000\010\002\007\003\004\004\006\001\001\000" +
-    "\006\003\013\004\006\001\001\000\004\004\012\001\001" +
-    "\000\004\005\011\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\004\004\012\001\001" });
+    "\000\017\000\012\002\010\004\005\005\007\006\006\001" +
+    "\001\000\002\001\001\000\010\004\016\005\007\006\006" +
+    "\001\001\000\006\005\015\006\006\001\001\000\004\003" +
+    "\013\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\006\005\015\006\006\001\001" +
+    "\000\002\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -203,7 +209,7 @@ class CUP$ParserSQL$actions {
             {
               Object RESULT =null;
 
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("varias_etiquetas_usar",1, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-1)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("varias_etiquetas_usar",2, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-1)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
             }
           return CUP$ParserSQL$result;
 
@@ -212,17 +218,43 @@ class CUP$ParserSQL$actions {
             {
               Object RESULT =null;
 
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("varias_etiquetas_usar",1, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("varias_etiquetas_usar",2, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
             }
           return CUP$ParserSQL$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 6: // etiqueta_inicial ::= CapTcha bucle_etiquetas 
+          case 6: // etiqueta_inicial ::= use_ddl finalizacion_punto_y_coma 
             {
               Object RESULT =null;
-		
 
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("etiqueta_inicial",2, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-1)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("etiqueta_inicial",3, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-1)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 7: // finalizacion_punto_y_coma ::= PERIOD_AND_AS 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("finalizacion_punto_y_coma",1, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 8: // finalizacion_punto_y_coma ::= error 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("finalizacion_punto_y_coma",1, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 9: // use_ddl ::= CREATE SCHEMA IDENTIFICADOR 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("use_ddl",4, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-2)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
             }
           return CUP$ParserSQL$result;
 

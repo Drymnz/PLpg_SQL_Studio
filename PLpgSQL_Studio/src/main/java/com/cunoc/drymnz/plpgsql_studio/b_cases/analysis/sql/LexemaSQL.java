@@ -71,15 +71,17 @@ public class LexemaSQL implements java_cup.runtime.Scanner {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\10\0\6\1\22\0\1\1\14\0\1\2\16\0\1\3"+
-    "\1\4\1\5\2\0\1\6\1\7\1\10\1\11\1\12"+
-    "\1\13\1\14\1\15\1\16\1\17\1\20\1\21\1\22"+
-    "\1\23\1\24\1\25\1\0\1\26\1\27\1\30\1\31"+
-    "\1\32\1\33\1\0\1\34\5\0\1\35\1\0\1\36"+
-    "\1\0\1\37\4\0\1\40\7\0\1\41\12\0\1\42"+
-    "\1\1\1\43\7\0\1\1\32\0\1\1\u01df\0\1\1"+
-    "\177\0\13\1\35\0\2\1\5\0\1\1\57\0\1\1"+
-    "\240\0\1\1\u01ff\0";
+    "\10\0\6\1\22\0\1\1\14\0\1\2\2\0\12\3"+
+    "\1\0\1\4\1\5\1\6\1\7\2\0\1\10\1\11"+
+    "\1\12\1\13\1\14\1\15\1\16\1\17\1\20\1\21"+
+    "\1\22\1\23\1\24\1\25\1\26\1\27\1\3\1\30"+
+    "\1\31\1\32\1\33\1\34\1\35\1\3\1\36\1\3"+
+    "\4\0\1\37\1\0\1\40\1\3\1\41\1\3\1\42"+
+    "\3\3\1\43\2\3\1\44\1\3\1\45\1\46\2\3"+
+    "\1\47\1\50\1\51\4\3\1\52\1\3\1\53\1\1"+
+    "\1\54\7\0\1\1\32\0\1\1\u01df\0\1\1\177\0"+
+    "\13\1\35\0\2\1\5\0\1\1\57\0\1\1\240\0"+
+    "\1\1\u01ff\0";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[1536];
@@ -106,18 +108,20 @@ public class LexemaSQL implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\2\0\1\1\1\2\24\1\2\3\22\0\1\4\1\5"+
-    "\5\0\1\6\6\0\1\7\1\0\1\10\14\0\1\11"+
-    "\1\0\1\12\1\0\1\13\6\0\1\14\2\0\1\15"+
-    "\15\0\1\16\1\0\1\17\3\0\1\20\1\21\1\22"+
-    "\1\23\7\0\1\24\5\0\1\25\10\0\1\26\7\0"+
-    "\1\27\3\0\1\30\1\31\1\32\1\0\1\33\1\0"+
-    "\1\34\2\0\1\35\1\0\1\36\3\0\1\37\1\40"+
-    "\1\41\1\42\1\43\1\0\1\44\1\0\1\45\1\46"+
-    "\1\47\1\50\1\51\1\0\1\52\4\0\1\53\1\54";
+    "\2\0\1\1\1\2\1\1\1\3\1\4\23\3\1\1"+
+    "\2\5\1\0\21\3\1\6\1\7\5\3\1\10\4\3"+
+    "\3\0\1\11\1\3\1\12\12\3\1\13\1\3\1\14"+
+    "\1\3\1\15\6\3\1\16\2\3\1\17\3\3\3\0"+
+    "\6\3\1\20\1\3\1\21\3\3\1\22\1\23\1\24"+
+    "\1\25\7\3\1\26\3\3\3\0\1\27\6\3\1\30"+
+    "\7\3\1\31\3\3\1\32\1\33\1\34\1\0\1\3"+
+    "\1\35\1\3\1\36\1\37\1\3\1\40\3\3\1\41"+
+    "\1\42\1\43\1\44\1\45\1\3\1\0\1\46\1\3"+
+    "\1\47\1\50\1\51\1\3\1\52\1\0\2\3\1\0"+
+    "\2\3\1\0\1\53\1\54\22\0\1\55";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[181];
+    int [] result = new int[201];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -142,32 +146,35 @@ public class LexemaSQL implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\44\0\110\0\154\0\220\0\264\0\330\0\374"+
-    "\0\u0120\0\u0144\0\u0168\0\u018c\0\u01b0\0\u01d4\0\u01f8\0\u021c"+
-    "\0\u0240\0\u0264\0\u0288\0\u02ac\0\u02d0\0\u02f4\0\u0318\0\u033c"+
-    "\0\110\0\u0360\0\u0384\0\u03a8\0\u03cc\0\u03f0\0\u0414\0\u0438"+
-    "\0\u045c\0\u0480\0\u04a4\0\u04c8\0\u04ec\0\u0510\0\u0534\0\u0558"+
-    "\0\u057c\0\u05a0\0\u05c4\0\u05e8\0\110\0\110\0\u060c\0\u0630"+
-    "\0\u0654\0\u0678\0\u069c\0\110\0\u06c0\0\u06e4\0\u0708\0\u072c"+
-    "\0\u0750\0\u0774\0\110\0\u0798\0\110\0\u07bc\0\u07e0\0\u0804"+
-    "\0\u0828\0\u084c\0\u0870\0\u0894\0\u08b8\0\u08dc\0\u0900\0\u0924"+
-    "\0\u0948\0\u096c\0\u0990\0\110\0\u09b4\0\110\0\u09d8\0\u09fc"+
-    "\0\u0a20\0\u0a44\0\u0a68\0\u0a8c\0\110\0\u0ab0\0\u0ad4\0\u0af8"+
-    "\0\u0b1c\0\u0b40\0\u0b64\0\u0b88\0\u0bac\0\u0bd0\0\u0bf4\0\u0c18"+
-    "\0\u0c3c\0\u0c60\0\u0c84\0\u0ca8\0\u0ccc\0\110\0\u0cf0\0\110"+
-    "\0\u0d14\0\u0d38\0\u0d5c\0\110\0\110\0\110\0\110\0\u0d80"+
-    "\0\u0da4\0\u0dc8\0\u0dec\0\u0e10\0\u0e34\0\u0e58\0\110\0\u0e7c"+
-    "\0\u0ea0\0\u0ec4\0\u0ee8\0\u0f0c\0\110\0\u0f30\0\u0f54\0\u0f78"+
-    "\0\u0f9c\0\u0fc0\0\u0fe4\0\u1008\0\u102c\0\110\0\u1050\0\u1074"+
-    "\0\u1098\0\u10bc\0\u10e0\0\u1104\0\u1128\0\110\0\u114c\0\u1170"+
-    "\0\u1194\0\110\0\110\0\110\0\u11b8\0\110\0\u11dc\0\110"+
-    "\0\u1200\0\u1224\0\110\0\u1248\0\110\0\u126c\0\u1290\0\u12b4"+
-    "\0\110\0\110\0\110\0\110\0\110\0\u12d8\0\110\0\u12fc"+
-    "\0\110\0\110\0\110\0\110\0\110\0\u1320\0\110\0\u1344"+
-    "\0\u1368\0\u138c\0\u13b0\0\110\0\110";
+    "\0\0\0\55\0\132\0\207\0\264\0\341\0\132\0\u010e"+
+    "\0\u013b\0\u0168\0\u0195\0\u01c2\0\u01ef\0\u021c\0\u0249\0\u0276"+
+    "\0\u02a3\0\u02d0\0\u02fd\0\u032a\0\u0357\0\u0384\0\u03b1\0\u03de"+
+    "\0\u040b\0\u0438\0\u0465\0\132\0\u0492\0\u04bf\0\u04ec\0\u0519"+
+    "\0\u0546\0\u0573\0\u05a0\0\u05cd\0\u05fa\0\u0627\0\u0654\0\u0681"+
+    "\0\u06ae\0\u06db\0\u0708\0\u0735\0\u0762\0\u078f\0\u07bc\0\341"+
+    "\0\341\0\u07e9\0\u0816\0\u0843\0\u0870\0\u089d\0\341\0\u08ca"+
+    "\0\u08f7\0\u0924\0\u0951\0\u097e\0\u09ab\0\u09d8\0\341\0\u0a05"+
+    "\0\341\0\u0a32\0\u0a5f\0\u0a8c\0\u0ab9\0\u0ae6\0\u0b13\0\u0b40"+
+    "\0\u0b6d\0\u0b9a\0\u0bc7\0\u0bf4\0\u0c21\0\341\0\u0c4e\0\341"+
+    "\0\u0c7b\0\u0ca8\0\u0cd5\0\u0d02\0\u0d2f\0\u0d5c\0\341\0\u0d89"+
+    "\0\u0db6\0\u0de3\0\u0e10\0\u0e3d\0\u0e6a\0\u0e97\0\u0ec4\0\u0ef1"+
+    "\0\u0f1e\0\u0f4b\0\u0f78\0\u0fa5\0\u0fd2\0\u0fff\0\341\0\u102c"+
+    "\0\341\0\u1059\0\u1086\0\u10b3\0\341\0\341\0\341\0\341"+
+    "\0\u10e0\0\u110d\0\u113a\0\u1167\0\u1194\0\u11c1\0\u11ee\0\341"+
+    "\0\u121b\0\u1248\0\u1275\0\u12a2\0\u12cf\0\u12fc\0\341\0\u1329"+
+    "\0\u1356\0\u1383\0\u13b0\0\u13dd\0\u140a\0\341\0\u1437\0\u1464"+
+    "\0\u1491\0\u14be\0\u14eb\0\u1518\0\u1545\0\341\0\u1572\0\u159f"+
+    "\0\u15cc\0\341\0\132\0\132\0\u15f9\0\u1626\0\341\0\u1653"+
+    "\0\341\0\341\0\u1680\0\341\0\u16ad\0\u16da\0\u1707\0\341"+
+    "\0\341\0\341\0\341\0\341\0\u1734\0\u1761\0\341\0\u178e"+
+    "\0\341\0\341\0\341\0\u17bb\0\341\0\u17e8\0\u1815\0\u1842"+
+    "\0\u186f\0\u189c\0\u18c9\0\u18f6\0\341\0\341\0\u1923\0\u1950"+
+    "\0\u197d\0\u19aa\0\u19d7\0\u1a04\0\u1a31\0\u1a5e\0\u1a8b\0\u1ab8"+
+    "\0\u1ae5\0\u1b12\0\u1b3f\0\u1b6c\0\u1b99\0\u1bc6\0\u1bf3\0\u1c20"+
+    "\0\132";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[181];
+    int [] result = new int[201];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -190,52 +197,116 @@ public class LexemaSQL implements java_cup.runtime.Scanner {
   private static final int [] ZZ_TRANS = zzUnpacktrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\3\1\4\4\3\1\5\1\6\1\7\1\10\1\3"+
-    "\1\11\1\12\1\3\1\13\1\14\1\15\1\16\1\3"+
-    "\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26"+
-    "\1\27\6\3\1\30\1\3\3\31\1\32\40\31\45\0"+
-    "\1\4\53\0\1\33\7\0\1\34\1\0\1\35\44\0"+
-    "\1\36\43\0\1\37\1\0\1\40\7\0\1\41\17\0"+
-    "\1\42\13\0\1\43\41\0\1\44\1\0\1\45\43\0"+
-    "\1\46\40\0\1\47\44\0\1\50\31\0\1\51\43\0"+
-    "\1\52\55\0\1\53\4\0\1\54\35\0\1\55\2\0"+
-    "\1\56\43\0\1\57\27\0\1\60\41\0\1\61\1\0"+
-    "\1\62\37\0\1\63\15\0\1\64\44\0\1\65\1\0"+
-    "\1\66\22\0\1\67\52\0\1\70\63\0\1\71\12\0"+
-    "\1\72\50\0\1\73\62\0\1\74\24\0\1\75\56\0"+
-    "\1\76\40\0\1\77\1\0\1\100\32\0\1\101\72\0"+
-    "\1\102\12\0\1\103\10\0\1\104\46\0\1\105\45\0"+
-    "\1\106\41\0\1\107\25\0\1\110\64\0\1\111\1\112"+
-    "\31\0\1\113\61\0\1\114\22\0\1\115\60\0\1\116"+
-    "\34\0\1\117\40\0\1\120\40\0\1\121\16\0\1\122"+
-    "\26\0\1\123\47\0\1\124\6\0\1\125\22\0\1\126"+
-    "\45\0\1\127\44\0\1\130\52\0\1\131\4\0\1\132"+
-    "\27\0\1\133\33\0\1\134\43\0\1\135\53\0\1\136"+
-    "\52\0\1\137\53\0\1\140\41\0\1\141\22\0\1\142"+
-    "\65\0\1\143\34\0\1\144\34\0\1\145\56\0\1\146"+
-    "\30\0\1\147\53\0\1\150\44\0\1\151\32\0\1\152"+
-    "\43\0\1\153\11\0\1\154\42\0\1\155\50\0\1\156"+
-    "\34\0\1\157\44\0\1\160\33\0\1\161\55\0\1\162"+
-    "\31\0\1\163\43\0\1\164\52\0\1\165\30\0\1\166"+
-    "\63\0\1\167\46\0\1\170\22\0\1\171\61\0\1\172"+
-    "\21\0\1\173\74\0\1\174\34\0\1\175\27\0\1\176"+
-    "\53\0\1\177\51\0\1\200\43\0\1\201\52\0\1\202"+
-    "\12\0\1\203\65\0\1\204\31\0\1\205\55\0\1\206"+
-    "\41\0\1\207\31\0\1\210\35\0\1\211\63\0\1\212"+
-    "\35\0\1\213\45\0\1\214\31\0\1\215\45\0\1\216"+
-    "\61\0\1\217\25\0\1\220\46\0\1\221\40\0\1\222"+
-    "\36\0\1\223\101\0\1\224\6\0\1\225\60\0\1\226"+
-    "\46\0\1\227\27\0\1\230\71\0\1\231\31\0\1\232"+
-    "\27\0\1\233\45\0\1\234\57\0\1\235\25\0\1\236"+
-    "\57\0\1\237\27\0\1\240\43\0\1\241\37\0\1\242"+
-    "\65\0\1\243\25\0\1\244\60\0\1\245\22\0\1\246"+
-    "\60\0\1\247\26\0\1\250\73\0\1\251\17\0\1\252"+
-    "\54\0\1\253\46\0\1\254\51\0\1\255\32\0\1\256"+
-    "\46\0\1\257\33\0\1\260\35\0\1\261\56\0\1\262"+
-    "\32\0\1\263\61\0\1\264\42\0\1\265\14\0";
+    "\1\3\1\4\1\5\1\6\1\7\3\3\1\10\1\11"+
+    "\1\12\1\13\1\6\1\14\1\15\1\6\1\16\1\17"+
+    "\1\20\1\21\1\6\1\22\1\23\1\24\1\25\1\26"+
+    "\1\27\1\30\1\31\1\32\15\6\1\33\1\3\5\34"+
+    "\1\35\47\34\56\0\1\4\66\0\1\36\44\0\1\6"+
+    "\4\0\43\6\5\0\1\6\4\0\3\6\1\37\7\6"+
+    "\1\40\1\6\1\41\25\6\5\0\1\6\4\0\16\6"+
+    "\1\42\24\6\5\0\1\6\4\0\16\6\1\43\1\6"+
+    "\1\44\22\6\5\0\1\6\4\0\4\6\1\45\13\6"+
+    "\1\46\22\6\5\0\1\6\4\0\16\6\1\47\1\6"+
+    "\1\50\22\6\5\0\1\6\4\0\20\6\1\51\22\6"+
+    "\5\0\1\6\4\0\15\6\1\52\25\6\5\0\1\6"+
+    "\4\0\16\6\1\53\24\6\5\0\1\6\4\0\4\6"+
+    "\1\54\36\6\5\0\1\6\4\0\4\6\1\55\36\6"+
+    "\5\0\1\6\4\0\16\6\1\56\4\6\1\57\17\6"+
+    "\5\0\1\6\4\0\15\6\1\60\2\6\1\61\22\6"+
+    "\5\0\1\6\4\0\20\6\1\62\22\6\5\0\1\6"+
+    "\4\0\4\6\1\63\36\6\5\0\1\6\4\0\2\6"+
+    "\1\64\1\6\1\65\36\6\5\0\1\6\4\0\1\66"+
+    "\15\6\1\67\24\6\5\0\1\6\4\0\17\6\1\70"+
+    "\1\6\1\71\21\6\5\0\1\6\4\0\1\72\42\6"+
+    "\5\0\1\6\4\0\7\6\1\73\33\6\41\0\1\74"+
+    "\23\0\1\75\110\0\1\76\15\0\1\6\4\0\3\6"+
+    "\1\77\37\6\5\0\1\6\4\0\22\6\1\100\20\6"+
+    "\5\0\1\6\4\0\3\6\1\101\37\6\5\0\1\6"+
+    "\4\0\16\6\1\102\24\6\5\0\1\6\4\0\13\6"+
+    "\1\103\1\6\1\104\25\6\5\0\1\6\4\0\4\6"+
+    "\1\105\36\6\5\0\1\6\4\0\13\6\1\106\27\6"+
+    "\5\0\1\6\4\0\16\6\1\107\24\6\5\0\1\6"+
+    "\4\0\20\6\1\110\22\6\5\0\1\6\4\0\16\6"+
+    "\1\111\24\6\5\0\1\6\4\0\1\112\42\6\5\0"+
+    "\1\6\4\0\21\6\1\113\1\114\20\6\5\0\1\6"+
+    "\4\0\10\6\1\115\32\6\5\0\1\6\4\0\26\6"+
+    "\1\116\14\6\5\0\1\6\4\0\5\6\1\117\35\6"+
+    "\5\0\1\6\4\0\22\6\1\120\20\6\5\0\1\6"+
+    "\4\0\13\6\1\121\27\6\5\0\1\6\4\0\10\6"+
+    "\1\122\32\6\5\0\1\6\4\0\5\6\1\123\16\6"+
+    "\1\124\16\6\5\0\1\6\4\0\7\6\1\125\33\6"+
+    "\5\0\1\6\4\0\13\6\1\126\6\6\1\127\20\6"+
+    "\5\0\1\6\4\0\1\6\1\130\41\6\5\0\1\6"+
+    "\4\0\3\6\1\131\37\6\5\0\1\6\4\0\4\6"+
+    "\1\132\36\6\5\0\1\6\4\0\13\6\1\133\4\6"+
+    "\1\134\22\6\5\0\1\6\4\0\4\6\1\135\36\6"+
+    "\4\0\1\136\54\0\1\137\113\0\1\140\16\0\1\6"+
+    "\4\0\4\6\1\141\36\6\5\0\1\6\4\0\13\6"+
+    "\1\142\27\6\5\0\1\6\4\0\23\6\1\143\17\6"+
+    "\5\0\1\6\4\0\21\6\1\144\21\6\5\0\1\6"+
+    "\4\0\1\145\42\6\5\0\1\6\4\0\4\6\1\146"+
+    "\36\6\5\0\1\6\4\0\17\6\1\147\23\6\5\0"+
+    "\1\6\4\0\4\6\1\150\36\6\5\0\1\6\4\0"+
+    "\14\6\1\151\26\6\5\0\1\6\4\0\15\6\1\152"+
+    "\25\6\5\0\1\6\4\0\4\6\1\153\36\6\5\0"+
+    "\1\6\4\0\4\6\1\154\11\6\1\155\24\6\5\0"+
+    "\1\6\4\0\15\6\1\156\25\6\5\0\1\6\4\0"+
+    "\22\6\1\157\20\6\5\0\1\6\4\0\13\6\1\160"+
+    "\27\6\5\0\1\6\4\0\14\6\1\161\26\6\5\0"+
+    "\1\6\4\0\4\6\1\162\36\6\5\0\1\6\4\0"+
+    "\16\6\1\163\24\6\5\0\1\6\4\0\4\6\1\164"+
+    "\36\6\5\0\1\6\4\0\4\6\1\165\36\6\5\0"+
+    "\1\6\4\0\13\6\1\166\27\6\5\0\1\6\4\0"+
+    "\1\167\42\6\5\0\1\6\4\0\20\6\1\170\22\6"+
+    "\5\0\1\6\4\0\23\6\1\171\17\6\5\0\1\6"+
+    "\4\0\2\6\1\172\40\6\5\0\1\6\4\0\20\6"+
+    "\1\173\22\6\10\0\1\174\105\0\1\175\61\0\1\176"+
+    "\13\0\1\6\4\0\20\6\1\177\22\6\5\0\1\6"+
+    "\4\0\4\6\1\200\36\6\5\0\1\6\4\0\14\6"+
+    "\1\201\26\6\5\0\1\6\4\0\22\6\1\202\20\6"+
+    "\5\0\1\6\4\0\22\6\1\203\20\6\5\0\1\6"+
+    "\4\0\22\6\1\204\20\6\5\0\1\6\4\0\10\6"+
+    "\1\205\32\6\5\0\1\6\4\0\22\6\1\206\20\6"+
+    "\5\0\1\6\4\0\20\6\1\207\22\6\5\0\1\6"+
+    "\4\0\6\6\1\210\34\6\5\0\1\6\4\0\1\211"+
+    "\42\6\5\0\1\6\4\0\20\6\1\212\22\6\5\0"+
+    "\1\6\4\0\12\6\1\213\30\6\5\0\1\6\4\0"+
+    "\14\6\1\214\26\6\5\0\1\6\4\0\2\6\1\215"+
+    "\40\6\5\0\1\6\4\0\4\6\1\216\36\6\5\0"+
+    "\1\6\4\0\22\6\1\217\20\6\5\0\1\6\4\0"+
+    "\4\6\1\220\36\6\5\0\1\6\4\0\7\6\1\221"+
+    "\33\6\5\0\1\6\4\0\4\6\1\222\36\6\11\0"+
+    "\1\223\121\0\1\224\40\0\1\225\17\0\1\6\4\0"+
+    "\1\226\42\6\5\0\1\6\4\0\15\6\1\227\25\6"+
+    "\5\0\1\6\4\0\20\6\1\230\22\6\5\0\1\6"+
+    "\4\0\4\6\1\231\36\6\5\0\1\6\4\0\4\6"+
+    "\1\232\36\6\5\0\1\6\4\0\6\6\1\233\34\6"+
+    "\5\0\1\6\4\0\22\6\1\234\20\6\5\0\1\6"+
+    "\4\0\4\6\1\235\36\6\5\0\1\6\4\0\20\6"+
+    "\1\236\22\6\5\0\1\6\4\0\4\6\1\237\36\6"+
+    "\5\0\1\6\4\0\4\6\1\240\36\6\5\0\1\6"+
+    "\4\0\1\241\42\6\5\0\1\6\4\0\22\6\1\242"+
+    "\20\6\5\0\1\6\4\0\4\6\1\243\36\6\5\0"+
+    "\1\6\4\0\21\6\1\244\21\6\5\0\1\6\4\0"+
+    "\1\245\42\6\51\0\1\246\10\0\1\6\4\0\15\6"+
+    "\1\247\25\6\5\0\1\6\4\0\1\250\42\6\5\0"+
+    "\1\6\4\0\15\6\1\251\25\6\5\0\1\6\4\0"+
+    "\20\6\1\252\22\6\5\0\1\6\4\0\26\6\1\253"+
+    "\14\6\5\0\1\6\4\0\15\6\1\254\25\6\5\0"+
+    "\1\6\4\0\20\6\1\255\22\6\42\0\1\256\17\0"+
+    "\1\6\4\0\10\6\1\257\32\6\5\0\1\6\4\0"+
+    "\2\6\1\260\40\6\43\0\1\261\16\0\1\6\4\0"+
+    "\15\6\1\262\25\6\5\0\1\6\4\0\4\6\1\263"+
+    "\36\6\45\0\1\264\14\0\1\6\4\0\22\6\1\265"+
+    "\20\6\5\0\1\6\4\0\21\6\1\266\21\6\50\0"+
+    "\1\267\53\0\1\270\51\0\1\271\62\0\1\272\56\0"+
+    "\1\273\14\0\1\274\110\0\1\275\53\0\1\276\60\0"+
+    "\1\277\52\0\1\300\53\0\1\301\52\0\1\302\23\0"+
+    "\1\303\55\0\1\304\52\0\1\305\65\0\1\306\41\0"+
+    "\1\307\74\0\1\310\40\0\1\311\40\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[5076];
+    int [] result = new int[7245];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -278,17 +349,13 @@ public class LexemaSQL implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\2\0\1\11\25\1\1\11\1\1\22\0\2\11\5\0"+
-    "\1\11\6\0\1\11\1\0\1\11\14\0\1\1\1\0"+
-    "\1\11\1\0\1\11\6\0\1\11\2\0\1\1\15\0"+
-    "\1\11\1\0\1\11\3\0\4\11\7\0\1\11\5\0"+
-    "\1\11\10\0\1\11\7\0\1\11\3\0\3\11\1\0"+
-    "\1\11\1\0\1\11\2\0\1\11\1\0\1\11\3\0"+
-    "\5\11\1\0\1\11\1\0\5\11\1\0\1\11\4\0"+
-    "\2\11";
+    "\2\0\1\11\3\1\1\11\24\1\1\11\1\1\1\0"+
+    "\35\1\3\0\37\1\3\0\33\1\3\0\24\1\2\11"+
+    "\1\0\20\1\1\0\7\1\1\0\2\1\1\0\2\1"+
+    "\1\0\2\1\22\0\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[181];
+    int [] result = new int[201];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -831,226 +898,231 @@ public class LexemaSQL implements java_cup.runtime.Scanner {
                         addError();
             }
           // fall through
-          case 45: break;
+          case 46: break;
           case 2:
             { 
             }
           // fall through
-          case 46: break;
-          case 3:
-            { dataCollected += yytext();
-            }
-          // fall through
           case 47: break;
-          case 4:
-            { print("ON");         return new Symbol(SymSQL.ON        , yyline, yycolumn, yytext());
+          case 3:
+            { print("IDENTIFICADOR"); return new Symbol(SymSQL.IDENTIFICADOR, yyline, yycolumn, yytext());
             }
           // fall through
           case 48: break;
-          case 5:
-            { print("OR");         return new Symbol(SymSQL.OR        , yyline, yycolumn, yytext());
+          case 4:
+            { print(";");         return new Symbol(SymSQL.PERIOD_AND_AS, yyline, yycolumn, yytext());
             }
           // fall through
           case 49: break;
-          case 6:
-            { print("TO");         return new Symbol(SymSQL.TO        , yyline, yycolumn, yytext());
+          case 5:
+            { dataCollected += yytext();
             }
           // fall through
           case 50: break;
-          case 7:
-            { print("ADD");        return new Symbol(SymSQL.ADD       , yyline, yycolumn, yytext());
+          case 6:
+            { print("ON");         return new Symbol(SymSQL.ON        , yyline, yycolumn, yytext());
             }
           // fall through
           case 51: break;
-          case 8:
-            { print("AND");        return new Symbol(SymSQL.AND       , yyline, yycolumn, yytext());
+          case 7:
+            { print("OR");         return new Symbol(SymSQL.OR        , yyline, yycolumn, yytext());
             }
           // fall through
           case 52: break;
-          case 9:
-            { print("INT");        return new Symbol(SymSQL.INT       , yyline, yycolumn, yytext());
+          case 8:
+            { print("TO");         return new Symbol(SymSQL.TO        , yyline, yycolumn, yytext());
             }
           // fall through
           case 53: break;
-          case 10:
-            { print("KEY");        return new Symbol(SymSQL.KEY       , yyline, yycolumn, yytext());
+          case 9:
+            { print("ADD");        return new Symbol(SymSQL.ADD       , yyline, yycolumn, yytext());
             }
           // fall through
           case 54: break;
-          case 11:
-            { print("NOT");        return new Symbol(SymSQL.NOT       , yyline, yycolumn, yytext());
+          case 10:
+            { print("AND");        return new Symbol(SymSQL.AND       , yyline, yycolumn, yytext());
             }
           // fall through
           case 55: break;
-          case 12:
-            { print("SET");        return new Symbol(SymSQL.SET       , yyline, yycolumn, yytext());
+          case 11:
+            { print("INT");        return new Symbol(SymSQL.INT       , yyline, yycolumn, yytext());
             }
           // fall through
           case 56: break;
-          case 13:
-            { print("USE");        return new Symbol(SymSQL.USE       , yyline, yycolumn, yytext());
+          case 12:
+            { print("KEY");        return new Symbol(SymSQL.KEY       , yyline, yycolumn, yytext());
             }
           // fall through
           case 57: break;
-          case 14:
-            { print("DROP");       return new Symbol(SymSQL.DROP      , yyline, yycolumn, yytext());
+          case 13:
+            { print("NOT");        return new Symbol(SymSQL.NOT       , yyline, yycolumn, yytext());
             }
           // fall through
           case 58: break;
-          case 15:
-            { print("FROM");       return new Symbol(SymSQL.FROM      , yyline, yycolumn, yytext());
+          case 14:
+            { print("SET");        return new Symbol(SymSQL.SET       , yyline, yycolumn, yytext());
             }
           // fall through
           case 59: break;
-          case 16:
-            { print("INTO");       return new Symbol(SymSQL.INTO      , yyline, yycolumn, yytext());
+          case 15:
+            { print("USE");        return new Symbol(SymSQL.USE       , yyline, yycolumn, yytext());
             }
           // fall through
           case 60: break;
-          case 17:
-            { print("JOIN");       return new Symbol(SymSQL.JOIN      , yyline, yycolumn, yytext());
+          case 16:
+            { print("DROP");       return new Symbol(SymSQL.DROP      , yyline, yycolumn, yytext());
             }
           // fall through
           case 61: break;
-          case 18:
-            { print("LEFT");       return new Symbol(SymSQL.LEFT      , yyline, yycolumn, yytext());
+          case 17:
+            { print("FROM");       return new Symbol(SymSQL.FROM      , yyline, yycolumn, yytext());
             }
           // fall through
           case 62: break;
-          case 19:
-            { print("NULL");       return new Symbol(SymSQL.NULL      , yyline, yycolumn, yytext());
+          case 18:
+            { print("INTO");       return new Symbol(SymSQL.INTO      , yyline, yycolumn, yytext());
             }
           // fall through
           case 63: break;
-          case 20:
-            { print("USER");       return new Symbol(SymSQL.USER      , yyline, yycolumn, yytext());
+          case 19:
+            { print("JOIN");       return new Symbol(SymSQL.JOIN      , yyline, yycolumn, yytext());
             }
           // fall through
           case 64: break;
-          case 21:
-            { print("ALTER");      return new Symbol(SymSQL.ALTER     , yyline, yycolumn, yytext());
+          case 20:
+            { print("LEFT");       return new Symbol(SymSQL.LEFT      , yyline, yycolumn, yytext());
             }
           // fall through
           case 65: break;
-          case 22:
-            { print("GRANT");      return new Symbol(SymSQL.GRANT     , yyline, yycolumn, yytext());
+          case 21:
+            { print("NULL");       return new Symbol(SymSQL.NULL      , yyline, yycolumn, yytext());
             }
           // fall through
           case 66: break;
-          case 23:
-            { print("TABLE");      return new Symbol(SymSQL.TABLE     , yyline, yycolumn, yytext());
+          case 22:
+            { print("USER");       return new Symbol(SymSQL.USER      , yyline, yycolumn, yytext());
             }
           // fall through
           case 67: break;
-          case 24:
-            { print("WHERE");      return new Symbol(SymSQL.WHERE     , yyline, yycolumn, yytext());
+          case 23:
+            { print("ALTER");      return new Symbol(SymSQL.ALTER     , yyline, yycolumn, yytext());
             }
           // fall through
           case 68: break;
+          case 24:
+            { print("GRANT");      return new Symbol(SymSQL.GRANT     , yyline, yycolumn, yytext());
+            }
+          // fall through
+          case 69: break;
           case 25:
+            { print("TABLE");      return new Symbol(SymSQL.TABLE     , yyline, yycolumn, yytext());
+            }
+          // fall through
+          case 70: break;
+          case 26:
+            { print("WHERE");      return new Symbol(SymSQL.WHERE     , yyline, yycolumn, yytext());
+            }
+          // fall through
+          case 71: break;
+          case 27:
             { yybegin(DATA_COLLECTION);
                     print("{_-=>"); 
                     return new Symbol(SymSQL.START_HARVESTING ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 69: break;
-          case 26:
+          case 72: break;
+          case 28:
             { yybegin(YYINITIAL);
                     print("<=-_}"); 
                     return new Symbol(SymSQL.OUT_HARVESTING ,yyline,yycolumn,yytext());
             }
           // fall through
-          case 70: break;
-          case 27:
+          case 73: break;
+          case 29:
             { print("COLUMN");     return new Symbol(SymSQL.COLUMN    , yyline, yycolumn, yytext());
             }
           // fall through
-          case 71: break;
-          case 28:
+          case 74: break;
+          case 30:
             { print("CREATE");     return new Symbol(SymSQL.CREATE    , yyline, yycolumn, yytext());
             }
           // fall through
-          case 72: break;
-          case 29:
+          case 75: break;
+          case 31:
             { print("DELETE");     return new Symbol(SymSQL.DELETE    , yyline, yycolumn, yytext());
             }
           // fall through
-          case 73: break;
-          case 30:
+          case 76: break;
+          case 32:
             { print("INSERT");     return new Symbol(SymSQL.INSERT    , yyline, yycolumn, yytext());
             }
           // fall through
-          case 74: break;
-          case 31:
+          case 77: break;
+          case 33:
             { print("REVOKE");     return new Symbol(SymSQL.REVOKE    , yyline, yycolumn, yytext());
             }
           // fall through
-          case 75: break;
-          case 32:
+          case 78: break;
+          case 34:
             { print("SCHEMA");     return new Symbol(SymSQL.SCHEMA    , yyline, yycolumn, yytext());
             }
           // fall through
-          case 76: break;
-          case 33:
+          case 79: break;
+          case 35:
             { print("SELECT");     return new Symbol(SymSQL.SELECT    , yyline, yycolumn, yytext());
             }
           // fall through
-          case 77: break;
-          case 34:
+          case 80: break;
+          case 36:
             { print("UPDATE");     return new Symbol(SymSQL.UPDATE    , yyline, yycolumn, yytext());
             }
           // fall through
-          case 78: break;
-          case 35:
+          case 81: break;
+          case 37:
             { print("VALUES");     return new Symbol(SymSQL.VALUES    , yyline, yycolumn, yytext());
             }
           // fall through
-          case 79: break;
-          case 36:
+          case 82: break;
+          case 38:
             { print("BOOLEAN");    return new Symbol(SymSQL.BOOLEAN   , yyline, yycolumn, yytext());
             }
           // fall through
-          case 80: break;
-          case 37:
-            { print("C@pTch@"); return new Symbol(SymSQL.CapTcha ,yyline,yycolumn,yytext());
-            }
-          // fall through
-          case 81: break;
-          case 38:
-            { print("DECLARE");    return new Symbol(SymSQL.DECLARE   , yyline, yycolumn, yytext());
-            }
-          // fall through
-          case 82: break;
+          case 83: break;
           case 39:
             { print("FOREIGN");    return new Symbol(SymSQL.FOREIGN   , yyline, yycolumn, yytext());
             }
           // fall through
-          case 83: break;
+          case 84: break;
           case 40:
             { print("INTEGER");    return new Symbol(SymSQL.INTEGER   , yyline, yycolumn, yytext());
             }
           // fall through
-          case 84: break;
+          case 85: break;
           case 41:
             { print("PRIMARY");    return new Symbol(SymSQL.PRIMARY   , yyline, yycolumn, yytext());
             }
           // fall through
-          case 85: break;
+          case 86: break;
           case 42:
             { print("VARCHAR");    return new Symbol(SymSQL.VARCHAR   , yyline, yycolumn, yytext());
             }
           // fall through
-          case 86: break;
+          case 87: break;
           case 43:
             { print("CONSTRAINT"); return new Symbol(SymSQL.CONSTRAINT, yyline, yycolumn, yytext());
             }
           // fall through
-          case 87: break;
+          case 88: break;
           case 44:
             { print("REFERENCES"); return new Symbol(SymSQL.REFERENCES, yyline, yycolumn, yytext());
             }
           // fall through
-          case 88: break;
+          case 89: break;
+          case 45:
+            { print("DECLARE");    return new Symbol(SymSQL.DECLARE   , yyline, yycolumn, yytext());
+            }
+          // fall through
+          case 90: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

@@ -45,7 +45,7 @@ private LexemaSQL lexema;
 :}
 
 /* Terminales */
-terminal CapTcha;
+terminal IDENTIFICADOR;
 
 // DDL (Data Definition Language) - Definición de Datos
 terminal CONSTRAINT, REFERENCES, FOREIGN, PRIMARY;
@@ -71,13 +71,15 @@ terminal DECLARE;
 
 // Operadores lógicos
 terminal AND, OR;
+terminal PERIOD_AND_AS;
 //tomar
 terminal OUT_HARVESTING,START_HARVESTING;
 /* No terminales */
 //inicio
-non terminal inicio;
+non terminal inicio,finalizacion_punto_y_coma;
 non terminal varias_etiquetas_usar,etiqueta_inicial;
-non terminal bucle_etiquetas;
+//SQLTestDDL
+non terminal use_ddl;
 /* Gramática */
 start with inicio;
 /**********************************************INICIO DE LA GRAMATICA******************************/
@@ -92,8 +94,20 @@ varias_etiquetas_usar etiqueta_inicial
 | etiqueta_inicial
 ;
 
-etiqueta_inicial ::= CapTcha bucle_etiquetas 
-{:
-:}
+etiqueta_inicial ::= use_ddl finalizacion_punto_y_coma
 ; 
 
+finalizacion_punto_y_coma ::= PERIOD_AND_AS
+    | error
+;
+
+//SQL DDL
+use_ddl ::= CREATE SCHEMA IDENTIFICADOR
+    //| CREATE TABLE IDENTIFICADOR
+    //| ALTER TABLE IDENTIFICADOR ADD COLUMN IDENTIFICADOR VARCHAR( )
+    //| ALTER TABLE IDENTIFICADOR DROP COLUMN IDENTIFICADOR
+    //| ALTER TABLE IDENTIFICADOR ADD CONSTRAINT IDENTIFICADOR FOREIGN KEY (IDENTIFICADOR) REFERENCES IDENTIFICADOR(IDENTIFICADOR)
+    //| ALTER TABLE IDENTIFICADOR DROP CONSTRAINT IDENTIFICADOR
+    //| DROP TABLE IDENTIFICADOR
+    //| DROP SCHEMA IDENTIFICADOR
+    ;

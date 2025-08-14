@@ -62,6 +62,7 @@ import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.Token;
 //DATA = "{_-=>" ~"<=-_}"
 
 espacio =[\n|\r|\t|\f|\b|\s| ]+
+IDENTIFICADOR = [a-zA-Z0-9_]+
 
 %%
 <YYINITIAL> {
@@ -114,19 +115,26 @@ espacio =[\n|\r|\t|\f|\b|\s| ]+
 "NOT"          {print("NOT");        return new Symbol(SymSQL.NOT       , yyline, yycolumn, yytext());}
 "NULL"         {print("NULL");       return new Symbol(SymSQL.NULL      , yyline, yycolumn, yytext());}
 
-// PL/pgSQL - Declaraciones y Control
+// PL/pgSQL {IDENTIFICADOR} {print("IDENTIFICADOR"); return new Symbol(SymSQL.IDENTIFICADOR, yyline, yycolumn, yytext());}
+- Declaraciones y Control
 "DECLARE"      {print("DECLARE");    return new Symbol(SymSQL.DECLARE   , yyline, yycolumn, yytext());}
 
 // Operadores lógicos
 "AND"          {print("AND");        return new Symbol(SymSQL.AND       , yyline, yycolumn, yytext());}
 "OR"           {print("OR");         return new Symbol(SymSQL.OR        , yyline, yycolumn, yytext());}
 
-"CapTcha"       {print("C@pTch@"); return new Symbol(SymSQL.CapTcha ,yyline,yycolumn,yytext());}
+// FINALIZACION 
+";"            {print(";");         return new Symbol(SymSQL.PERIOD_AND_AS, yyline, yycolumn, yytext());}
+
+
 "{_-=>"         {
                     yybegin(DATA_COLLECTION);
                     print("{_-=>"); 
                     return new Symbol(SymSQL.START_HARVESTING ,yyline,yycolumn,yytext());
                 }
+
+{IDENTIFICADOR} {print("IDENTIFICADOR"); return new Symbol(SymSQL.IDENTIFICADOR, yyline, yycolumn, yytext());}
+
 /*ERROR LEXICO*/
 [^]                     {
                         //MANEJAR EL ERROR LEXICO
