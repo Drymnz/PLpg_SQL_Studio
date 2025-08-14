@@ -15,10 +15,6 @@ import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.Token;
 
 private ArrayList<ReportErrorInterpreter> listError = new ArrayList();
 private LexemaSQL lexema;
-private String STRING_ID = "";
-private String STRING_HTML = "";
-private String STRING_SCRIPTING = "";
-
 
 	  public ParserSQL(LexemaSQL Lexema) {
         super(Lexema);
@@ -43,12 +39,6 @@ private String STRING_SCRIPTING = "";
         return this.listError;
     }
 
-    private void addCaptcha(){
-        STRING_ID="";
-        STRING_HTML = "";
-        STRING_SCRIPTING = "";
-    }
-
     /**
      * ***END CODE*******
      */
@@ -70,8 +60,8 @@ terminal LEFT, JOIN, SELECT, INSERT, UPDATE;
 terminal DELETE, VALUES, WHERE, FROM, INTO, SET;
 
 // DCL (Data Control Language) - Control de Datos
-terminal CREATE, REVOKE, GRANT, USER;
-terminal FROM, TO, ON;
+terminal REVOKE, GRANT, USER;
+terminal TO, ON;
 
 // Restricciones y modificadores
 terminal NOT, NULL;
@@ -104,7 +94,6 @@ varias_etiquetas_usar etiqueta_inicial
 
 etiqueta_inicial ::= CapTcha bucle_etiquetas 
 {:
-addCaptcha();
 :}
 ; 
 

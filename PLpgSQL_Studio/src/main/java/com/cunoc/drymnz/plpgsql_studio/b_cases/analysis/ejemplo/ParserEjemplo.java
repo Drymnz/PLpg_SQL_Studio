@@ -104,10 +104,6 @@ public class ParserEjemplo extends java_cup.runtime.lr_parser {
 
 private ArrayList<ReportErrorInterpreter> listError = new ArrayList();
 private LexemaEjemplo lexema;
-private String STRING_ID = "";
-private String STRING_HTML = "";
-private String STRING_SCRIPTING = "";
-
 
 	  public ParserEjemplo(LexemaEjemplo Lexema) {
         super(Lexema);
@@ -132,11 +128,6 @@ private String STRING_SCRIPTING = "";
         return this.listError;
     }
 
-    private void addCaptcha(){
-        STRING_ID="";
-        STRING_HTML = "";
-        STRING_SCRIPTING = "";
-    }
 
     /**
      * ***END CODE*******
@@ -231,7 +222,6 @@ class CUP$ParserEjemplo$actions {
             {
               Object RESULT =null;
 		
-addCaptcha();
 
               CUP$ParserEjemplo$result = parser.getSymbolFactory().newSymbol("etiqueta_inicial",2, ((java_cup.runtime.Symbol)CUP$ParserEjemplo$stack.elementAt(CUP$ParserEjemplo$top-1)), ((java_cup.runtime.Symbol)CUP$ParserEjemplo$stack.peek()), RESULT);
             }

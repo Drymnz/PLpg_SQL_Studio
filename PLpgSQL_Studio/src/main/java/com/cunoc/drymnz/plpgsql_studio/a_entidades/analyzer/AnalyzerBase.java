@@ -4,6 +4,8 @@
  */
 package com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author drymnz
@@ -28,5 +30,5 @@ public abstract class AnalyzerBase {
 
     public abstract boolean isError();
 
-    //public abstract ArrayList<ReportErrorInterpreter> getListError();
+    public abstract ArrayList<ReportErrorInterpreter> getListError();
 }

@@ -104,10 +104,6 @@ public class ParserSQL extends java_cup.runtime.lr_parser {
 
 private ArrayList<ReportErrorInterpreter> listError = new ArrayList();
 private LexemaSQL lexema;
-private String STRING_ID = "";
-private String STRING_HTML = "";
-private String STRING_SCRIPTING = "";
-
 
 	  public ParserSQL(LexemaSQL Lexema) {
         super(Lexema);
@@ -130,12 +126,6 @@ private String STRING_SCRIPTING = "";
     //Returnar el listado de errores
     public ArrayList<ReportErrorInterpreter> getListError() {
         return this.listError;
-    }
-
-    private void addCaptcha(){
-        STRING_ID="";
-        STRING_HTML = "";
-        STRING_SCRIPTING = "";
     }
 
     /**
@@ -231,7 +221,6 @@ class CUP$ParserSQL$actions {
             {
               Object RESULT =null;
 		
-addCaptcha();
 
               CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("etiqueta_inicial",2, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-1)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
             }

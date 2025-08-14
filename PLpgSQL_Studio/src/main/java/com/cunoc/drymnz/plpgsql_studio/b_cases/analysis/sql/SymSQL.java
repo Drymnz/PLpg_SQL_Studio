@@ -8,15 +8,91 @@ package com.cunoc.drymnz.plpgsql_studio.b_cases.analysis.sql;
 /** CUP generated class containing symbol constants. */
 public class SymSQL {
   /* terminals */
-  public static final int error = 1;
-  public static final int OUT_HARVESTING = 3;
-  public static final int CapTcha = 2;
+  public static final int INTEGER = 17;
+  public static final int INT = 19;
+  public static final int UPDATE = 24;
+  public static final int DELETE = 25;
+  public static final int SCHEMA = 8;
+  public static final int WHERE = 27;
+  public static final int AND = 39;
+  public static final int NOT = 36;
+  public static final int ALTER = 10;
+  public static final int USE = 15;
+  public static final int COLUMN = 11;
+  public static final int OR = 40;
+  public static final int GRANT = 32;
+  public static final int REFERENCES = 4;
+  public static final int ON = 35;
+  public static final int FOREIGN = 5;
+  public static final int REVOKE = 31;
+  public static final int VARCHAR = 16;
+  public static final int SELECT = 22;
+  public static final int LEFT = 20;
   public static final int EOF = 0;
-  public static final int START_HARVESTING = 4;
+  public static final int BOOLEAN = 18;
+  public static final int TABLE = 9;
+  public static final int error = 1;
+  public static final int ADD = 14;
+  public static final int VALUES = 26;
+  public static final int NULL = 37;
+  public static final int JOIN = 21;
+  public static final int DECLARE = 38;
+  public static final int CapTcha = 2;
+  public static final int FROM = 28;
+  public static final int INTO = 29;
+  public static final int CONSTRAINT = 3;
+  public static final int TO = 34;
+  public static final int START_HARVESTING = 42;
+  public static final int INSERT = 23;
+  public static final int CREATE = 7;
+  public static final int DROP = 12;
+  public static final int KEY = 13;
+  public static final int USER = 33;
+  public static final int PRIMARY = 6;
+  public static final int OUT_HARVESTING = 41;
+  public static final int SET = 30;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
   "CapTcha",
+  "CONSTRAINT",
+  "REFERENCES",
+  "FOREIGN",
+  "PRIMARY",
+  "CREATE",
+  "SCHEMA",
+  "TABLE",
+  "ALTER",
+  "COLUMN",
+  "DROP",
+  "KEY",
+  "ADD",
+  "USE",
+  "VARCHAR",
+  "INTEGER",
+  "BOOLEAN",
+  "INT",
+  "LEFT",
+  "JOIN",
+  "SELECT",
+  "INSERT",
+  "UPDATE",
+  "DELETE",
+  "VALUES",
+  "WHERE",
+  "FROM",
+  "INTO",
+  "SET",
+  "REVOKE",
+  "GRANT",
+  "USER",
+  "TO",
+  "ON",
+  "NOT",
+  "NULL",
+  "DECLARE",
+  "AND",
+  "OR",
   "OUT_HARVESTING",
   "START_HARVESTING"
   };
