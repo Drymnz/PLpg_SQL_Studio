@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.ErrorTypeInTheInterpreter;
 import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.ReportErrorInterpreter;
 import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.Token;
+import com.cunoc.drymnz.plpgsql_studio.b_cases.analysis.InterpretSyntaticError;
+
 
 
 /**
@@ -31,7 +33,8 @@ private LexemaSQL lexema;
         int columna = cur_token.right +1;
         String lexema = (this.cur_token.value!=null)? this.cur_token.value.toString() : "Token no existe";
         Token token =  new Token(line, columna, lexema);
-        //this.listError.add(new ReportErrorInterpreter(type, token, (new InterpretSyntaticError(this.stack)).descriptionParser(this)));
+        this.listError.add(new ReportErrorInterpreter(type, token, (new InterpretSyntaticError(this.stack)).descriptionParser(this)));
+        System.out.println(this.listError.get(0).toString());
     }
 
     //Returnar el listado de errores
@@ -45,12 +48,12 @@ private LexemaSQL lexema;
 :}
 
 /* Terminales */
-terminal IDENTIFICADOR;
+terminal IDENTIFICADOR,NUMEBERS;
 
 // DDL (Data Definition Language) - Definición de Datos
 terminal CONSTRAINT, REFERENCES, FOREIGN, PRIMARY;
 terminal CREATE, SCHEMA, TABLE, ALTER, COLUMN;
-terminal DROP, KEY, ADD, USE;
+terminal DROP, KEY, ADD, USE,MODIFY;
 
 // Tipos de datos
 terminal VARCHAR, INTEGER, BOOLEAN, INT;
@@ -64,14 +67,14 @@ terminal REVOKE, GRANT, USER;
 terminal TO, ON;
 
 // Restricciones y modificadores
-terminal NOT, NULL;
+terminal NOT, NULL,DEFAULT;
 
 // PL/pgSQL - Declaraciones y Control
 terminal DECLARE;
 
 // Operadores lógicos
 terminal AND, OR;
-terminal PERIOD_AND_AS;
+terminal PERIOD_AND_AS, OPEN_P, CLOSE_P,COMMA;
 //tomar
 terminal OUT_HARVESTING,START_HARVESTING;
 /* No terminales */
@@ -80,6 +83,10 @@ non terminal inicio,finalizacion_punto_y_coma;
 non terminal varias_etiquetas_usar,etiqueta_inicial;
 //SQLTestDDL
 non terminal use_ddl;
+non terminal create_table, atributos_tabla,type_attribute,type_privacy,various_attributes;
+non terminal attribute_null;
+non terminal accion_update,accion_fk,set_fk;
+non terminal alter_use,space_use_alter,accion_alter,type_optional_alter;
 /* Gramática */
 start with inicio;
 /**********************************************INICIO DE LA GRAMATICA******************************/
@@ -95,7 +102,48 @@ varias_etiquetas_usar etiqueta_inicial
 ;
 
 etiqueta_inicial ::= use_ddl finalizacion_punto_y_coma
+    |create_table finalizacion_punto_y_coma
 ; 
+
+create_table ::= CREATE TABLE IDENTIFICADOR OPEN_P various_attributes CLOSE_P
+    //| CREATE TABLE IDENTIFICADOR (columnas)
+    ;
+
+various_attributes ::= various_attributes COMMA atributos_tabla
+    |atributos_tabla 
+    ; 
+
+atributos_tabla ::= IDENTIFICADOR type_attribute type_privacy
+    |FOREIGN KEY OPEN_P IDENTIFICADOR CLOSE_P REFERENCES IDENTIFICADOR OPEN_P IDENTIFICADOR CLOSE_P
+    ;
+
+accion_update ::= /*epsilon*/
+    | ON UPDATE accion_fk
+    | ON DELETE accion_fk
+    ;
+
+accion_fk ::= SET 
+    ;
+
+set_fk ::= DEFAULT
+    |NULL
+    ;
+
+type_privacy ::= PRIMARY KEY attribute_null
+    |attribute_null
+    |NULL
+    ;
+
+attribute_null ::=    NOT NULL 
+    |error
+    | /*epsilon*/
+    ;
+
+type_attribute ::= INTEGER
+    | BOOLEAN
+    | INT
+    | VARCHAR OPEN_P NUMEBERS CLOSE_P
+    ;
 
 finalizacion_punto_y_coma ::= PERIOD_AND_AS
     | error
@@ -103,11 +151,30 @@ finalizacion_punto_y_coma ::= PERIOD_AND_AS
 
 //SQL DDL
 use_ddl ::= CREATE SCHEMA IDENTIFICADOR
-    //| CREATE TABLE IDENTIFICADOR
-    //| ALTER TABLE IDENTIFICADOR ADD COLUMN IDENTIFICADOR VARCHAR( )
-    //| ALTER TABLE IDENTIFICADOR DROP COLUMN IDENTIFICADOR
-    //| ALTER TABLE IDENTIFICADOR ADD CONSTRAINT IDENTIFICADOR FOREIGN KEY (IDENTIFICADOR) REFERENCES IDENTIFICADOR(IDENTIFICADOR)
-    //| ALTER TABLE IDENTIFICADOR DROP CONSTRAINT IDENTIFICADOR
-    //| DROP TABLE IDENTIFICADOR
-    //| DROP SCHEMA IDENTIFICADOR
+    | USE SCHEMA IDENTIFICADOR
+    |FOREIGN KEY OPEN_P IDENTIFICADOR CLOSE_P REFERENCES IDENTIFICADOR OPEN_P IDENTIFICADOR CLOSE_P accion_update
+    |ALTER TABLE IDENTIFICADOR accion_alter space_use_alter IDENTIFICADOR type_optional_alter
+    |DROP TABLE IDENTIFICADOR
     ;
+
+
+
+alter_use::= 
+    //| CHECK 
+    //| UNIQUE 
+    ;
+
+type_optional_alter ::= /*epsilon*/
+    |type_attribute
+    |FOREIGN KEY OPEN_P IDENTIFICADOR CLOSE_P REFERENCES IDENTIFICADOR OPEN_P IDENTIFICADOR CLOSE_P accion_update 
+    ;
+
+accion_alter ::= ADD
+    |DROP
+    |MODIFY
+    ;
+
+space_use_alter ::= CONSTRAINT
+    |COLUMN
+    ;
+

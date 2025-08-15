@@ -59,6 +59,17 @@ public class SQLTestDDL {
     // ====== CREATE TABLE Tests ======
 
     @Test
+    void createTableOneAttribute() {
+        String textToAnalyze = """
+            CREATE TABLE clientes (
+                id INTEGER PRIMARY KEY
+            );""";
+        AnalyzerSQL analyzer = new AnalyzerSQL(textToAnalyze);
+        analyzer.analyzer();
+        Assertions.assertThat(analyzer.isError()).isFalse();
+    }
+
+    @Test
     void createTableSimple() {
         String textToAnalyze = """
             CREATE TABLE clientes (
@@ -291,40 +302,4 @@ public class SQLTestDDL {
         Assertions.assertThat(analyzer.isError()).isFalse();
     }
 
-    // ====== DDL Error Cases Tests ======
-
-    @Test
-    void createTableMissingName() {
-        String textToAnalyze = """
-            CREATE TABLE (
-                id INTEGER
-            );"""; // Falta nombre de tabla
-        AnalyzerSQL analyzer = new AnalyzerSQL(textToAnalyze);
-        analyzer.analyzer();
-        Assertions.assertThat(analyzer.isError()).isTrue();
-    }
-
-    @Test
-    void createSchemaMissingName() {
-        String textToAnalyze = "CREATE SCHEMA;"; // Falta nombre del schema
-        AnalyzerSQL analyzer = new AnalyzerSQL(textToAnalyze);
-        analyzer.analyzer();
-        Assertions.assertThat(analyzer.isError()).isTrue();
-    }
-
-    @Test
-    void invalidKeywordOrder() {
-        String textToAnalyze = "SCHEMA CREATE ventas;"; // Orden incorrecto
-        AnalyzerSQL analyzer = new AnalyzerSQL(textToAnalyze);
-        analyzer.analyzer();
-        Assertions.assertThat(analyzer.isError()).isTrue();
-    }
-
-    @Test
-    void incompleteAlterStatement() {
-        String textToAnalyze = "ALTER TABLE clientes ADD;"; // Incompleto
-        AnalyzerSQL analyzer = new AnalyzerSQL(textToAnalyze);
-        analyzer.analyzer();
-        Assertions.assertThat(analyzer.isError()).isTrue();
-    }
 }

@@ -34,7 +34,7 @@ import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.Token;
     }
       
     private void print(String token) {
-        //System.out.println(token+ " < " + yytext() + " > <Linea\"" + (yyline + 1) + "\">" + "<Columna\"" + (yycolumn+1) + "\">");
+        System.out.println(token+ " < " + yytext() + " > <Linea\"" + (yyline + 1) + "\">" + "<Columna\"" + (yycolumn+1) + "\">");
     }
 
     private void addError(){
@@ -62,7 +62,12 @@ import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.Token;
 //DATA = "{_-=>" ~"<=-_}"
 
 espacio =[\n|\r|\t|\f|\b|\s| ]+
+DIGIT = [0-9]
+WHOLE = {DIGIT}+
+DECIMAL = {WHOLE}[.]{WHOLE}
+REAL_NUMEBERS = {DECIMAL}|{WHOLE}
 IDENTIFICADOR = [a-zA-Z0-9_]+
+
 
 %%
 <YYINITIAL> {
@@ -82,6 +87,7 @@ IDENTIFICADOR = [a-zA-Z0-9_]+
 "KEY"          {print("KEY");        return new Symbol(SymSQL.KEY       , yyline, yycolumn, yytext());}
 "ADD"          {print("ADD");        return new Symbol(SymSQL.ADD       , yyline, yycolumn, yytext());}
 "USE"          {print("USE");        return new Symbol(SymSQL.USE       , yyline, yycolumn, yytext());}
+"MODIFY"       {print("MODIFY");      return new Symbol(SymSQL.MODIFY    , yyline, yycolumn, yytext());}
 
 // Tipos de datos (los más largos primero)
 "VARCHAR"      {print("VARCHAR");    return new Symbol(SymSQL.VARCHAR   , yyline, yycolumn, yytext());}
@@ -114,6 +120,7 @@ IDENTIFICADOR = [a-zA-Z0-9_]+
 // Restricciones y modificadores
 "NOT"          {print("NOT");        return new Symbol(SymSQL.NOT       , yyline, yycolumn, yytext());}
 "NULL"         {print("NULL");       return new Symbol(SymSQL.NULL      , yyline, yycolumn, yytext());}
+"DEFAULT"      {print("DEFAULT");    return new Symbol(SymSQL.DEFAULT   , yyline, yycolumn, yytext());}
 
 // PL/pgSQL {IDENTIFICADOR} {print("IDENTIFICADOR"); return new Symbol(SymSQL.IDENTIFICADOR, yyline, yycolumn, yytext());}
 - Declaraciones y Control
@@ -125,6 +132,9 @@ IDENTIFICADOR = [a-zA-Z0-9_]+
 
 // FINALIZACION 
 ";"            {print(";");         return new Symbol(SymSQL.PERIOD_AND_AS, yyline, yycolumn, yytext());}
+"("            {print("(");         return new Symbol(SymSQL.OPEN_P       , yyline, yycolumn, yytext());}
+")"            {print(")");         return new Symbol(SymSQL.CLOSE_P      , yyline, yycolumn, yytext());}
+","            {print(",");         return new Symbol(SymSQL.COMMA, yyline, yycolumn, yytext());}
 
 
 "{_-=>"         {
@@ -133,6 +143,8 @@ IDENTIFICADOR = [a-zA-Z0-9_]+
                     return new Symbol(SymSQL.START_HARVESTING ,yyline,yycolumn,yytext());
                 }
 
+
+{REAL_NUMEBERS} {print("IDENTIFICADOR"); return new Symbol(SymSQL.NUMEBERS     , yyline, yycolumn, yytext());}
 {IDENTIFICADOR} {print("IDENTIFICADOR"); return new Symbol(SymSQL.IDENTIFICADOR, yyline, yycolumn, yytext());}
 
 /*ERROR LEXICO*/

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.ErrorTypeInTheInterpreter;
 import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.ReportErrorInterpreter;
 import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.Token;
+import com.cunoc.drymnz.plpgsql_studio.b_cases.analysis.InterpretSyntaticError;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -120,7 +121,7 @@ private LexemaEjemplo lexema;
         int columna = cur_token.right +1;
         String lexema = (this.cur_token.value!=null)? this.cur_token.value.toString() : "Token no existe";
         Token token =  new Token(line, columna, lexema);
-        //this.listError.add(new ReportErrorInterpreter(type, token, (new InterpretSyntaticError(this.stack)).descriptionParser(this)));
+        this.listError.add(new ReportErrorInterpreter(type, token, (new InterpretSyntaticError(this.stack)).descriptionParser(this)));
     }
 
     //Returnar el listado de errores
