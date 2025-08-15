@@ -8,61 +8,63 @@ package com.cunoc.drymnz.plpgsql_studio.b_cases.analysis.sql;
 /** CUP generated class containing symbol constants. */
 public class SymSQL {
   /* terminals */
-  public static final int INTEGER = 19;
-  public static final int INT = 21;
-  public static final int UPDATE = 26;
-  public static final int DELETE = 27;
-  public static final int SCHEMA = 9;
-  public static final int WHERE = 29;
-  public static final int AND = 42;
-  public static final int NOT = 38;
+  public static final int CHARS = 4;
+  public static final int INTEGER = 20;
+  public static final int INT = 22;
+  public static final int UPDATE = 27;
+  public static final int DELETE = 28;
+  public static final int SCHEMA = 10;
+  public static final int WHERE = 30;
+  public static final int AND = 43;
+  public static final int NOT = 39;
   public static final int IDENTIFICADOR = 2;
-  public static final int ALTER = 11;
-  public static final int OPEN_P = 45;
-  public static final int USE = 16;
-  public static final int COLUMN = 12;
-  public static final int OR = 43;
-  public static final int COMMA = 47;
-  public static final int GRANT = 34;
-  public static final int REFERENCES = 5;
-  public static final int ON = 37;
-  public static final int FOREIGN = 6;
-  public static final int REVOKE = 33;
-  public static final int VARCHAR = 18;
-  public static final int SELECT = 24;
-  public static final int PERIOD_AND_AS = 44;
-  public static final int LEFT = 22;
+  public static final int ALTER = 12;
+  public static final int OPEN_P = 46;
+  public static final int USE = 17;
+  public static final int COLUMN = 13;
+  public static final int OR = 44;
+  public static final int COMMA = 48;
+  public static final int GRANT = 35;
+  public static final int REFERENCES = 6;
+  public static final int ON = 38;
+  public static final int FOREIGN = 7;
+  public static final int REVOKE = 34;
+  public static final int VARCHAR = 19;
+  public static final int SELECT = 25;
+  public static final int PERIOD_AND_AS = 45;
+  public static final int LEFT = 23;
   public static final int EOF = 0;
-  public static final int BOOLEAN = 20;
-  public static final int TABLE = 10;
+  public static final int BOOLEAN = 21;
+  public static final int TABLE = 11;
   public static final int error = 1;
-  public static final int ADD = 15;
-  public static final int VALUES = 28;
-  public static final int NULL = 39;
-  public static final int JOIN = 23;
-  public static final int DECLARE = 41;
+  public static final int ADD = 16;
+  public static final int VALUES = 29;
+  public static final int NULL = 40;
+  public static final int JOIN = 24;
+  public static final int DECLARE = 42;
   public static final int NUMEBERS = 3;
-  public static final int FROM = 30;
-  public static final int INTO = 31;
-  public static final int CONSTRAINT = 4;
-  public static final int TO = 36;
-  public static final int START_HARVESTING = 49;
-  public static final int INSERT = 25;
-  public static final int CREATE = 8;
-  public static final int DEFAULT = 40;
-  public static final int DROP = 13;
-  public static final int MODIFY = 17;
-  public static final int KEY = 14;
-  public static final int USER = 35;
-  public static final int PRIMARY = 7;
-  public static final int OUT_HARVESTING = 48;
-  public static final int SET = 32;
-  public static final int CLOSE_P = 46;
+  public static final int FROM = 31;
+  public static final int INTO = 32;
+  public static final int CONSTRAINT = 5;
+  public static final int TO = 37;
+  public static final int START_HARVESTING = 50;
+  public static final int INSERT = 26;
+  public static final int CREATE = 9;
+  public static final int DEFAULT = 41;
+  public static final int DROP = 14;
+  public static final int MODIFY = 18;
+  public static final int KEY = 15;
+  public static final int USER = 36;
+  public static final int PRIMARY = 8;
+  public static final int OUT_HARVESTING = 49;
+  public static final int SET = 33;
+  public static final int CLOSE_P = 47;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
   "IDENTIFICADOR",
   "NUMEBERS",
+  "CHARS",
   "CONSTRAINT",
   "REFERENCES",
   "FOREIGN",

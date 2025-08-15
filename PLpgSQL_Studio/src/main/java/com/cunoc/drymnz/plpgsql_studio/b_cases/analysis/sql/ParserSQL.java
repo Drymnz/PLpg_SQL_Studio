@@ -38,18 +38,18 @@ public class ParserSQL extends java_cup.runtime.lr_parser {
     unpackFromStrings(new String[] {
     "\000\055\000\002\002\004\000\002\002\003\000\002\002" +
     "\004\000\002\002\002\000\002\004\004\000\002\004\003" +
-    "\000\002\005\004\000\002\005\004\000\002\007\010\000" +
-    "\002\013\005\000\002\013\003\000\002\010\005\000\002" +
-    "\010\014\000\002\015\002\000\002\015\005\000\002\015" +
-    "\005\000\002\016\003\000\002\017\003\000\002\017\003" +
-    "\000\002\012\005\000\002\012\003\000\002\012\003\000" +
-    "\002\014\004\000\002\014\003\000\002\014\002\000\002" +
-    "\011\003\000\002\011\003\000\002\011\003\000\002\011" +
-    "\006\000\002\003\003\000\002\003\003\000\002\006\005" +
-    "\000\002\006\005\000\002\006\015\000\002\006\011\000" +
-    "\002\006\005\000\002\020\002\000\002\023\002\000\002" +
-    "\023\003\000\002\023\015\000\002\022\003\000\002\022" +
-    "\003\000\002\022\003\000\002\021\003\000\002\021\003" +
+    "\000\002\005\004\000\002\005\004\000\002\003\003\000" +
+    "\002\003\003\000\002\006\005\000\002\006\010\000\002" +
+    "\006\005\000\002\006\015\000\002\006\011\000\002\006" +
+    "\005\000\002\012\005\000\002\012\003\000\002\007\005" +
+    "\000\002\007\014\000\002\014\002\000\002\014\005\000" +
+    "\002\014\005\000\002\015\003\000\002\016\003\000\002" +
+    "\016\003\000\002\011\005\000\002\011\003\000\002\011" +
+    "\003\000\002\013\004\000\002\013\003\000\002\013\002" +
+    "\000\002\010\003\000\002\010\003\000\002\010\003\000" +
+    "\002\010\006\000\002\021\002\000\002\021\003\000\002" +
+    "\021\015\000\002\020\003\000\002\020\003\000\002\020" +
+    "\003\000\002\017\003\000\002\017\003\000\002\022\012" +
     "" });
 
   /** Access to production table. */
@@ -58,73 +58,78 @@ public class ParserSQL extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\144\000\020\002\ufffe\003\014\010\016\012\005\015" +
-    "\006\017\004\022\013\001\002\000\004\014\145\001\002" +
-    "\000\006\013\106\014\107\001\002\000\004\014\050\001" +
-    "\002\000\006\003\044\056\046\001\002\000\006\003\044" +
-    "\056\046\001\002\000\004\002\043\001\002\000\016\002" +
-    "\000\010\016\012\005\015\006\017\004\022\013\001\002" +
-    "\000\004\013\041\001\002\000\014\010\016\012\005\015" +
-    "\006\017\004\022\013\001\002\000\016\002\ufffc\010\ufffc" +
-    "\012\ufffc\015\ufffc\017\ufffc\022\ufffc\001\002\000\004\020" +
-    "\017\001\002\000\004\057\020\001\002\000\004\004\021" +
-    "\001\002\000\004\060\022\001\002\000\004\007\023\001" +
-    "\002\000\004\004\024\001\002\000\004\057\025\001\002" +
-    "\000\004\004\026\001\002\000\004\060\027\001\002\000" +
-    "\010\003\ufff4\047\030\056\ufff4\001\002\000\006\034\033" +
-    "\035\032\001\002\000\006\003\uffe0\056\uffe0\001\002\000" +
-    "\004\042\035\001\002\000\004\042\035\001\002\000\006" +
-    "\003\ufff3\056\ufff3\001\002\000\006\003\ufff1\056\ufff1\001" +
-    "\002\000\006\003\ufff2\056\ufff2\001\002\000\016\002\uffff" +
-    "\010\016\012\005\015\006\017\004\022\013\001\002\000" +
-    "\016\002\ufffd\010\ufffd\012\ufffd\015\ufffd\017\ufffd\022\ufffd" +
-    "\001\002\000\004\004\042\001\002\000\006\003\uffe1\056" +
-    "\uffe1\001\002\000\004\002\001\001\002\000\016\002\uffe3" +
-    "\010\uffe3\012\uffe3\015\uffe3\017\uffe3\022\uffe3\001\002\000" +
-    "\016\002\ufffb\010\ufffb\012\ufffb\015\ufffb\017\ufffb\022\ufffb" +
-    "\001\002\000\016\002\uffe4\010\uffe4\012\uffe4\015\uffe4\017" +
-    "\uffe4\022\uffe4\001\002\000\016\002\ufffa\010\ufffa\012\ufffa" +
-    "\015\ufffa\017\ufffa\022\ufffa\001\002\000\004\004\051\001" +
-    "\002\000\010\017\054\021\053\023\055\001\002\000\006" +
-    "\006\060\016\057\001\002\000\006\006\uffd9\016\uffd9\001" +
-    "\002\000\006\006\uffd8\016\uffd8\001\002\000\006\006\uffd7" +
-    "\016\uffd7\001\002\000\004\004\061\001\002\000\004\004" +
-    "\uffd5\001\002\000\004\004\uffd6\001\002\000\020\003\uffdc" +
-    "\010\064\024\066\025\062\026\067\027\070\056\uffdc\001" +
-    "\002\000\020\003\uffe8\011\uffe8\050\uffe8\051\uffe8\056\uffe8" +
-    "\060\uffe8\061\uffe8\001\002\000\006\003\uffdb\056\uffdb\001" +
-    "\002\000\004\020\074\001\002\000\006\003\uffdf\056\uffdf" +
-    "\001\002\000\004\057\071\001\002\000\020\003\uffe7\011" +
-    "\uffe7\050\uffe7\051\uffe7\056\uffe7\060\uffe7\061\uffe7\001\002" +
-    "\000\020\003\uffe6\011\uffe6\050\uffe6\051\uffe6\056\uffe6\060" +
-    "\uffe6\061\uffe6\001\002\000\004\005\072\001\002\000\004" +
-    "\060\073\001\002\000\020\003\uffe5\011\uffe5\050\uffe5\051" +
-    "\uffe5\056\uffe5\060\uffe5\061\uffe5\001\002\000\004\057\075" +
-    "\001\002\000\004\004\076\001\002\000\004\060\077\001" +
-    "\002\000\004\007\100\001\002\000\004\004\101\001\002" +
-    "\000\004\057\102\001\002\000\004\004\103\001\002\000" +
-    "\004\060\104\001\002\000\010\003\ufff4\047\030\056\ufff4" +
-    "\001\002\000\006\003\uffda\056\uffda\001\002\000\004\004" +
-    "\144\001\002\000\004\004\110\001\002\000\004\057\111" +
-    "\001\002\000\006\004\114\010\112\001\002\000\004\020" +
-    "\133\001\002\000\006\060\131\061\130\001\002\000\012" +
-    "\024\066\025\062\026\067\027\070\001\002\000\006\060" +
-    "\ufff7\061\ufff7\001\002\000\016\003\123\011\120\050\121" +
-    "\051\124\060\uffe9\061\uffe9\001\002\000\006\060\ufff6\061" +
-    "\ufff6\001\002\000\004\020\126\001\002\000\004\051\125" +
-    "\001\002\000\006\060\uffed\061\uffed\001\002\000\006\060" +
-    "\uffea\061\uffea\001\002\000\006\060\uffec\061\uffec\001\002" +
-    "\000\006\060\uffeb\061\uffeb\001\002\000\012\003\123\050" +
-    "\121\060\uffe9\061\uffe9\001\002\000\006\060\uffee\061\uffee" +
-    "\001\002\000\006\004\114\010\112\001\002\000\006\003" +
-    "\ufff9\056\ufff9\001\002\000\006\060\ufff8\061\ufff8\001\002" +
-    "\000\004\057\134\001\002\000\004\004\135\001\002\000" +
-    "\004\060\136\001\002\000\004\007\137\001\002\000\004" +
-    "\004\140\001\002\000\004\057\141\001\002\000\004\004" +
-    "\142\001\002\000\004\060\143\001\002\000\006\060\ufff5" +
-    "\061\ufff5\001\002\000\006\003\uffe2\056\uffe2\001\002\000" +
-    "\004\004\146\001\002\000\006\003\uffde\056\uffde\001\002" +
-    "" });
+    "\000\154\000\022\002\ufffe\003\014\011\017\013\005\016" +
+    "\007\020\004\023\013\034\015\001\002\000\004\015\155" +
+    "\001\002\000\006\014\116\015\117\001\002\000\006\003" +
+    "\054\057\056\001\002\000\004\015\057\001\002\000\006" +
+    "\003\054\057\056\001\002\000\004\002\053\001\002\000" +
+    "\020\002\000\011\017\013\005\016\007\020\004\023\013" +
+    "\034\015\001\002\000\004\014\051\001\002\000\016\011" +
+    "\017\013\005\016\007\020\004\023\013\034\015\001\002" +
+    "\000\004\042\040\001\002\000\020\002\ufffc\011\ufffc\013" +
+    "\ufffc\016\ufffc\020\ufffc\023\ufffc\034\ufffc\001\002\000\004" +
+    "\021\020\001\002\000\004\060\021\001\002\000\004\004" +
+    "\022\001\002\000\004\061\023\001\002\000\004\010\024" +
+    "\001\002\000\004\004\025\001\002\000\004\060\026\001" +
+    "\002\000\004\004\027\001\002\000\004\061\030\001\002" +
+    "\000\010\003\uffed\050\031\057\uffed\001\002\000\006\035" +
+    "\034\036\033\001\002\000\006\003\ufff4\057\ufff4\001\002" +
+    "\000\004\043\036\001\002\000\004\043\036\001\002\000" +
+    "\006\003\uffec\057\uffec\001\002\000\006\003\uffea\057\uffea" +
+    "\001\002\000\006\003\uffeb\057\uffeb\001\002\000\004\004" +
+    "\041\001\002\000\004\060\042\001\002\000\004\061\043" +
+    "\001\002\000\004\037\044\001\002\000\004\060\045\001" +
+    "\002\000\004\061\046\001\002\000\006\003\uffd5\057\uffd5" +
+    "\001\002\000\020\002\uffff\011\017\013\005\016\007\020" +
+    "\004\023\013\034\015\001\002\000\020\002\ufffd\011\ufffd" +
+    "\013\ufffd\016\ufffd\020\ufffd\023\ufffd\034\ufffd\001\002\000" +
+    "\004\004\052\001\002\000\006\003\ufff5\057\ufff5\001\002" +
+    "\000\004\002\001\001\002\000\020\002\ufff8\011\ufff8\013" +
+    "\ufff8\016\ufff8\020\ufff8\023\ufff8\034\ufff8\001\002\000\020" +
+    "\002\ufffb\011\ufffb\013\ufffb\016\ufffb\020\ufffb\023\ufffb\034" +
+    "\ufffb\001\002\000\020\002\ufff9\011\ufff9\013\ufff9\016\ufff9" +
+    "\020\ufff9\023\ufff9\034\ufff9\001\002\000\004\004\060\001" +
+    "\002\000\010\020\063\022\062\024\064\001\002\000\006" +
+    "\007\066\017\067\001\002\000\006\007\uffda\017\uffda\001" +
+    "\002\000\006\007\uffd9\017\uffd9\001\002\000\006\007\uffd8" +
+    "\017\uffd8\001\002\000\004\004\070\001\002\000\004\004" +
+    "\uffd7\001\002\000\004\004\uffd6\001\002\000\020\003\uffdd" +
+    "\011\073\025\076\026\072\027\075\030\077\057\uffdd\001" +
+    "\002\000\006\003\uffdc\057\uffdc\001\002\000\020\003\uffe1" +
+    "\012\uffe1\051\uffe1\052\uffe1\057\uffe1\061\uffe1\062\uffe1\001" +
+    "\002\000\004\021\103\001\002\000\006\003\ufff3\057\ufff3" +
+    "\001\002\000\020\003\uffe0\012\uffe0\051\uffe0\052\uffe0\057" +
+    "\uffe0\061\uffe0\062\uffe0\001\002\000\004\060\100\001\002" +
+    "\000\020\003\uffdf\012\uffdf\051\uffdf\052\uffdf\057\uffdf\061" +
+    "\uffdf\062\uffdf\001\002\000\004\005\101\001\002\000\004" +
+    "\061\102\001\002\000\020\003\uffde\012\uffde\051\uffde\052" +
+    "\uffde\057\uffde\061\uffde\062\uffde\001\002\000\004\060\104" +
+    "\001\002\000\004\004\105\001\002\000\004\061\106\001" +
+    "\002\000\004\010\107\001\002\000\004\004\110\001\002" +
+    "\000\004\060\111\001\002\000\004\004\112\001\002\000" +
+    "\004\061\113\001\002\000\010\003\uffed\050\031\057\uffed" +
+    "\001\002\000\006\003\uffdb\057\uffdb\001\002\000\020\002" +
+    "\ufffa\011\ufffa\013\ufffa\016\ufffa\020\ufffa\023\ufffa\034\ufffa" +
+    "\001\002\000\004\004\154\001\002\000\004\004\120\001" +
+    "\002\000\004\060\121\001\002\000\006\004\124\011\122" +
+    "\001\002\000\004\021\143\001\002\000\006\061\141\062" +
+    "\140\001\002\000\012\025\076\026\072\027\075\030\077" +
+    "\001\002\000\006\061\ufff0\062\ufff0\001\002\000\016\003" +
+    "\133\012\127\051\131\052\134\061\uffe2\062\uffe2\001\002" +
+    "\000\004\021\136\001\002\000\006\061\uffef\062\uffef\001" +
+    "\002\000\004\052\135\001\002\000\006\061\uffe6\062\uffe6" +
+    "\001\002\000\006\061\uffe3\062\uffe3\001\002\000\006\061" +
+    "\uffe5\062\uffe5\001\002\000\006\061\uffe4\062\uffe4\001\002" +
+    "\000\012\003\133\051\131\061\uffe2\062\uffe2\001\002\000" +
+    "\006\061\uffe7\062\uffe7\001\002\000\006\004\124\011\122" +
+    "\001\002\000\006\003\ufff6\057\ufff6\001\002\000\006\061" +
+    "\ufff1\062\ufff1\001\002\000\004\060\144\001\002\000\004" +
+    "\004\145\001\002\000\004\061\146\001\002\000\004\010" +
+    "\147\001\002\000\004\004\150\001\002\000\004\060\151" +
+    "\001\002\000\004\004\152\001\002\000\004\061\153\001" +
+    "\002\000\006\061\uffee\062\uffee\001\002\000\006\003\ufff7" +
+    "\057\ufff7\001\002\000\004\004\156\001\002\000\006\003" +
+    "\ufff2\057\ufff2\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -132,42 +137,45 @@ public class ParserSQL extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\144\000\014\002\010\004\011\005\014\006\007\007" +
-    "\006\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\004\003\046\001\001\000\004\003\044\001" +
-    "\001\000\002\001\001\000\010\005\037\006\007\007\006" +
-    "\001\001\000\002\001\001\000\012\004\036\005\014\006" +
-    "\007\007\006\001\001\000\002\001\001\000\002\001\001" +
+    "\000\154\000\014\002\010\004\011\005\015\006\007\022" +
+    "\005\001\001\000\002\001\001\000\002\001\001\000\004" +
+    "\003\114\001\001\000\002\001\001\000\004\003\054\001" +
+    "\001\000\002\001\001\000\010\005\047\006\007\022\005" +
+    "\001\001\000\002\001\001\000\012\004\046\005\015\006" +
+    "\007\022\005\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\004\015\030\001\001\000" +
-    "\002\001\001\000\002\001\001\000\004\016\035\001\001" +
-    "\000\004\016\033\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\010\005\037\006\007\007\006" +
-    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\001\000\002\001\001\000\002\001\001\000\004\014" +
+    "\031\001\001\000\002\001\001\000\002\001\001\000\004" +
+    "\015\036\001\001\000\004\015\034\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\004\022\051\001\001\000\004\021\055\001\001\000\002" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\010" +
+    "\005\047\006\007\022\005\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\006\011\062" +
-    "\023\064\001\001\000\002\001\001\000\002\001\001\000" +
+    "\001\000\004\020\060\001\001\000\004\017\064\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\006" +
+    "\010\070\021\073\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\004\014\113\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\006\007\124\012\122\001\001\000\002\001\001\000" +
+    "\002\001\001\000\004\010\125\001\001\000\002\001\001" +
+    "\000\006\011\127\013\131\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\004\013" +
+    "\136\001\001\000\002\001\001\000\004\007\141\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\004" +
-    "\015\104\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\006\010\114\013\112" +
-    "\001\001\000\002\001\001\000\002\001\001\000\004\011" +
-    "\115\001\001\000\002\001\001\000\006\012\116\014\121" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\004\014\126\001\001\000\002\001" +
-    "\001\000\004\010\131\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001" });
+    "\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -332,7 +340,7 @@ class CUP$ParserSQL$actions {
           return CUP$ParserSQL$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 7: // etiqueta_inicial ::= create_table finalizacion_punto_y_coma 
+          case 7: // etiqueta_inicial ::= use_dml finalizacion_punto_y_coma 
             {
               Object RESULT =null;
 
@@ -341,196 +349,7 @@ class CUP$ParserSQL$actions {
           return CUP$ParserSQL$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 8: // create_table ::= CREATE TABLE IDENTIFICADOR OPEN_P various_attributes CLOSE_P 
-            {
-              Object RESULT =null;
-
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("create_table",5, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-5)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
-            }
-          return CUP$ParserSQL$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 9: // various_attributes ::= various_attributes COMMA atributos_tabla 
-            {
-              Object RESULT =null;
-
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("various_attributes",9, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-2)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
-            }
-          return CUP$ParserSQL$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 10: // various_attributes ::= atributos_tabla 
-            {
-              Object RESULT =null;
-
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("various_attributes",9, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
-            }
-          return CUP$ParserSQL$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 11: // atributos_tabla ::= IDENTIFICADOR type_attribute type_privacy 
-            {
-              Object RESULT =null;
-
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("atributos_tabla",6, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-2)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
-            }
-          return CUP$ParserSQL$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 12: // atributos_tabla ::= FOREIGN KEY OPEN_P IDENTIFICADOR CLOSE_P REFERENCES IDENTIFICADOR OPEN_P IDENTIFICADOR CLOSE_P 
-            {
-              Object RESULT =null;
-
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("atributos_tabla",6, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-9)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
-            }
-          return CUP$ParserSQL$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 13: // accion_update ::= 
-            {
-              Object RESULT =null;
-
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("accion_update",11, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
-            }
-          return CUP$ParserSQL$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 14: // accion_update ::= ON UPDATE accion_fk 
-            {
-              Object RESULT =null;
-
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("accion_update",11, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-2)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
-            }
-          return CUP$ParserSQL$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 15: // accion_update ::= ON DELETE accion_fk 
-            {
-              Object RESULT =null;
-
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("accion_update",11, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-2)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
-            }
-          return CUP$ParserSQL$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 16: // accion_fk ::= SET 
-            {
-              Object RESULT =null;
-
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("accion_fk",12, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
-            }
-          return CUP$ParserSQL$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 17: // set_fk ::= DEFAULT 
-            {
-              Object RESULT =null;
-
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("set_fk",13, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
-            }
-          return CUP$ParserSQL$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 18: // set_fk ::= NULL 
-            {
-              Object RESULT =null;
-
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("set_fk",13, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
-            }
-          return CUP$ParserSQL$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 19: // type_privacy ::= PRIMARY KEY attribute_null 
-            {
-              Object RESULT =null;
-
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("type_privacy",8, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-2)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
-            }
-          return CUP$ParserSQL$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 20: // type_privacy ::= attribute_null 
-            {
-              Object RESULT =null;
-
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("type_privacy",8, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
-            }
-          return CUP$ParserSQL$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 21: // type_privacy ::= NULL 
-            {
-              Object RESULT =null;
-
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("type_privacy",8, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
-            }
-          return CUP$ParserSQL$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 22: // attribute_null ::= NOT NULL 
-            {
-              Object RESULT =null;
-
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("attribute_null",10, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-1)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
-            }
-          return CUP$ParserSQL$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 23: // attribute_null ::= error 
-            {
-              Object RESULT =null;
-
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("attribute_null",10, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
-            }
-          return CUP$ParserSQL$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 24: // attribute_null ::= 
-            {
-              Object RESULT =null;
-
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("attribute_null",10, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
-            }
-          return CUP$ParserSQL$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 25: // type_attribute ::= INTEGER 
-            {
-              Object RESULT =null;
-
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("type_attribute",7, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
-            }
-          return CUP$ParserSQL$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 26: // type_attribute ::= BOOLEAN 
-            {
-              Object RESULT =null;
-
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("type_attribute",7, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
-            }
-          return CUP$ParserSQL$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 27: // type_attribute ::= INT 
-            {
-              Object RESULT =null;
-
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("type_attribute",7, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
-            }
-          return CUP$ParserSQL$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 28: // type_attribute ::= VARCHAR OPEN_P NUMEBERS CLOSE_P 
-            {
-              Object RESULT =null;
-
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("type_attribute",7, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-3)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
-            }
-          return CUP$ParserSQL$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 29: // finalizacion_punto_y_coma ::= PERIOD_AND_AS 
+          case 8: // finalizacion_punto_y_coma ::= PERIOD_AND_AS 
             {
               Object RESULT =null;
 
@@ -539,7 +358,7 @@ class CUP$ParserSQL$actions {
           return CUP$ParserSQL$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 30: // finalizacion_punto_y_coma ::= error 
+          case 9: // finalizacion_punto_y_coma ::= error 
             {
               Object RESULT =null;
 
@@ -548,7 +367,7 @@ class CUP$ParserSQL$actions {
           return CUP$ParserSQL$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 31: // use_ddl ::= CREATE SCHEMA IDENTIFICADOR 
+          case 10: // use_ddl ::= CREATE SCHEMA IDENTIFICADOR 
             {
               Object RESULT =null;
 
@@ -557,7 +376,16 @@ class CUP$ParserSQL$actions {
           return CUP$ParserSQL$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 32: // use_ddl ::= USE SCHEMA IDENTIFICADOR 
+          case 11: // use_ddl ::= CREATE TABLE IDENTIFICADOR OPEN_P various_attributes CLOSE_P 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("use_ddl",4, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-5)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 12: // use_ddl ::= USE SCHEMA IDENTIFICADOR 
             {
               Object RESULT =null;
 
@@ -566,7 +394,7 @@ class CUP$ParserSQL$actions {
           return CUP$ParserSQL$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 33: // use_ddl ::= FOREIGN KEY OPEN_P IDENTIFICADOR CLOSE_P REFERENCES IDENTIFICADOR OPEN_P IDENTIFICADOR CLOSE_P accion_update 
+          case 13: // use_ddl ::= FOREIGN KEY OPEN_P IDENTIFICADOR CLOSE_P REFERENCES IDENTIFICADOR OPEN_P IDENTIFICADOR CLOSE_P accion_update 
             {
               Object RESULT =null;
 
@@ -575,7 +403,7 @@ class CUP$ParserSQL$actions {
           return CUP$ParserSQL$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 34: // use_ddl ::= ALTER TABLE IDENTIFICADOR accion_alter space_use_alter IDENTIFICADOR type_optional_alter 
+          case 14: // use_ddl ::= ALTER TABLE IDENTIFICADOR accion_alter space_use_alter IDENTIFICADOR type_optional_alter 
             {
               Object RESULT =null;
 
@@ -584,7 +412,7 @@ class CUP$ParserSQL$actions {
           return CUP$ParserSQL$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 35: // use_ddl ::= DROP TABLE IDENTIFICADOR 
+          case 15: // use_ddl ::= DROP TABLE IDENTIFICADOR 
             {
               Object RESULT =null;
 
@@ -593,83 +421,263 @@ class CUP$ParserSQL$actions {
           return CUP$ParserSQL$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 36: // alter_use ::= 
+          case 16: // various_attributes ::= various_attributes COMMA atributos_tabla 
             {
               Object RESULT =null;
 
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("alter_use",14, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("various_attributes",8, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-2)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
             }
           return CUP$ParserSQL$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 37: // type_optional_alter ::= 
+          case 17: // various_attributes ::= atributos_tabla 
             {
               Object RESULT =null;
 
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("type_optional_alter",17, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("various_attributes",8, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
             }
           return CUP$ParserSQL$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 38: // type_optional_alter ::= type_attribute 
+          case 18: // atributos_tabla ::= IDENTIFICADOR type_attribute type_privacy 
             {
               Object RESULT =null;
 
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("type_optional_alter",17, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("atributos_tabla",5, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-2)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
             }
           return CUP$ParserSQL$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 39: // type_optional_alter ::= FOREIGN KEY OPEN_P IDENTIFICADOR CLOSE_P REFERENCES IDENTIFICADOR OPEN_P IDENTIFICADOR CLOSE_P accion_update 
+          case 19: // atributos_tabla ::= FOREIGN KEY OPEN_P IDENTIFICADOR CLOSE_P REFERENCES IDENTIFICADOR OPEN_P IDENTIFICADOR CLOSE_P 
             {
               Object RESULT =null;
 
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("type_optional_alter",17, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-10)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("atributos_tabla",5, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-9)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
             }
           return CUP$ParserSQL$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 40: // accion_alter ::= ADD 
+          case 20: // accion_update ::= 
             {
               Object RESULT =null;
 
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("accion_alter",16, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("accion_update",10, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
             }
           return CUP$ParserSQL$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 41: // accion_alter ::= DROP 
+          case 21: // accion_update ::= ON UPDATE accion_fk 
             {
               Object RESULT =null;
 
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("accion_alter",16, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("accion_update",10, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-2)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
             }
           return CUP$ParserSQL$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 42: // accion_alter ::= MODIFY 
+          case 22: // accion_update ::= ON DELETE accion_fk 
             {
               Object RESULT =null;
 
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("accion_alter",16, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("accion_update",10, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-2)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
             }
           return CUP$ParserSQL$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 43: // space_use_alter ::= CONSTRAINT 
+          case 23: // accion_fk ::= SET 
             {
               Object RESULT =null;
 
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("space_use_alter",15, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("accion_fk",11, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
             }
           return CUP$ParserSQL$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 44: // space_use_alter ::= COLUMN 
+          case 24: // set_fk ::= DEFAULT 
             {
               Object RESULT =null;
 
-              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("space_use_alter",15, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("set_fk",12, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 25: // set_fk ::= NULL 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("set_fk",12, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 26: // type_privacy ::= PRIMARY KEY attribute_null 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("type_privacy",7, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-2)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 27: // type_privacy ::= attribute_null 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("type_privacy",7, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 28: // type_privacy ::= NULL 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("type_privacy",7, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 29: // attribute_null ::= NOT NULL 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("attribute_null",9, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-1)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 30: // attribute_null ::= error 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("attribute_null",9, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 31: // attribute_null ::= 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("attribute_null",9, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 32: // type_attribute ::= INTEGER 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("type_attribute",6, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 33: // type_attribute ::= BOOLEAN 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("type_attribute",6, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 34: // type_attribute ::= INT 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("type_attribute",6, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 35: // type_attribute ::= VARCHAR OPEN_P NUMEBERS CLOSE_P 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("type_attribute",6, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-3)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 36: // type_optional_alter ::= 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("type_optional_alter",15, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 37: // type_optional_alter ::= type_attribute 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("type_optional_alter",15, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 38: // type_optional_alter ::= FOREIGN KEY OPEN_P IDENTIFICADOR CLOSE_P REFERENCES IDENTIFICADOR OPEN_P IDENTIFICADOR CLOSE_P accion_update 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("type_optional_alter",15, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-10)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 39: // accion_alter ::= ADD 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("accion_alter",14, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 40: // accion_alter ::= DROP 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("accion_alter",14, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 41: // accion_alter ::= MODIFY 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("accion_alter",14, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 42: // space_use_alter ::= CONSTRAINT 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("space_use_alter",13, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 43: // space_use_alter ::= COLUMN 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("space_use_alter",13, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
+            }
+          return CUP$ParserSQL$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 44: // use_dml ::= INSERT INTO IDENTIFICADOR OPEN_P CLOSE_P VALUES OPEN_P CLOSE_P 
+            {
+              Object RESULT =null;
+
+              CUP$ParserSQL$result = parser.getSymbolFactory().newSymbol("use_dml",16, ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.elementAt(CUP$ParserSQL$top-7)), ((java_cup.runtime.Symbol)CUP$ParserSQL$stack.peek()), RESULT);
             }
           return CUP$ParserSQL$result;
 

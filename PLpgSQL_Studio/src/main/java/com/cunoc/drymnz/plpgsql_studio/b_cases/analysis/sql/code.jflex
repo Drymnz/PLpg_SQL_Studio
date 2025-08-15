@@ -67,6 +67,7 @@ WHOLE = {DIGIT}+
 DECIMAL = {WHOLE}[.]{WHOLE}
 REAL_NUMEBERS = {DECIMAL}|{WHOLE}
 IDENTIFICADOR = [a-zA-Z0-9_]+
+CHARS = "'" ~"'"
 
 
 %%
@@ -129,6 +130,9 @@ IDENTIFICADOR = [a-zA-Z0-9_]+
 // Operadores lógicos
 "AND"          {print("AND");        return new Symbol(SymSQL.AND       , yyline, yycolumn, yytext());}
 "OR"           {print("OR");         return new Symbol(SymSQL.OR        , yyline, yycolumn, yytext());}
+"TRUE"         {print("TRUE");       return new Symbol(SymSQL.TRUE        , yyline, yycolumn, yytext());}
+"FALSE"        {print("FALSE");      return new Symbol(SymSQL.FALSE        , yyline, yycolumn, yytext());}
+
 
 // FINALIZACION 
 ";"            {print(";");         return new Symbol(SymSQL.PERIOD_AND_AS, yyline, yycolumn, yytext());}
@@ -146,6 +150,7 @@ IDENTIFICADOR = [a-zA-Z0-9_]+
 
 {REAL_NUMEBERS} {print("IDENTIFICADOR"); return new Symbol(SymSQL.NUMEBERS     , yyline, yycolumn, yytext());}
 {IDENTIFICADOR} {print("IDENTIFICADOR"); return new Symbol(SymSQL.IDENTIFICADOR, yyline, yycolumn, yytext());}
+{CHARS}         {print("CHARS");         return new Symbol(SymSQL.CHARS         , yyline, yycolumn, yytext());}
 
 /*ERROR LEXICO*/
 [^]                     {

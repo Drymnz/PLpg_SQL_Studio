@@ -48,7 +48,7 @@ private LexemaSQL lexema;
 :}
 
 /* Terminales */
-terminal IDENTIFICADOR,NUMEBERS;
+terminal IDENTIFICADOR,NUMEBERS,CHARS;
 
 // DDL (Data Definition Language) - Definición de Datos
 terminal CONSTRAINT, REFERENCES, FOREIGN, PRIMARY;
@@ -83,32 +83,43 @@ non terminal inicio,finalizacion_punto_y_coma;
 non terminal varias_etiquetas_usar,etiqueta_inicial;
 //SQLTestDDL
 non terminal use_ddl;
-non terminal create_table, atributos_tabla,type_attribute,type_privacy,various_attributes;
+non terminal atributos_tabla,type_attribute,type_privacy,various_attributes;
 non terminal attribute_null;
 non terminal accion_update,accion_fk,set_fk;
-non terminal alter_use,space_use_alter,accion_alter,type_optional_alter;
+non terminal space_use_alter,accion_alter,type_optional_alter;
+///SQLTestDML
+non terminal use_dml;
 /* Gramática */
 start with inicio;
 /**********************************************INICIO DE LA GRAMATICA******************************/
 inicio ::= varias_etiquetas_usar
     |error varias_etiquetas_usar
-    |
+    |/*epsilon*/
     ;
-/**********************************************GRAMATICA DE ESTRUCTURA DE CC******************************/
+/**********************************************GRAMATICA DE ESTRUCTURA DE SQL******************************/
 
 varias_etiquetas_usar::=
 varias_etiquetas_usar etiqueta_inicial
 | etiqueta_inicial
 ;
 
+/**********************************************INICIO DE DDL,DML,DCL******************************/
 etiqueta_inicial ::= use_ddl finalizacion_punto_y_coma
-    |create_table finalizacion_punto_y_coma
-; 
+    |use_dml finalizacion_punto_y_coma
+    ; 
 
-create_table ::= CREATE TABLE IDENTIFICADOR OPEN_P various_attributes CLOSE_P
-    //| CREATE TABLE IDENTIFICADOR (columnas)
+finalizacion_punto_y_coma ::= PERIOD_AND_AS
+    | error
     ;
-
+/************************************************ SQL DDL **************************************************/
+use_ddl ::= CREATE SCHEMA IDENTIFICADOR
+    |CREATE TABLE IDENTIFICADOR OPEN_P various_attributes CLOSE_P
+    |USE SCHEMA IDENTIFICADOR
+    |FOREIGN KEY OPEN_P IDENTIFICADOR CLOSE_P REFERENCES IDENTIFICADOR OPEN_P IDENTIFICADOR CLOSE_P accion_update
+    |ALTER TABLE IDENTIFICADOR accion_alter space_use_alter IDENTIFICADOR type_optional_alter
+    |DROP TABLE IDENTIFICADOR
+    ;
+// ATRIBUTO DE LA TABLA
 various_attributes ::= various_attributes COMMA atributos_tabla
     |atributos_tabla 
     ; 
@@ -145,25 +156,14 @@ type_attribute ::= INTEGER
     | VARCHAR OPEN_P NUMEBERS CLOSE_P
     ;
 
-finalizacion_punto_y_coma ::= PERIOD_AND_AS
-    | error
-;
+// ATRIBUTO DE LA TABLA
 
-//SQL DDL
-use_ddl ::= CREATE SCHEMA IDENTIFICADOR
-    | USE SCHEMA IDENTIFICADOR
-    |FOREIGN KEY OPEN_P IDENTIFICADOR CLOSE_P REFERENCES IDENTIFICADOR OPEN_P IDENTIFICADOR CLOSE_P accion_update
-    |ALTER TABLE IDENTIFICADOR accion_alter space_use_alter IDENTIFICADOR type_optional_alter
-    |DROP TABLE IDENTIFICADOR
-    ;
-
-
-
-alter_use::= 
+/* alter_use::= 
     //| CHECK 
     //| UNIQUE 
-    ;
+    ; */
 
+// FORMA ALTER
 type_optional_alter ::= /*epsilon*/
     |type_attribute
     |FOREIGN KEY OPEN_P IDENTIFICADOR CLOSE_P REFERENCES IDENTIFICADOR OPEN_P IDENTIFICADOR CLOSE_P accion_update 
@@ -178,3 +178,12 @@ space_use_alter ::= CONSTRAINT
     |COLUMN
     ;
 
+/************************************************ SQL DML **************************************************/
+use_dml ::= INSERT INTO IDENTIFICADOR OPEN_P  CLOSE_P VALUES OPEN_P CLOSE_P ;
+
+attribute_insert::= CHARS
+    |NUMEBERS
+    |IDENTIFICADOR
+    |
+    |error
+    ;
