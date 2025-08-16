@@ -138,7 +138,9 @@ CHARS = "'" ~"'"
 ";"            {print(";");         return new Symbol(SymSQL.PERIOD_AND_AS, yyline, yycolumn, yytext());}
 "("            {print("(");         return new Symbol(SymSQL.OPEN_P       , yyline, yycolumn, yytext());}
 ")"            {print(")");         return new Symbol(SymSQL.CLOSE_P      , yyline, yycolumn, yytext());}
-","            {print(",");         return new Symbol(SymSQL.COMMA, yyline, yycolumn, yytext());}
+","            {print(",");         return new Symbol(SymSQL.COMMA        , yyline, yycolumn, yytext());}
+"="            {print("=");         return new Symbol(SymSQL.EQUAL        , yyline, yycolumn, yytext());}
+
 
 
 "{_-=>"         {

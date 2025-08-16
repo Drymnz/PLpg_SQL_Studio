@@ -48,7 +48,7 @@ private LexemaSQL lexema;
 :}
 
 /* Terminales */
-terminal IDENTIFICADOR,NUMEBERS,CHARS;
+terminal IDENTIFICADOR,NUMEBERS,CHARS,TRUE,FALSE;
 
 // DDL (Data Definition Language) - Definición de Datos
 terminal CONSTRAINT, REFERENCES, FOREIGN, PRIMARY;
@@ -74,7 +74,7 @@ terminal DECLARE;
 
 // Operadores lógicos
 terminal AND, OR;
-terminal PERIOD_AND_AS, OPEN_P, CLOSE_P,COMMA;
+terminal PERIOD_AND_AS, OPEN_P, CLOSE_P,COMMA,EQUAL;
 //tomar
 terminal OUT_HARVESTING,START_HARVESTING;
 /* No terminales */
@@ -88,7 +88,8 @@ non terminal attribute_null;
 non terminal accion_update,accion_fk,set_fk;
 non terminal space_use_alter,accion_alter,type_optional_alter;
 ///SQLTestDML
-non terminal use_dml;
+non terminal several_parameters,attribute_insert;
+non terminal use_dml,insert_parameters,insert_value,logical_connector,continuation_UPDATE,logical_connector_loop;
 /* Gramática */
 start with inicio;
 /**********************************************INICIO DE LA GRAMATICA******************************/
@@ -179,7 +180,42 @@ space_use_alter ::= CONSTRAINT
     ;
 
 /************************************************ SQL DML **************************************************/
-use_dml ::= INSERT INTO IDENTIFICADOR OPEN_P  CLOSE_P VALUES OPEN_P CLOSE_P ;
+use_dml ::= INSERT INTO IDENTIFICADOR OPEN_P several_parameters CLOSE_P VALUES OPEN_P insert_parameters  CLOSE_P 
+    |UPDATE IDENTIFICADOR SET IDENTIFICADOR EQUAL insert_value WHERE IDENTIFICADOR EQUAL insert_value continuation_UPDATE
+    |DELETE FROM IDENTIFICADOR WHERE IDENTIFICADOR EQUAL insert_value continuation_UPDATE 
+    |SELECT 
+    ;
+
+
+
+continuation_UPDATE ::= 
+    |logical_connector_loop
+    ;
+
+logical_connector ::= AND IDENTIFICADOR EQUAL insert_value
+    |OR IDENTIFICADOR EQUAL insert_value
+    ;
+
+logical_connector_loop ::= logical_connector_loop logical_connector
+    | logical_connector
+    ;
+
+insert_parameters ::= insert_parameters COMMA insert_value
+    |insert_value
+    ;
+
+insert_value ::= NUMEBERS
+    |IDENTIFICADOR
+    |CHARS
+    |TRUE
+    |FALSE
+    |NULL
+    |error
+    ;
+
+several_parameters::= several_parameters COMMA attribute_insert
+    |attribute_insert
+    ;
 
 attribute_insert::= CHARS
     |NUMEBERS
