@@ -67,6 +67,7 @@ WHOLE = {DIGIT}+
 DECIMAL = {WHOLE}[.]{WHOLE}
 REAL_NUMEBERS = {DECIMAL}|{WHOLE}
 IDENTIFICADOR = [a-zA-Z0-9_]+
+ALIAS = [a-z]
 CHARS = "'" ~"'"
 
 
@@ -139,7 +140,12 @@ CHARS = "'" ~"'"
 "("            {print("(");         return new Symbol(SymSQL.OPEN_P       , yyline, yycolumn, yytext());}
 ")"            {print(")");         return new Symbol(SymSQL.CLOSE_P      , yyline, yycolumn, yytext());}
 ","            {print(",");         return new Symbol(SymSQL.COMMA        , yyline, yycolumn, yytext());}
+"."            {print(".");         return new Symbol(SymSQL.POINT        , yyline, yycolumn, yytext());}
 "="            {print("=");         return new Symbol(SymSQL.EQUAL        , yyline, yycolumn, yytext());}
+"*"            {print("*");         return new Symbol(SymSQL.ASTERISK     , yyline, yycolumn, yytext());}
+"c"            {print("*");         return new Symbol(SymSQL.ASTERISK     , yyline, yycolumn, yytext());}
+{ALIAS}        {print("ALIAS");     return new Symbol(SymSQL.ALIAS        , yyline, yycolumn, yytext());}
+
 
 
 

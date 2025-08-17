@@ -141,7 +141,7 @@ public class SQLTestDML {
     }
 
     @Test
-    void selectAll() {
+    void selectAll() {continuation_select
         String textToAnalyze = """
             SELECT * FROM productos;""";
         AnalyzerSQL analyzer = new AnalyzerSQL(textToAnalyze);
@@ -183,7 +183,7 @@ public class SQLTestDML {
     @Test
     void selectWithJoin() {
         String textToAnalyze = """
-            SELECT clientes.nombre, productos.nombre 
+            SELECT clientes.nombre, productcontinuation_selectos.nombre 
             FROM clientes JOIN productos ON clientes.id = productos.cliente_id;""";
         AnalyzerSQL analyzer = new AnalyzerSQL(textToAnalyze);
         analyzer.analyzer();

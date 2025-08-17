@@ -9,59 +9,62 @@ package com.cunoc.drymnz.plpgsql_studio.b_cases.analysis.sql;
 public class SymSQL {
   /* terminals */
   public static final int CHARS = 4;
-  public static final int INTEGER = 22;
-  public static final int INT = 24;
-  public static final int UPDATE = 29;
-  public static final int DELETE = 30;
-  public static final int SCHEMA = 12;
-  public static final int WHERE = 32;
-  public static final int AND = 45;
-  public static final int NOT = 41;
+  public static final int ASTERISK = 53;
+  public static final int INTEGER = 23;
+  public static final int INT = 25;
+  public static final int UPDATE = 30;
+  public static final int DELETE = 31;
+  public static final int SCHEMA = 13;
+  public static final int WHERE = 33;
+  public static final int AND = 46;
+  public static final int NOT = 42;
   public static final int IDENTIFICADOR = 2;
-  public static final int ALTER = 14;
-  public static final int OPEN_P = 48;
-  public static final int USE = 19;
-  public static final int COLUMN = 15;
-  public static final int OR = 46;
-  public static final int COMMA = 50;
-  public static final int GRANT = 37;
-  public static final int REFERENCES = 8;
-  public static final int ON = 40;
-  public static final int REVOKE = 36;
-  public static final int FOREIGN = 9;
-  public static final int VARCHAR = 21;
-  public static final int SELECT = 27;
-  public static final int PERIOD_AND_AS = 47;
-  public static final int LEFT = 25;
+  public static final int ALTER = 15;
+  public static final int OPEN_P = 49;
+  public static final int USE = 20;
+  public static final int COLUMN = 16;
+  public static final int OR = 47;
+  public static final int COMMA = 51;
+  public static final int GRANT = 38;
+  public static final int REFERENCES = 9;
+  public static final int ON = 41;
+  public static final int REVOKE = 37;
+  public static final int FOREIGN = 10;
+  public static final int VARCHAR = 22;
+  public static final int SELECT = 28;
+  public static final int PERIOD_AND_AS = 48;
+  public static final int LEFT = 26;
   public static final int EOF = 0;
-  public static final int BOOLEAN = 23;
-  public static final int EQUAL = 51;
-  public static final int TABLE = 13;
+  public static final int BOOLEAN = 24;
+  public static final int EQUAL = 52;
+  public static final int TABLE = 14;
   public static final int TRUE = 5;
   public static final int error = 1;
-  public static final int ADD = 18;
-  public static final int VALUES = 31;
-  public static final int NULL = 42;
-  public static final int JOIN = 26;
-  public static final int DECLARE = 44;
+  public static final int ADD = 19;
+  public static final int VALUES = 32;
+  public static final int NULL = 43;
+  public static final int JOIN = 27;
+  public static final int DECLARE = 45;
   public static final int NUMEBERS = 3;
-  public static final int FROM = 33;
-  public static final int INTO = 34;
-  public static final int CONSTRAINT = 7;
-  public static final int TO = 39;
-  public static final int START_HARVESTING = 53;
-  public static final int INSERT = 28;
-  public static final int CREATE = 11;
-  public static final int DEFAULT = 43;
-  public static final int DROP = 16;
-  public static final int MODIFY = 20;
-  public static final int KEY = 17;
-  public static final int USER = 38;
+  public static final int FROM = 34;
+  public static final int INTO = 35;
+  public static final int CONSTRAINT = 8;
+  public static final int POINT = 54;
+  public static final int TO = 40;
+  public static final int START_HARVESTING = 56;
+  public static final int INSERT = 29;
+  public static final int CREATE = 12;
+  public static final int DEFAULT = 44;
+  public static final int DROP = 17;
+  public static final int MODIFY = 21;
+  public static final int KEY = 18;
+  public static final int ALIAS = 7;
+  public static final int USER = 39;
   public static final int FALSE = 6;
-  public static final int PRIMARY = 10;
-  public static final int OUT_HARVESTING = 52;
-  public static final int SET = 35;
-  public static final int CLOSE_P = 49;
+  public static final int PRIMARY = 11;
+  public static final int OUT_HARVESTING = 55;
+  public static final int SET = 36;
+  public static final int CLOSE_P = 50;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -70,6 +73,7 @@ public class SymSQL {
   "CHARS",
   "TRUE",
   "FALSE",
+  "ALIAS",
   "CONSTRAINT",
   "REFERENCES",
   "FOREIGN",
@@ -115,6 +119,8 @@ public class SymSQL {
   "CLOSE_P",
   "COMMA",
   "EQUAL",
+  "ASTERISK",
+  "POINT",
   "OUT_HARVESTING",
   "START_HARVESTING"
   };

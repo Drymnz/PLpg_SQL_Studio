@@ -48,7 +48,7 @@ private LexemaSQL lexema;
 :}
 
 /* Terminales */
-terminal IDENTIFICADOR,NUMEBERS,CHARS,TRUE,FALSE;
+terminal IDENTIFICADOR,NUMEBERS,CHARS,TRUE,FALSE,ALIAS;
 
 // DDL (Data Definition Language) - Definición de Datos
 terminal CONSTRAINT, REFERENCES, FOREIGN, PRIMARY;
@@ -74,7 +74,7 @@ terminal DECLARE;
 
 // Operadores lógicos
 terminal AND, OR;
-terminal PERIOD_AND_AS, OPEN_P, CLOSE_P,COMMA,EQUAL;
+terminal PERIOD_AND_AS, OPEN_P, CLOSE_P,COMMA,EQUAL,ASTERISK,POINT;
 //tomar
 terminal OUT_HARVESTING,START_HARVESTING;
 /* No terminales */
@@ -90,6 +90,7 @@ non terminal space_use_alter,accion_alter,type_optional_alter;
 ///SQLTestDML
 non terminal several_parameters,attribute_insert;
 non terminal use_dml,insert_parameters,insert_value,logical_connector,continuation_UPDATE,logical_connector_loop;
+non terminal identificador_loop,select_parameters,continuation_select,attribute_possibility;
 /* Gramática */
 start with inicio;
 /**********************************************INICIO DE LA GRAMATICA******************************/
@@ -183,9 +184,28 @@ space_use_alter ::= CONSTRAINT
 use_dml ::= INSERT INTO IDENTIFICADOR OPEN_P several_parameters CLOSE_P VALUES OPEN_P insert_parameters  CLOSE_P 
     |UPDATE IDENTIFICADOR SET IDENTIFICADOR EQUAL insert_value WHERE IDENTIFICADOR EQUAL insert_value continuation_UPDATE
     |DELETE FROM IDENTIFICADOR WHERE IDENTIFICADOR EQUAL insert_value continuation_UPDATE 
-    |SELECT 
+    |SELECT select_parameters FROM IDENTIFICADOR continuation_select
     ;
 
+continuation_select ::= 
+    |WHERE logical_connector_loop
+    |WHERE IDENTIFICADOR EQUAL insert_value continuation_UPDATE
+    |JOIN IDENTIFICADOR ON select_parameters EQUAL select_parameters
+    |ALIAS continuation_select
+    |LEFT JOIN IDENTIFICADOR ON select_parameters EQUAL select_parameters
+    ;
+
+select_parameters ::= identificador_loop
+    |ASTERISK
+    ;
+
+identificador_loop ::= identificador_loop COMMA IDENTIFICADOR attribute_possibility
+    |IDENTIFICADOR attribute_possibility
+    ;
+
+attribute_possibility ::= POINT IDENTIFICADOR
+    | /*epsilon*/
+    ;
 
 
 continuation_UPDATE ::= 
