@@ -143,8 +143,6 @@ CHARS = "'" ~"'"
 "."            {print(".");         return new Symbol(SymSQL.POINT        , yyline, yycolumn, yytext());}
 "="            {print("=");         return new Symbol(SymSQL.EQUAL        , yyline, yycolumn, yytext());}
 "*"            {print("*");         return new Symbol(SymSQL.ASTERISK     , yyline, yycolumn, yytext());}
-"c"            {print("*");         return new Symbol(SymSQL.ASTERISK     , yyline, yycolumn, yytext());}
-{ALIAS}        {print("ALIAS");     return new Symbol(SymSQL.ALIAS        , yyline, yycolumn, yytext());}
 
 
 
@@ -155,8 +153,8 @@ CHARS = "'" ~"'"
                     return new Symbol(SymSQL.START_HARVESTING ,yyline,yycolumn,yytext());
                 }
 
-
-{REAL_NUMEBERS} {print("IDENTIFICADOR"); return new Symbol(SymSQL.NUMEBERS     , yyline, yycolumn, yytext());}
+{ALIAS}        {print("ALIAS");          return new Symbol(SymSQL.ALIAS        , yyline, yycolumn, yytext());}
+{REAL_NUMEBERS} {print("REAL_NUMEBERS"); return new Symbol(SymSQL.NUMEBERS     , yyline, yycolumn, yytext());}
 {IDENTIFICADOR} {print("IDENTIFICADOR"); return new Symbol(SymSQL.IDENTIFICADOR, yyline, yycolumn, yytext());}
 {CHARS}         {print("CHARS");         return new Symbol(SymSQL.CHARS         , yyline, yycolumn, yytext());}
 

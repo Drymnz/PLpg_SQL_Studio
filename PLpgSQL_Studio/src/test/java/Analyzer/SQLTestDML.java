@@ -52,7 +52,7 @@ public class SQLTestDML {
     @Test
     void updateSimple() {
         String textToAnalyze = """
-            UPDATE clientes SET activo = FALSE WHERE id = 1;""";
+            UPDATE clientes SET actattribute_possibilityivo = FALSE WHERE id = 1;""";
         AnalyzerSQL analyzer = new AnalyzerSQL(textToAnalyze);
         analyzer.analyzer();
         Assertions.assertThat(analyzer.isError()).isFalse();
@@ -141,7 +141,7 @@ public class SQLTestDML {
     }
 
     @Test
-    void selectAll() {continuation_select
+    void selectAll() {
         String textToAnalyze = """
             SELECT * FROM productos;""";
         AnalyzerSQL analyzer = new AnalyzerSQL(textToAnalyze);
