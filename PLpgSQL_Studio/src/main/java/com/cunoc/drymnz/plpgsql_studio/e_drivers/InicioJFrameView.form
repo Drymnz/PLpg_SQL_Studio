@@ -34,7 +34,9 @@
                       <Component id="JBGuardar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="JBAbrier" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="625" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButtonAnalyzer" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="514" max="32767" attributes="0"/>
                   </Group>
                   <Component id="JPanelConsole" alignment="0" max="32767" attributes="0"/>
               </Group>
@@ -49,6 +51,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="JBGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="JBAbrier" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonAnalyzer" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="TextArea" max="32767" attributes="0"/>
@@ -116,5 +119,13 @@
         </DimensionLayout>
       </Layout>
     </Container>
+    <Component class="javax.swing.JButton" name="jButtonAnalyzer">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Analizador"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAnalyzerActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

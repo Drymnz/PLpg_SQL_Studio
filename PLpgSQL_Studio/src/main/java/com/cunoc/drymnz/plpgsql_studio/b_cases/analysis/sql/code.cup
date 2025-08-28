@@ -56,7 +56,7 @@ terminal CREATE, SCHEMA, TABLE, ALTER, COLUMN;
 terminal DROP, KEY, ADD, USE,MODIFY;
 
 // Tipos de datos
-terminal VARCHAR, INTEGER, BOOLEAN, INT;
+terminal VARCHAR, INTEGER, BOOLEAN, INT,DECIMAL,DATE;
 
 // DML (Data Manipulation Language) - Manipulación de Datos
 terminal LEFT, JOIN, SELECT, INSERT, UPDATE;
@@ -75,8 +75,8 @@ terminal DECLARE;
 // Operadores lógicos
 terminal AND, OR;
 terminal PERIOD_AND_AS, OPEN_P, CLOSE_P,COMMA,EQUAL,ASTERISK,POINT;
-//tomar
-terminal OUT_HARVESTING,START_HARVESTING;
+/// ambio de estado
+terminal OUT_HARVESTING, START_HARVESTING;
 /* No terminales */
 //inicio
 non terminal inicio,finalizacion_punto_y_coma;
@@ -85,14 +85,13 @@ non terminal varias_etiquetas_usar,etiqueta_inicial;
 non terminal use_ddl;
 non terminal atributos_tabla,type_attribute,type_privacy,various_attributes;
 non terminal attribute_null;
-non terminal accion_update,accion_fk,set_fk;
-non terminal space_use_alter,accion_alter,tyRojope_optional_alter;
+non terminal accion_update,accion_fk;
+non terminal space_use_alter,accion_alter;
 ///SQLTestDML
 non terminal several_parameters,attribute_insert;
 non terminal use_dml,insert_parameters,insert_value,logical_connector,continuation_UPDATE,logical_connector_loop;
 non terminal identificador_loop,select_parameters,continuation_select,attribute_possibility;
-non terminal continuation_alias,identificador_asterisk,optimization_loop;
-non terminal use_alias;
+non terminal optimization_loop;
 non terminal type_optional_alter;
 ///SQL Test DCL
 non terminal use_dcl;
@@ -150,10 +149,6 @@ accion_update ::= /*epsilon*/
 accion_fk ::= SET 
     ;
 
-set_fk ::= DEFAULT
-    |NULL
-    ;
-
 type_privacy ::= PRIMARY KEY attribute_null
     |attribute_null
     |NULL
@@ -168,6 +163,8 @@ type_attribute ::= INTEGER
     | BOOLEAN
     | INT
     | VARCHAR OPEN_P NUMEBERS CLOSE_P
+    | DECIMAL
+    | DATE
     ;
 
 // ATRIBUTO DE LA TABLA
@@ -207,9 +204,6 @@ continuation_select ::=
     |LEFT JOIN select_parameters ON select_parameters EQUAL select_parameters
     ;
 
-use_alias ::= 
-    |select_parameters
-    ;
 
 select_parameters ::= identificador_loop
     ;

@@ -60,6 +60,7 @@ public class InicioJFrameView extends javax.swing.JFrame {
         JBGuardar = new javax.swing.JButton();
         JBAbrier = new javax.swing.JButton();
         JPanelConsole = new javax.swing.JPanel();
+        jButtonAnalyzer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 102, 102));
@@ -104,6 +105,13 @@ public class InicioJFrameView extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        jButtonAnalyzer.setText("Analizador");
+        jButtonAnalyzer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAnalyzerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,7 +124,9 @@ public class InicioJFrameView extends javax.swing.JFrame {
                         .addComponent(JBGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JBAbrier)
-                        .addGap(0, 625, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonAnalyzer)
+                        .addGap(0, 514, Short.MAX_VALUE))
                     .addComponent(JPanelConsole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -126,7 +136,8 @@ public class InicioJFrameView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBGuardar)
-                    .addComponent(JBAbrier))
+                    .addComponent(JBAbrier)
+                    .addComponent(jButtonAnalyzer))
                 .addGap(18, 18, 18)
                 .addComponent(TextArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -145,10 +156,15 @@ public class InicioJFrameView extends javax.swing.JFrame {
         this.eFileManager.openFileOfText(this.JFrame.getUseFile(), this.JFrame.getTextArea().getText(), this);
     }//GEN-LAST:event_JBAbrierActionPerformed
 
+    private void jButtonAnalyzerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnalyzerActionPerformed
+        this.eFileManager.analyzer(this.JFrame.getTextArea().getText());
+    }//GEN-LAST:event_jButtonAnalyzerActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBAbrier;
     private javax.swing.JButton JBGuardar;
     private javax.swing.JPanel JPanelConsole;
     private javax.swing.JPanel TextArea;
+    private javax.swing.JButton jButtonAnalyzer;
     // End of variables declaration//GEN-END:variables
 }

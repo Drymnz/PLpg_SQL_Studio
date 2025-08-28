@@ -34,7 +34,7 @@ import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.Token;
     }
       
     private void print(String token) {
-        System.out.println(token+ " < " + yytext() + " > <Linea\"" + (yyline + 1) + "\">" + "<Columna\"" + (yycolumn+1) + "\">");
+       // System.out.println(token+ " < " + yytext() + " > <Linea\"" + (yyline + 1) + "\">" + "<Columna\"" + (yycolumn+1) + "\">");
     }
 
     private void addError(){
@@ -69,11 +69,17 @@ REAL_NUMEBERS = {DECIMAL}|{WHOLE}
 IDENTIFICADOR = [a-zA-Z0-9_]+
 ALIAS = [a-z]
 CHARS = "'" ~"'"
+COMMENT_SIMPLE = "--" ~"\n"
+COMMENT_MULTILINE = "/*" ~"*/"
 
 
 %%
 <YYINITIAL> {
 {espacio}       {}
+
+{COMMENT_SIMPLE} {}
+{COMMENT_MULTILINE} {}
+
 
 "DECLARE"      {print("DECLARE");    return new Symbol(SymSQL.DECLARE   , yyline, yycolumn, yytext());}
 
@@ -97,6 +103,8 @@ CHARS = "'" ~"'"
 "VARCHAR"      {print("VARCHAR");    return new Symbol(SymSQL.VARCHAR   , yyline, yycolumn, yytext());}
 "INTEGER"      {print("INTEGER");    return new Symbol(SymSQL.INTEGER   , yyline, yycolumn, yytext());}
 "BOOLEAN"      {print("BOOLEAN");    return new Symbol(SymSQL.BOOLEAN   , yyline, yycolumn, yytext());}
+"DECIMAL"      {print("DECIMAL");    return new Symbol(SymSQL.DECIMAL   , yyline, yycolumn, yytext());}
+"DATE"         {print("DATE");       return new Symbol(SymSQL.DATE      , yyline, yycolumn, yytext());}
 "INT"          {print("INT");        return new Symbol(SymSQL.INT       , yyline, yycolumn, yytext());}
 
 // DML (Data Manipulation Language) - Manipulación de Datos

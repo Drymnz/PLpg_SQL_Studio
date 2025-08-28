@@ -6,6 +6,7 @@ package com.cunoc.drymnz.plpgsql_studio.d_adaptadores;
 
 import com.cunoc.drymnz.plpgsql_studio.b_cases.StoreFile;
 import com.cunoc.drymnz.plpgsql_studio.b_cases.UploadFile;
+import com.cunoc.drymnz.plpgsql_studio.c_interfaces.analyzer.AnalyzerSQL;
 import com.cunoc.drymnz.plpgsql_studio.e_drivers.InicioJFrameView;
 import java.io.File;
 import javax.swing.JFileChooser;
@@ -71,5 +72,10 @@ public class ExternalFileManager {
             return fileChooser.getSelectedFile();
         }
         return null;
+    }
+    
+    public void analyzer(String text){
+        AnalyzerSQL analyzer = new AnalyzerSQL(text);
+        analyzer.analyzer();
     }
 }
