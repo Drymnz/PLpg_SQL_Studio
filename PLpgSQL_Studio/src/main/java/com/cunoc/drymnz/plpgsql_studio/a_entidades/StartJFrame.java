@@ -21,6 +21,11 @@ public class StartJFrame {
     private InicioJFrameView view;
     private File userFile;
 
+    /*
+     * Constructor
+     * @param view
+     * @param userFile
+     */
     public StartJFrame(InicioJFrameView view) {
         this.view = view;
         this.textArea = new RSyntaxTextArea();

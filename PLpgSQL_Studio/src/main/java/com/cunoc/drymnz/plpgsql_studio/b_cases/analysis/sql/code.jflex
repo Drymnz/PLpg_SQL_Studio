@@ -75,6 +75,8 @@ CHARS = "'" ~"'"
 <YYINITIAL> {
 {espacio}       {}
 
+"DECLARE"      {print("DECLARE");    return new Symbol(SymSQL.DECLARE   , yyline, yycolumn, yytext());}
+
 // DDL (Data Definition Language) - Definición de Datos
 "CONSTRAINT"   {print("CONSTRAINT"); return new Symbol(SymSQL.CONSTRAINT, yyline, yycolumn, yytext());}
 "REFERENCES"   {print("REFERENCES"); return new Symbol(SymSQL.REFERENCES, yyline, yycolumn, yytext());}
@@ -124,9 +126,6 @@ CHARS = "'" ~"'"
 "NULL"         {print("NULL");       return new Symbol(SymSQL.NULL      , yyline, yycolumn, yytext());}
 "DEFAULT"      {print("DEFAULT");    return new Symbol(SymSQL.DEFAULT   , yyline, yycolumn, yytext());}
 
-// PL/pgSQL {IDENTIFICADOR} {print("IDENTIFICADOR"); return new Symbol(SymSQL.IDENTIFICADOR, yyline, yycolumn, yytext());}
-- Declaraciones y Control
-"DECLARE"      {print("DECLARE");    return new Symbol(SymSQL.DECLARE   , yyline, yycolumn, yytext());}
 
 // Operadores lógicos
 "AND"          {print("AND");        return new Symbol(SymSQL.AND       , yyline, yycolumn, yytext());}

@@ -86,13 +86,18 @@ non terminal use_ddl;
 non terminal atributos_tabla,type_attribute,type_privacy,various_attributes;
 non terminal attribute_null;
 non terminal accion_update,accion_fk,set_fk;
-non terminal space_use_alter,accion_alter,type_optional_alter;
+non terminal space_use_alter,accion_alter,tyRojope_optional_alter;
 ///SQLTestDML
 non terminal several_parameters,attribute_insert;
 non terminal use_dml,insert_parameters,insert_value,logical_connector,continuation_UPDATE,logical_connector_loop;
 non terminal identificador_loop,select_parameters,continuation_select,attribute_possibility;
 non terminal continuation_alias,identificador_asterisk,optimization_loop;
 non terminal use_alias;
+non terminal type_optional_alter;
+///SQL Test DCL
+non terminal use_dcl;
+non terminal optimization_create,option_grant,atributo_or_all;
+non terminal identificador_or_point;
 /* Gramática */
 start with inicio;
 /**********************************************INICIO DE LA GRAMATICA******************************/
@@ -110,18 +115,23 @@ varias_etiquetas_usar etiqueta_inicial
 /**********************************************INICIO DE DDL,DML,DCL******************************/
 etiqueta_inicial ::= use_ddl finalizacion_punto_y_coma
     |use_dml finalizacion_punto_y_coma
+    |use_dcl finalizacion_punto_y_coma
     ; 
 
 finalizacion_punto_y_coma ::= PERIOD_AND_AS
     | error
     ;
 /************************************************ SQL DDL **************************************************/
-use_ddl ::= CREATE SCHEMA IDENTIFICADOR
-    |CREATE TABLE IDENTIFICADOR OPEN_P various_attributes CLOSE_P
+use_ddl ::= CREATE optimization_create
     |USE SCHEMA IDENTIFICADOR
     |FOREIGN KEY OPEN_P IDENTIFICADOR CLOSE_P REFERENCES IDENTIFICADOR OPEN_P IDENTIFICADOR CLOSE_P accion_update
     |ALTER TABLE IDENTIFICADOR accion_alter space_use_alter IDENTIFICADOR type_optional_alter
     |DROP TABLE IDENTIFICADOR
+    ;
+
+optimization_create ::= TABLE IDENTIFICADOR OPEN_P various_attributes CLOSE_P
+    |SCHEMA IDENTIFICADOR
+    |USER IDENTIFICADOR
     ;
 // ATRIBUTO DE LA TABLA
 various_attributes ::= various_attributes COMMA atributos_tabla
@@ -252,3 +262,24 @@ attribute_insert::= CHARS
     |
     |error
     ;
+/************************************************ SQL DCL **************************************************/
+use_dcl ::= GRANT option_grant ON identificador_or_point TO IDENTIFICADOR
+    | REVOKE option_grant ON identificador_or_point FROM IDENTIFICADOR
+    |DECLARE IDENTIFICADOR type_attribute
+    ;
+
+identificador_or_point ::= IDENTIFICADOR POINT atributo_or_all
+    |IDENTIFICADOR
+    ;
+
+option_grant ::= INSERT
+    |SELECT
+    |UPDATE
+    |DELETE
+    |REFERENCES
+    ;
+
+atributo_or_all ::= ASTERISK
+    |IDENTIFICADOR
+    ;
+
