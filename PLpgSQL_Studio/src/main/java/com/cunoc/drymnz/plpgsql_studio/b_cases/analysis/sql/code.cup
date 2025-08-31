@@ -92,7 +92,7 @@ non terminal several_parameters,attribute_insert;
 non terminal use_dml,insert_parameters,insert_value,logical_connector,continuation_UPDATE,logical_connector_loop;
 non terminal identificador_loop,select_parameters,continuation_select,attribute_possibility;
 non terminal optimization_loop,loop_set,possibility_alias;
-non terminal type_optional_alter;
+non terminal type_optional_alter,optimization_where;
 ///SQL Test DCL
 non terminal use_dcl;
 non terminal optimization_create,option_grant,atributo_or_all;
@@ -197,11 +197,15 @@ use_dml ::= INSERT INTO select_parameters OPEN_P several_parameters CLOSE_P VALU
     ;
 
 continuation_select ::= 
-    |WHERE logical_connector_loop
-    |WHERE select_parameters EQUAL insert_value continuation_UPDATE
+    |WHERE optimization_where
     |JOIN select_parameters possibility_alias ON select_parameters possibility_alias EQUAL select_parameters continuation_select
     |ALIAS continuation_select
     |LEFT JOIN select_parameters possibility_alias ON select_parameters EQUAL select_parameters
+    ;
+
+optimization_where ::= 
+     logical_connector_loop
+    |select_parameters EQUAL insert_value continuation_UPDATE
     ;
 
 loop_set ::= loop_set COMMA IDENTIFICADOR EQUAL insert_value
