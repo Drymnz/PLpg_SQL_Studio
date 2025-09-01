@@ -7,8 +7,10 @@ import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.ErrorTypeInTheInterp
 import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.ReportErrorInterpreter;
 import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.Token;
 import com.cunoc.drymnz.plpgsql_studio.b_cases.analysis.InterpretSyntaticError;
-
-
+import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.DataValue;
+import com.cunoc.drymnz.plpgsql_studio.b_cases.analysis.AnalyzerSemantico;
+import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.operations.ListTypeOperations;
+import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.ListTypeData;
 
 /**
      * ***STAR CODE*******
@@ -17,6 +19,7 @@ import com.cunoc.drymnz.plpgsql_studio.b_cases.analysis.InterpretSyntaticError;
 
 private ArrayList<ReportErrorInterpreter> listError = new ArrayList();
 private LexemaSQL lexema;
+private AnalyzerSemantico analyzerSemantico = new AnalyzerSemantico(); 
 
 	  public ParserSQL(LexemaSQL Lexema) {
         super(Lexema);
@@ -42,13 +45,37 @@ private LexemaSQL lexema;
         return this.listError;
     }
 
+    public AnalyzerSemantico getAnalyzerSemantico(){
+        return this.analyzerSemantico;
+    }
+
+    private Token getToken(Symbol cur_token){
+        int line = cur_token.left+1;
+        int columna = cur_token.right +1;
+        String lexema = (this.cur_token.value!=null)? this.cur_token.value.toString() : "Token no existe";
+        return new Token(line, columna, lexema);
+    }
+
     /**
      * ***END CODE*******
      */
 :}
 
+// Operadores lógicos
+terminal AND_O, OR_O;
+terminal PERIOD_AND_AS, OPEN_P, CLOSE_P,COMMA,EQUAL,ASTERISK,POINT;
+/* OPERADORES */
+//Operadores logicos
+terminal SAME_AS,NOT_THE_SAME,LESS_THAN,LESS_THAN_EQUAL,GREATER_THAN,GREATER_THAN_EQUAL,OR,AND,NOT_O;
+terminal SAME_AS_O;
+//Operadores aritmetico
+terminal ADDITION ,SUBTRACTION ,DIVISION ,MULTIPLICATION ;
+//agrupacion
+terminal PARENTHESIS_CLOSE,PARENTHESIS_OPEN;
+
+
 /* Terminales */
-terminal IDENTIFICADOR,NUMEBERS,CHARS,TRUE,FALSE,ALIAS;
+terminal IDENTIFICADOR,DECIMAL_V,WHOLE,CHARS,TRUE,FALSE,ALIAS;
 
 // DDL (Data Definition Language) - Definición de Datos
 terminal CONSTRAINT, REFERENCES, FOREIGN, PRIMARY;
@@ -68,15 +95,9 @@ terminal TO, ON;
 
 // Restricciones y modificadores
 terminal NOT, NULL,DEFAULT;
-
 // PL/pgSQL - Declaraciones y Control
 terminal DECLARE;
 
-// Operadores lógicos
-terminal AND, OR;
-terminal PERIOD_AND_AS, OPEN_P, CLOSE_P,COMMA,EQUAL,ASTERISK,POINT;
-/// ambio de estado
-terminal OUT_HARVESTING, START_HARVESTING;
 /* No terminales */
 //inicio
 non terminal inicio,finalizacion_punto_y_coma;
@@ -97,6 +118,17 @@ non terminal type_optional_alter,optimization_where;
 non terminal use_dcl;
 non terminal optimization_create,option_grant,atributo_or_all;
 non terminal identificador_or_point;
+/*OPERACIONES*/
+non terminal operaciones,parentesis,fucion_id,vacio_interno;
+non terminal funciones_defecto;
+/*************************************PRECEDENCIA******************************************************/
+precedence left ADDITION, SUBTRACTION;
+precedence left DIVISION, MULTIPLICATION;
+precedence left SAME_AS_O, NOT_THE_SAME , LESS_THAN , LESS_THAN_EQUAL, GREATER_THAN , GREATER_THAN_EQUAL;
+precedence left OR_O;
+precedence left AND_O;
+precedence left NOT_O;
+precedence left OPEN_P,CLOSE_P;
 /* Gramática */
 start with inicio;
 /**********************************************INICIO DE LA GRAMATICA******************************/
@@ -152,6 +184,7 @@ accion_fk ::= SET
 type_privacy ::= PRIMARY KEY attribute_null
     |attribute_null
     |NULL
+    |DEFAULT
     ;
 
 attribute_null ::=    NOT NULL 
@@ -162,7 +195,7 @@ attribute_null ::=    NOT NULL
 type_attribute ::= INTEGER
     | BOOLEAN
     | INT
-    | VARCHAR OPEN_P NUMEBERS CLOSE_P
+    | VARCHAR OPEN_P operaciones CLOSE_P
     | DECIMAL
     | DATE
     ;
@@ -248,12 +281,9 @@ insert_parameters ::= insert_parameters COMMA insert_value
     |insert_value
     ;
 
-insert_value ::= NUMEBERS
-    |IDENTIFICADOR
-    |CHARS
-    |TRUE
-    |FALSE
+insert_value ::= operaciones
     |NULL
+    |DEFAULT
     |error
     ;
 
@@ -261,9 +291,8 @@ several_parameters::= several_parameters COMMA attribute_insert
     |attribute_insert
     ;
 
-attribute_insert::= CHARS
-    |NUMEBERS
-    |IDENTIFICADOR
+attribute_insert::= 
+    operaciones
     |
     |error
     ;
@@ -288,3 +317,183 @@ atributo_or_all ::= ASTERISK
     |IDENTIFICADOR
     ;
 
+/**********************************************ESTRUCTURA DE LA OPERACIONES******************************/
+operaciones::= 
+// ==
+ operaciones:leftString SAME_AS_O            operaciones:rightString
+{:
+ if (leftString != null && rightString != null) {
+            DataValue leftDataValue = (DataValue) leftString;
+            DataValue rightDataValue = (DataValue) rightString;
+            RESULT = analyzerSemantico.operationsDatas(leftDataValue, rightDataValue,ListTypeOperations.SAME_AS,getToken(this.parser.cur_token));
+          } else {
+            RESULT = null;
+          }
+:}
+ //!=
+|operaciones:leftString NOT_THE_SAME       operaciones:rightString
+{:
+ if (leftString != null && rightString != null) {
+            DataValue leftDataValue = (DataValue) leftString;
+            DataValue rightDataValue = (DataValue) rightString;
+RESULT = analyzerSemantico.operationsDatas(leftDataValue, rightDataValue,ListTypeOperations.NOT_THE_SAME,getToken(this.parser.cur_token));
+} else {
+            RESULT = null;
+          }
+:}
+
+//<
+|operaciones:leftString LESS_THAN          operaciones:rightString
+{:
+ if (leftString != null && rightString != null) {
+            DataValue leftDataValue = (DataValue) leftString;
+            DataValue rightDataValue = (DataValue) rightString;
+RESULT = analyzerSemantico.operationsDatas(leftDataValue, rightDataValue,ListTypeOperations.LESS_THAN,getToken(this.parser.cur_token));
+} else {
+            RESULT = null;
+          }
+:}
+
+//<=
+|operaciones:leftString LESS_THAN_EQUAL    operaciones:rightString
+{:
+ if (leftString != null && rightString != null) {
+            DataValue leftDataValue = (DataValue) leftString;
+            DataValue rightDataValue = (DataValue) rightString;
+RESULT = analyzerSemantico.operationsDatas(leftDataValue, rightDataValue,ListTypeOperations.LESS_THAN_EQUAL,getToken(this.parser.cur_token));
+} else {
+            RESULT = null;
+          }
+:}
+
+//>
+|operaciones:leftString GREATER_THAN       operaciones:rightString
+{:
+ if (leftString != null && rightString != null) {
+            DataValue leftDataValue = (DataValue) leftString;
+            DataValue rightDataValue = (DataValue) rightString;
+RESULT = analyzerSemantico.operationsDatas(leftDataValue, rightDataValue,ListTypeOperations.GREATER_THAN,getToken(this.parser.cur_token));
+} else {
+            RESULT = null;
+          }
+:}
+
+//>=
+|operaciones:leftString GREATER_THAN_EQUAL operaciones:rightString
+{:
+ if (leftString != null && rightString != null) {
+            DataValue leftDataValue = (DataValue) leftString;
+            DataValue rightDataValue = (DataValue) rightString;
+RESULT = analyzerSemantico.operationsDatas(leftDataValue, rightDataValue,ListTypeOperations.GREATER_THAN_EQUAL,getToken(this.parser.cur_token));
+} else {
+            RESULT = null;
+          }
+:}
+
+//||
+|operaciones:leftString OR_O                 operaciones:rightString
+{:
+ if (leftString != null && rightString != null) {
+            DataValue leftDataValue = (DataValue) leftString;
+            DataValue rightDataValue = (DataValue) rightString;
+RESULT = analyzerSemantico.operationsDatas(leftDataValue, rightDataValue,ListTypeOperations.OR,getToken(this.parser.cur_token));
+} else {
+            RESULT = null;
+          }
+:}
+
+//&&
+|operaciones:leftString AND_O                operaciones:rightString
+{:
+ if (leftString != null && rightString != null) {
+            DataValue leftDataValue = (DataValue) leftString;
+            DataValue rightDataValue = (DataValue) rightString;
+RESULT = analyzerSemantico.operationsDatas(leftDataValue, rightDataValue,ListTypeOperations.AND,getToken(this.parser.cur_token));
+} else {
+            RESULT = null;
+          }
+:}
+//! 
+|NOT_O operaciones:rightString 
+{:
+ if (rightString != null) {
+            DataValue rightDataValue = (DataValue) rightString;
+RESULT = analyzerSemantico.operationsDatas(null, rightDataValue,ListTypeOperations.NOT,getToken(this.parser.cur_token));
+} else {
+            RESULT = null;
+          }
+:}
+//+
+|operaciones:leftString ADDITION           operaciones:rightString
+{:
+ if (leftString != null && rightString != null) {
+            DataValue leftDataValue = (DataValue) leftString;
+            DataValue rightDataValue = (DataValue) rightString;
+RESULT = analyzerSemantico.operationsDatas(leftDataValue, rightDataValue,ListTypeOperations.ADDITION,getToken(this.parser.cur_token));
+} else {
+            RESULT = null;
+          }
+:}
+//-
+///OPERACION DE REATA
+|operaciones:leftString SUBTRACTION        operaciones:rightString
+{:
+ if (leftString != null && rightString != null) {
+            DataValue leftDataValue = (DataValue) leftString;
+            DataValue rightDataValue = (DataValue) rightString;
+RESULT = analyzerSemantico.operationsDatas(leftDataValue, rightDataValue,ListTypeOperations.SUBTRACTION,getToken(this.parser.cur_token));
+} else {
+            RESULT = null;
+          }
+:}
+// /
+|operaciones:leftString DIVISION           operaciones:rightString
+{:
+ if (leftString != null && rightString != null) {
+            DataValue leftDataValue = (DataValue) leftString;
+            DataValue rightDataValue = (DataValue) rightString;
+RESULT = analyzerSemantico.operationsDatas(leftDataValue, rightDataValue,ListTypeOperations.DIVISION,getToken(this.parser.cur_token));
+} else {
+            RESULT = null;
+          }
+          :}// *
+|operaciones:leftString MULTIPLICATION     operaciones:rightString
+{:
+ if (leftString != null && rightString != null) {
+            DataValue leftDataValue = (DataValue) leftString;
+            DataValue rightDataValue = (DataValue) rightString;
+RESULT = analyzerSemantico.operationsDatas(leftDataValue, rightDataValue,ListTypeOperations.MULTIPLICATION,getToken(this.parser.cur_token));
+} else {
+            RESULT = null;
+          }
+:}
+// ( *** )
+|PARENTHESIS_OPEN operaciones:a PARENTHESIS_CLOSE {:RESULT = a;:}
+//Datos
+//|TEXT:a {:RESULT = new DataValue(a.toString(),ListTypeData.STRING);:}
+|TRUE:a {:RESULT = new DataValue(a.toString(),ListTypeData.BOOLEAN);:}
+|FALSE:a {:RESULT = new DataValue(a.toString(),ListTypeData.BOOLEAN);:}
+|DECIMAL_V:a {:RESULT = new DataValue(a.toString(),ListTypeData.DECIMAL);:}
+|WHOLE:a {:RESULT = new DataValue(a.toString(),ListTypeData.INTEGER);:}
+|SUBTRACTION DECIMAL_V:a {:RESULT = new DataValue("-"+a.toString(),ListTypeData.DECIMAL);:}
+|SUBTRACTION WHOLE:a {:RESULT = new DataValue("-"+a.toString(),ListTypeData.INTEGER);:}
+|CHARS:a {:RESULT = new DataValue(a.toString(),ListTypeData.CHAR);:}
+|parentesis:a {:RESULT = a;:}
+|funciones_defecto:a {:RESULT = a;:}
+//{:RESULT = a;:}
+; 
+
+parentesis ::= 
+IDENTIFICADOR:id fucion_id:funcion_id  
+//Con este emetodo return el valor del dato para operacion.
+{:RESULT = analyzerSemantico.retrieveDataVariableOrFunction(id.toString(),getToken(this.parser.cur_token));:};
+
+fucion_id::= OPEN_P vacio_interno:a {:RESULT = a;:}
+|{:RESULT = null;:}
+;
+
+vacio_interno::= operaciones:a OPEN_P 
+{:RESULT = a;:}
+|CLOSE_P 
+{:RESULT = null;:}
+;

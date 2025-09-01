@@ -1,4 +1,5 @@
-package com.cunoc.drymnz.plpgsql_studio.c_interfaces.analyzer.operations;
+package com.cunoc.drymnz.plpgsql_studio.b_cases.analysis.operations;
+
 
 import java.util.ArrayList;
 
@@ -8,7 +9,7 @@ import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.ReportErrorInterpret
 import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.Token;
 import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.operations.ListTypeOperations;
 import com.cunoc.drymnz.plpgsql_studio.b_cases.analysis.AnalyzerSemantico;
-import com.cunoc.drymnz.plpgsql_studio.c_interfaces.analyzer.OperationAnalyzer;
+import com.cunoc.drymnz.plpgsql_studio.b_cases.analysis.OperationAnalyzer;
 
 public class Operation {
     private AnalyzerSemantico table;

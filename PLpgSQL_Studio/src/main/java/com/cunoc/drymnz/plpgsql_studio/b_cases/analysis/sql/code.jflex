@@ -80,7 +80,6 @@ COMMENT_MULTILINE = "/*" ~"*/"
 {COMMENT_SIMPLE} {}
 {COMMENT_MULTILINE} {}
 
-
 "DECLARE"      {print("DECLARE");    return new Symbol(SymSQL.DECLARE   , yyline, yycolumn, yytext());}
 
 // DDL (Data Definition Language) - Definición de Datos
@@ -121,11 +120,9 @@ COMMENT_MULTILINE = "/*" ~"*/"
 "SET"          {print("SET");        return new Symbol(SymSQL.SET       , yyline, yycolumn, yytext());}
 
 // DCL (Data Control Language) - Control de Datos
-"CREATE"       {print("CREATE");     return new Symbol(SymSQL.CREATE    , yyline, yycolumn, yytext());}
 "REVOKE"       {print("REVOKE");     return new Symbol(SymSQL.REVOKE    , yyline, yycolumn, yytext());}
 "GRANT"        {print("GRANT");      return new Symbol(SymSQL.GRANT     , yyline, yycolumn, yytext());}
 "USER"         {print("USER");       return new Symbol(SymSQL.USER      , yyline, yycolumn, yytext());}
-"FROM"         {print("FROM");       return new Symbol(SymSQL.FROM      , yyline, yycolumn, yytext());}
 "TO"           {print("TO");         return new Symbol(SymSQL.TO        , yyline, yycolumn, yytext());}
 "ON"           {print("ON");         return new Symbol(SymSQL.ON        , yyline, yycolumn, yytext());}
 
@@ -152,16 +149,25 @@ COMMENT_MULTILINE = "/*" ~"*/"
 "*"            {print("*");         return new Symbol(SymSQL.ASTERISK     , yyline, yycolumn, yytext());}
 
 
+/*Operadores*/
+//operadores logicos
+"=="        {print("=="  ); return new Symbol(SymSQL.SAME_AS_O ,yyline,yycolumn,yytext());}
+"!="        {print("!="  ); return new Symbol(SymSQL.NOT_THE_SAME ,yyline,yycolumn,yytext());}
+"<"         {print("<"   ); return new Symbol(SymSQL.LESS_THAN ,yyline,yycolumn,yytext());}
+"<="        {print("<="  ); return new Symbol(SymSQL.LESS_THAN_EQUAL ,yyline,yycolumn,yytext());}
+">"         {print(">"   ); return new Symbol(SymSQL.GREATER_THAN ,yyline,yycolumn,yytext());}
+">="        {print(">="  ); return new Symbol(SymSQL.GREATER_THAN_EQUAL ,yyline,yycolumn,yytext());}
+"&&"        {print("&&"  ); return new Symbol(SymSQL.AND ,yyline,yycolumn,yytext());}
+"!"         {print("!"   ); return new Symbol(SymSQL.NOT_O ,yyline,yycolumn,yytext());}
+//operadores aritmeticos
+"+" {print("+"); return new Symbol(SymSQL.ADDITION ,yyline,yycolumn,yytext());}
+"-" {print("-"); return new Symbol(SymSQL.SUBTRACTION ,yyline,yycolumn,yytext());}
+"/" {print("/"); return new Symbol(SymSQL.DIVISION ,yyline,yycolumn,yytext());}
 
 
-"{_-=>"         {
-                    yybegin(DATA_COLLECTION);
-                    print("{_-=>"); 
-                    return new Symbol(SymSQL.START_HARVESTING ,yyline,yycolumn,yytext());
-                }
-
-{ALIAS}        {print("ALIAS");          return new Symbol(SymSQL.ALIAS        , yyline, yycolumn, yytext());}
-{REAL_NUMEBERS} {print("REAL_NUMEBERS"); return new Symbol(SymSQL.NUMEBERS     , yyline, yycolumn, yytext());}
+{ALIAS}         {print("ALIAS");          return new Symbol(SymSQL.ALIAS        , yyline, yycolumn, yytext());}
+{DECIMAL}       {print("REAL_NUMEBERS"); return new Symbol(SymSQL.DECIMAL_V     , yyline, yycolumn, yytext());}
+{WHOLE}         {print("REAL_NUMEBERS"); return new Symbol(SymSQL.WHOLE     , yyline, yycolumn, yytext());}
 {IDENTIFICADOR} {print("IDENTIFICADOR"); return new Symbol(SymSQL.IDENTIFICADOR, yyline, yycolumn, yytext());}
 {CHARS}         {print("CHARS");         return new Symbol(SymSQL.CHARS         , yyline, yycolumn, yytext());}
 
@@ -171,14 +177,4 @@ COMMENT_MULTILINE = "/*" ~"*/"
                         print("ERROR");
                         addError();
                         }
-}
-
-<DATA_COLLECTION>{
-"<=-_}"         {
-                    yybegin(YYINITIAL);
-                    print("<=-_}"); 
-                    return new Symbol(SymSQL.OUT_HARVESTING ,yyline,yycolumn,yytext());
-                }
-[^]     { dataCollected += yytext();}
-.       { dataCollected += yytext();}
 }

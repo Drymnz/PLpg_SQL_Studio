@@ -8,70 +8,111 @@ package com.cunoc.drymnz.plpgsql_studio.b_cases.analysis.sql;
 /** CUP generated class containing symbol constants. */
 public class SymSQL {
   /* terminals */
-  public static final int CHARS = 4;
-  public static final int ASTERISK = 55;
-  public static final int INTEGER = 23;
-  public static final int INT = 25;
-  public static final int UPDATE = 32;
-  public static final int DATE = 27;
-  public static final int DELETE = 33;
-  public static final int SCHEMA = 13;
-  public static final int WHERE = 35;
-  public static final int AND = 48;
-  public static final int NOT = 44;
-  public static final int IDENTIFICADOR = 2;
-  public static final int ALTER = 15;
-  public static final int OPEN_P = 51;
-  public static final int USE = 20;
-  public static final int COLUMN = 16;
-  public static final int OR = 49;
-  public static final int COMMA = 53;
-  public static final int GRANT = 40;
-  public static final int REFERENCES = 9;
-  public static final int ON = 43;
-  public static final int REVOKE = 39;
-  public static final int FOREIGN = 10;
-  public static final int VARCHAR = 22;
-  public static final int SELECT = 30;
-  public static final int PERIOD_AND_AS = 50;
-  public static final int LEFT = 28;
+  public static final int IDENTIFICADOR = 27;
+  public static final int LEFT = 54;
+  public static final int DIVISION = 23;
+  public static final int FROM = 62;
+  public static final int LESS_THAN = 13;
+  public static final int COLUMN = 42;
+  public static final int GREATER_THAN = 15;
+  public static final int TABLE = 40;
+  public static final int SCHEMA = 39;
+  public static final int LESS_THAN_EQUAL = 14;
+  public static final int COMMA = 7;
+  public static final int JOIN = 55;
+  public static final int REFERENCES = 35;
+  public static final int CLOSE_P = 6;
+  public static final int INTEGER = 49;
+  public static final int DECLARE = 73;
+  public static final int MULTIPLICATION = 24;
+  public static final int FALSE = 32;
+  public static final int NOT = 70;
+  public static final int WHOLE = 29;
+  public static final int NOT_THE_SAME = 12;
+  public static final int SUBTRACTION = 22;
+  public static final int INTO = 63;
+  public static final int GREATER_THAN_EQUAL = 16;
+  public static final int SELECT = 56;
+  public static final int DECIMAL_V = 28;
+  public static final int ALIAS = 33;
+  public static final int TRUE = 31;
+  public static final int ALTER = 41;
+  public static final int CHARS = 30;
+  public static final int EQUAL = 8;
+  public static final int USE = 46;
+  public static final int DELETE = 59;
+  public static final int DECIMAL = 52;
+  public static final int BOOLEAN = 50;
+  public static final int ADD = 45;
+  public static final int ASTERISK = 9;
+  public static final int POINT = 10;
+  public static final int PARENTHESIS_CLOSE = 25;
+  public static final int INT = 51;
+  public static final int GRANT = 66;
+  public static final int NULL = 71;
+  public static final int SAME_AS = 11;
   public static final int EOF = 0;
-  public static final int BOOLEAN = 24;
-  public static final int DECIMAL = 26;
-  public static final int EQUAL = 54;
-  public static final int TABLE = 14;
-  public static final int TRUE = 5;
+  public static final int WHERE = 61;
+  public static final int SAME_AS_O = 20;
+  public static final int DEFAULT = 72;
+  public static final int OR_O = 3;
+  public static final int PERIOD_AND_AS = 4;
+  public static final int OPEN_P = 5;
+  public static final int DATE = 53;
+  public static final int MODIFY = 47;
+  public static final int OR = 17;
+  public static final int SET = 64;
   public static final int error = 1;
-  public static final int ADD = 19;
-  public static final int VALUES = 34;
-  public static final int NULL = 45;
-  public static final int JOIN = 29;
-  public static final int DECLARE = 47;
-  public static final int NUMEBERS = 3;
-  public static final int FROM = 36;
-  public static final int INTO = 37;
-  public static final int CONSTRAINT = 8;
-  public static final int POINT = 56;
-  public static final int TO = 42;
-  public static final int START_HARVESTING = 58;
-  public static final int INSERT = 31;
-  public static final int CREATE = 12;
-  public static final int DEFAULT = 46;
-  public static final int DROP = 17;
-  public static final int MODIFY = 21;
-  public static final int KEY = 18;
-  public static final int ALIAS = 7;
-  public static final int USER = 41;
-  public static final int FALSE = 6;
-  public static final int PRIMARY = 11;
-  public static final int OUT_HARVESTING = 57;
-  public static final int SET = 38;
-  public static final int CLOSE_P = 52;
+  public static final int ON = 69;
+  public static final int ADDITION = 21;
+  public static final int AND_O = 2;
+  public static final int VALUES = 60;
+  public static final int CREATE = 38;
+  public static final int PARENTHESIS_OPEN = 26;
+  public static final int VARCHAR = 48;
+  public static final int NOT_O = 19;
+  public static final int UPDATE = 58;
+  public static final int INSERT = 57;
+  public static final int FOREIGN = 36;
+  public static final int PRIMARY = 37;
+  public static final int AND = 18;
+  public static final int TO = 68;
+  public static final int DROP = 43;
+  public static final int KEY = 44;
+  public static final int CONSTRAINT = 34;
+  public static final int USER = 67;
+  public static final int REVOKE = 65;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
+  "AND_O",
+  "OR_O",
+  "PERIOD_AND_AS",
+  "OPEN_P",
+  "CLOSE_P",
+  "COMMA",
+  "EQUAL",
+  "ASTERISK",
+  "POINT",
+  "SAME_AS",
+  "NOT_THE_SAME",
+  "LESS_THAN",
+  "LESS_THAN_EQUAL",
+  "GREATER_THAN",
+  "GREATER_THAN_EQUAL",
+  "OR",
+  "AND",
+  "NOT_O",
+  "SAME_AS_O",
+  "ADDITION",
+  "SUBTRACTION",
+  "DIVISION",
+  "MULTIPLICATION",
+  "PARENTHESIS_CLOSE",
+  "PARENTHESIS_OPEN",
   "IDENTIFICADOR",
-  "NUMEBERS",
+  "DECIMAL_V",
+  "WHOLE",
   "CHARS",
   "TRUE",
   "FALSE",
@@ -115,18 +156,7 @@ public class SymSQL {
   "NOT",
   "NULL",
   "DEFAULT",
-  "DECLARE",
-  "AND",
-  "OR",
-  "PERIOD_AND_AS",
-  "OPEN_P",
-  "CLOSE_P",
-  "COMMA",
-  "EQUAL",
-  "ASTERISK",
-  "POINT",
-  "OUT_HARVESTING",
-  "START_HARVESTING"
+  "DECLARE"
   };
 }
 
