@@ -121,6 +121,8 @@ non terminal identificador_or_point;
 /*OPERACIONES*/
 non terminal operaciones,parentesis,fucion_id,vacio_interno;
 non terminal funciones_defecto;
+/*PL / PG SQL*/
+non terminal start_pl_sql;
 /*************************************PRECEDENCIA******************************************************/
 precedence left ADDITION, SUBTRACTION;
 precedence left DIVISION, MULTIPLICATION;
@@ -147,6 +149,7 @@ varias_etiquetas_usar etiqueta_inicial
 etiqueta_inicial ::= use_ddl finalizacion_punto_y_coma
     |use_dml finalizacion_punto_y_coma
     |use_dcl finalizacion_punto_y_coma
+    |start_pl_sql
     ; 
 
 finalizacion_punto_y_coma ::= PERIOD_AND_AS
@@ -190,14 +193,6 @@ type_privacy ::= PRIMARY KEY attribute_null
 attribute_null ::=    NOT NULL 
     |error
     | /*epsilon*/
-    ;
-
-type_attribute ::= INTEGER
-    | BOOLEAN
-    | INT
-    | VARCHAR OPEN_P operaciones CLOSE_P
-    | DECIMAL
-    | DATE
     ;
 
 // ATRIBUTO DE LA TABLA
@@ -299,7 +294,6 @@ attribute_insert::=
 /************************************************ SQL DCL **************************************************/
 use_dcl ::= GRANT option_grant ON identificador_or_point TO IDENTIFICADOR
     | REVOKE option_grant ON identificador_or_point FROM IDENTIFICADOR
-    |DECLARE IDENTIFICADOR type_attribute
     ;
 
 identificador_or_point ::= IDENTIFICADOR POINT atributo_or_all
@@ -497,3 +491,14 @@ vacio_interno::= operaciones:a OPEN_P
 |CLOSE_P 
 {:RESULT = null;:}
 ;
+
+/************************************************ PL/pgSQL **************************************************/
+start_pl_sql ::= DECLARE IDENTIFICADOR type_attribute;
+
+type_attribute ::= INTEGER
+    | BOOLEAN
+    | INT
+    | VARCHAR OPEN_P operaciones CLOSE_P
+    | DECIMAL
+    | DATE
+    ;
