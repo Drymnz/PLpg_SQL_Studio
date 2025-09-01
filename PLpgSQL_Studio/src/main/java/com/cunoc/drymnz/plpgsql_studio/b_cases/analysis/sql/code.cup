@@ -11,6 +11,8 @@ import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.DataValue;
 import com.cunoc.drymnz.plpgsql_studio.b_cases.analysis.AnalyzerSemantico;
 import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.operations.ListTypeOperations;
 import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.ListTypeData;
+import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.operations.ListsDefaultFunctionOperations;
+
 
 /**
      * ***STAR CODE*******
@@ -20,6 +22,15 @@ import com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.ListTypeData;
 private ArrayList<ReportErrorInterpreter> listError = new ArrayList();
 private LexemaSQL lexema;
 private AnalyzerSemantico analyzerSemantico = new AnalyzerSemantico(); 
+
+ ///
+    private boolean mode = false;
+    private String procedure = "";
+    private int executionNumber = 0;
+    private boolean exitProcedure = true;
+
+        private ArrayList<String> listID = new ArrayList();
+    ///
 
 	  public ParserSQL(LexemaSQL Lexema) {
         super(Lexema);
@@ -96,8 +107,10 @@ terminal TO, ON;
 // Restricciones y modificadores
 terminal NOT, NULL,DEFAULT;
 // PL/pgSQL - Declaraciones y Control
-terminal DECLARE;
-
+terminal DECLARE,BRACKETS_OPEN,BRACKETS_CLOSE;
+terminal RAISE,NOTICE,WARNING,EXCEPTION;
+terminal FOR,IN,LOOP,END;
+terminal IF,THEN,ELSE;
 /* No terminales */
 //inicio
 non terminal inicio,finalizacion_punto_y_coma;
@@ -120,9 +133,44 @@ non terminal optimization_create,option_grant,atributo_or_all;
 non terminal identificador_or_point;
 /*OPERACIONES*/
 non terminal operaciones,parentesis,fucion_id,vacio_interno;
-non terminal funciones_defecto;
 /*PL / PG SQL*/
 non terminal start_pl_sql;
+non terminal instrucciones;
+
+// --- FUNCIONES ---
+non terminal funcion;
+non terminal ejecucion;
+non terminal parametro_funcion;
+non terminal bucle_parametros;
+non terminal parametro;
+non terminal bucle_funcione;
+
+// --- DECLARACIONES ---
+non terminal declaracion;
+non terminal derivando_declaracion;
+non terminal bucle_id;
+non terminal tipos_datos;
+
+// --- ASIGNACIONES ---
+non terminal asignar_variable;
+non terminal asignar;
+
+// --- FUNCIONES POR DEFECTO ---
+non terminal funciones_defecto;
+non terminal bucle_insert,bucle_inicio;
+non terminal datos_insert;
+
+// --- SENTENCIAS DE CONTROL ---
+non terminal sentencias_control;
+non terminal realizar_operaciones;
+
+// --- IF / ELSE ---
+non terminal sentencia_if;
+non terminal use_else;
+non terminal sentencia_else;
+non terminal sentencia_control_interno_if;
+non terminal vacio_sentincia_interna;
+
 /*************************************PRECEDENCIA******************************************************/
 precedence left ADDITION, SUBTRACTION;
 precedence left DIVISION, MULTIPLICATION;
@@ -493,7 +541,7 @@ vacio_interno::= operaciones:a OPEN_P
 ;
 
 /************************************************ PL/pgSQL **************************************************/
-start_pl_sql ::= DECLARE IDENTIFICADOR type_attribute;
+start_pl_sql ::=instrucciones;
 
 type_attribute ::= INTEGER
     | BOOLEAN
@@ -502,3 +550,173 @@ type_attribute ::= INTEGER
     | DECIMAL
     | DATE
     ;
+instrucciones::= 
+funcion
+| DECLARE declaracion
+| asignar_variable
+| sentencias_control
+| funciones_defecto PERIOD_AND_AS
+;
+
+//  FUNCTION_calc(               )                     [           ]
+funcion::= IDENTIFICADOR:id PARENTHESIS_OPEN parametro_funcion ejecucion 
+{:
+RESULT = id;
+String userIde = id.toString();
+analyzerSemantico.registerVariable(userIde,new DataValue(userIde, ListTypeData.VOID),getToken(this.parser.cur_token),mode,procedure,executionNumber);
+if(exitProcedure){
+  procedure = userIde;
+  exitProcedure = false;
+}
+:}
+; 
+
+ejecucion::= BRACKETS_OPEN  bucle_funcione:bu   
+|PERIOD_AND_AS 
+;
+
+parametro_funcion::= PARENTHESIS_CLOSE
+|bucle_parametros PARENTHESIS_CLOSE
+;
+
+bucle_parametros::= bucle_parametros COMMA parametro
+|parametro
+;
+
+parametro::= tipos_datos IDENTIFICADOR;
+
+bucle_funcione::= BRACKETS_CLOSE
+{:
+if(!exitProcedure){
+  exitProcedure = true;
+  procedure= "main";
+}
+:}
+|bucle_inicio BRACKETS_CLOSE
+{:
+if(!exitProcedure ){
+  exitProcedure = true;
+  procedure= "main";
+}
+:}
+;
+
+// DECLARACION
+declaracion::= derivando_declaracion tipos_datos:type  asignar:valorUsar 
+{:
+if(type!=null){
+    ListTypeData typeData = (ListTypeData) type;
+    DataValue data = (valorUsar!=null)? (DataValue) valorUsar : new DataValue("", typeData);
+    analyzerSemantico.registerVariables(listID,data,getToken(this.parser.cur_token),mode,procedure,executionNumber);
+    mode = false;
+}
+listID = new ArrayList();	
+:}
+; 
+
+derivando_declaracion ::= bucle_id;
+
+bucle_id ::= bucle_id COMMA IDENTIFICADOR:a
+{:listID.add(a.toString());:}
+|IDENTIFICADOR:a
+{:listID.add(a.toString());:}
+;
+
+tipos_datos ::= 
+INTEGER 
+{:RESULT = ListTypeData.INTEGER;:}
+|DECIMAL 
+{:RESULT = ListTypeData.DECIMAL;:}
+|BOOLEAN 
+{:RESULT = ListTypeData.BOOLEAN;:}
+|VARCHAR OPEN_P operaciones CLOSE_P
+{:RESULT = ListTypeData.CHAR;:}
+|INT
+{:RESULT = ListTypeData.INTEGER;:}
+|DATE
+{:RESULT = ListTypeData.DATE;:}
+; 
+
+// DECLARACION ASIGNACION
+asignar_variable::= IDENTIFICADOR:id EQUAL operaciones:dope PERIOD_AND_AS 
+{:
+if(id != null && dope != null){
+DataValue dopeDataValue = (DataValue) dope;
+analyzerSemantico.assignNewData(id.toString(),dopeDataValue,getToken(this.parser.cur_token));
+}
+:}
+; 
+
+asignar::=  PERIOD_AND_AS
+{:RESULT = null;:}
+|EQUAL operaciones:a PERIOD_AND_AS  
+{:RESULT = a;:}
+; 
+
+// Funciones por defecto
+funciones_defecto::= 
+RAISE   NOTICE operaciones:parametro
+{:
+if(parametro!=null){
+DataValue parametroDataValue = (DataValue) parametro;
+RESULT = analyzerSemantico.getFunctionResult(parametroDataValue, ListsDefaultFunctionOperations.ALERT_INFO,getToken(this.parser.cur_token));
+}
+:}
+;
+
+bucle_insert ::= bucle_insert COMMA datos_insert
+|datos_insert
+;
+
+datos_insert::= IDENTIFICADOR
+|WHOLE
+|DECIMAL
+|CHARS
+;
+// SENTENCIAS DE CONTROL
+sentencias_control::= 
+// if 
+sentencia_if
+// FOR
+|FOR ALIAS   IN operaciones POINT POINT operaciones LOOP operaciones  sentencia_control_interno_if
+;
+
+/// SENTENCIA DE IF
+sentencia_if::= 
+IF realizar_operaciones THEN sentencia_control_interno_if:end
+{: analyzerSemantico.andIf(true);:}
+|use_else sentencia_else
+{: analyzerSemantico.andIf(true);:}
+;
+
+use_else::= ELSE
+{: analyzerSemantico.andIf(!analyzerSemantico.getIf_instruc());:}
+
+; 
+
+realizar_operaciones::= PARENTHESIS_OPEN   operaciones:leftString  PARENTHESIS_CLOSE
+{:
+ if (leftString != null && leftString instanceof DataValue) {
+            DataValue operation = (DataValue) leftString;
+            RESULT = operation ;
+            analyzerSemantico.ifOperation(operation, getToken(this.parser.cur_token));
+          } else {
+            RESULT = null;
+          }
+:}
+;
+
+sentencia_else::=  vacio_sentincia_interna 
+|instrucciones:end
+;
+
+sentencia_control_interno_if::= instrucciones:end END LOOP
+{:RESULT = false;:}
+;
+
+vacio_sentincia_interna ::= bucle_inicio END 
+{:RESULT = false;:}
+|END
+{:RESULT = false;:}
+;
+

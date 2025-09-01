@@ -16,6 +16,7 @@ public class SymSQL {
   public static final int COLUMN = 42;
   public static final int GREATER_THAN = 15;
   public static final int TABLE = 40;
+  public static final int RAISE = 76;
   public static final int SCHEMA = 39;
   public static final int LESS_THAN_EQUAL = 14;
   public static final int COMMA = 7;
@@ -24,10 +25,13 @@ public class SymSQL {
   public static final int CLOSE_P = 6;
   public static final int INTEGER = 49;
   public static final int DECLARE = 73;
+  public static final int LOOP = 82;
   public static final int MULTIPLICATION = 24;
   public static final int FALSE = 32;
   public static final int NOT = 70;
   public static final int WHOLE = 29;
+  public static final int THEN = 85;
+  public static final int BRACKETS_OPEN = 74;
   public static final int NOT_THE_SAME = 12;
   public static final int SUBTRACTION = 22;
   public static final int INTO = 63;
@@ -43,7 +47,10 @@ public class SymSQL {
   public static final int DELETE = 59;
   public static final int DECIMAL = 52;
   public static final int BOOLEAN = 50;
+  public static final int FOR = 80;
+  public static final int BRACKETS_CLOSE = 75;
   public static final int ADD = 45;
+  public static final int ELSE = 86;
   public static final int ASTERISK = 9;
   public static final int POINT = 10;
   public static final int PARENTHESIS_CLOSE = 25;
@@ -58,6 +65,7 @@ public class SymSQL {
   public static final int OR_O = 3;
   public static final int PERIOD_AND_AS = 4;
   public static final int OPEN_P = 5;
+  public static final int IN = 81;
   public static final int DATE = 53;
   public static final int MODIFY = 47;
   public static final int OR = 17;
@@ -65,16 +73,21 @@ public class SymSQL {
   public static final int error = 1;
   public static final int ON = 69;
   public static final int ADDITION = 21;
+  public static final int IF = 84;
+  public static final int END = 83;
   public static final int AND_O = 2;
   public static final int VALUES = 60;
   public static final int CREATE = 38;
   public static final int PARENTHESIS_OPEN = 26;
   public static final int VARCHAR = 48;
+  public static final int EXCEPTION = 79;
   public static final int NOT_O = 19;
   public static final int UPDATE = 58;
   public static final int INSERT = 57;
+  public static final int NOTICE = 77;
   public static final int FOREIGN = 36;
   public static final int PRIMARY = 37;
+  public static final int WARNING = 78;
   public static final int AND = 18;
   public static final int TO = 68;
   public static final int DROP = 43;
@@ -156,7 +169,20 @@ public class SymSQL {
   "NOT",
   "NULL",
   "DEFAULT",
-  "DECLARE"
+  "DECLARE",
+  "BRACKETS_OPEN",
+  "BRACKETS_CLOSE",
+  "RAISE",
+  "NOTICE",
+  "WARNING",
+  "EXCEPTION",
+  "FOR",
+  "IN",
+  "LOOP",
+  "END",
+  "IF",
+  "THEN",
+  "ELSE"
   };
 }
 

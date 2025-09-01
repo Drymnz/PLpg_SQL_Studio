@@ -1,9 +1,9 @@
-package com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer;
+package com.cunoc.drymnz.plpgsql_studio.a_entidades.analyzer.operations;
 
 public enum ListTypeData {
-     //VARIABLES
+    //VARIABLES
     INTEGER,STRING,DECIMAL,CHAR,BOOLEAN,
-    NULL,DATE,
+    NULL,
     //FUNCION
     VOID,
     ID

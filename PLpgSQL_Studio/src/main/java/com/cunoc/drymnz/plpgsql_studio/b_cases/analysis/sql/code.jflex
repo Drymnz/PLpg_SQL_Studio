@@ -80,7 +80,15 @@ COMMENT_MULTILINE = "/*" ~"*/"
 {COMMENT_SIMPLE} {}
 {COMMENT_MULTILINE} {}
 
-"DECLARE"      {print("DECLARE");    return new Symbol(SymSQL.DECLARE   , yyline, yycolumn, yytext());}
+"DECLARE"       {print("DECLARE");      return new Symbol(SymSQL.DECLARE   , yyline, yycolumn, yytext());}
+"FOR"           {print("FOR");          return new Symbol(SymSQL.FOR   , yyline, yycolumn, yytext());}
+"IN"            {print("IN");           return new Symbol(SymSQL.IN   , yyline, yycolumn, yytext());}
+"LOOP"          {print("LOOP");         return new Symbol(SymSQL.LOOP   , yyline, yycolumn, yytext());}
+"END"           {print("END");          return new Symbol(SymSQL.END   , yyline, yycolumn, yytext());}
+
+"IF"            {print("IF");          return new Symbol(SymSQL.IF   , yyline, yycolumn, yytext());}
+"THEN"          {print("THEN");        return new Symbol(SymSQL.THEN   , yyline, yycolumn, yytext());}
+"ELSE"          {print("ELSE");        return new Symbol(SymSQL.ELSE   , yyline, yycolumn, yytext());}
 
 // DDL (Data Definition Language) - Definición de Datos
 "CONSTRAINT"   {print("CONSTRAINT"); return new Symbol(SymSQL.CONSTRAINT, yyline, yycolumn, yytext());}
@@ -143,10 +151,17 @@ COMMENT_MULTILINE = "/*" ~"*/"
 ";"            {print(";");         return new Symbol(SymSQL.PERIOD_AND_AS, yyline, yycolumn, yytext());}
 "("            {print("(");         return new Symbol(SymSQL.OPEN_P       , yyline, yycolumn, yytext());}
 ")"            {print(")");         return new Symbol(SymSQL.CLOSE_P      , yyline, yycolumn, yytext());}
+"["            {print("[");         return new Symbol(SymSQL.BRACKETS_OPEN ,yyline,yycolumn,yytext());}
+"]"            {print("]");         return new Symbol(SymSQL.BRACKETS_CLOSE ,yyline,yycolumn,yytext());}
 ","            {print(",");         return new Symbol(SymSQL.COMMA        , yyline, yycolumn, yytext());}
 "."            {print(".");         return new Symbol(SymSQL.POINT        , yyline, yycolumn, yytext());}
 "="            {print("=");         return new Symbol(SymSQL.EQUAL        , yyline, yycolumn, yytext());}
 "*"            {print("*");         return new Symbol(SymSQL.ASTERISK     , yyline, yycolumn, yytext());}
+
+"RAISE"        {print("RAISE");       return new Symbol(SymSQL.RAISE        , yyline, yycolumn, yytext());}
+"NOTICE"       {print("NOTICE");      return new Symbol(SymSQL.NOTICE        , yyline, yycolumn, yytext());}
+"WARNING"      {print("WARNING");     return new Symbol(SymSQL.WARNING        , yyline, yycolumn, yytext());}
+"EXCEPTION"    {print("EXCEPTION");   return new Symbol(SymSQL.EXCEPTION        , yyline, yycolumn, yytext());}
 
 
 /*Operadores*/
